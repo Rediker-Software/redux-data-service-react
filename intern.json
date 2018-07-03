@@ -1,0 +1,44 @@
+{
+  "browser": {
+    "requires": [
+      "test-dist/test.bundle.js",
+      "test-dist/vendor.bundle.js"
+    ],
+    "suites": [
+      "test-dist/*.test.js"
+    ]
+  },
+  "tunnelOptions": {
+    "drivers": [
+      { "name": "chrome", "version": "2.36" }
+    ]
+  },
+  "environments": [
+    {
+      "browserName": "chrome",
+      "chromeOptions": {
+        "args": [
+          "headless",
+          "disable-gpu",
+          "no-sandbox"
+        ]
+      },
+      "fixSessionCapabilities": false
+    }
+  ],
+  "configs": {
+    "ci": {
+      "reporters": [
+        {
+          "name": "simple"
+        },
+        {
+          "name": "junit",
+          "options": {
+            "filename": "junit-results.xml"
+          }
+        }
+      ]
+    }
+  }
+}
