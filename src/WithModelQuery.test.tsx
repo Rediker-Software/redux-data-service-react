@@ -5,9 +5,9 @@ import { getDataService, initializeTestServices, seedServiceList, fakeModelModul
 import { Subject } from "rxjs/Subject";
 
 import { spy, stub } from "sinon";
-import { FakeComponent, usingMount } from "TestUtils";
 import { lorem } from "faker";
 
+import { FakeComponent, usingMount } from "./TestUtils";
 import { withModelQuery } from "./WithModelQuery";
 
 declare var intern;

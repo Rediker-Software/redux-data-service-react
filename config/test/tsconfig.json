@@ -1,33 +1,24 @@
 {
   "compilerOptions": {
-    "sourceMap": true,
-    "target": "es5",
-    "jsx": "react",
+    "target": "ES5",
+    "jsx": "React",
     "module": "commonjs",
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "declaration": false,
+    "declaration": true,
     "noImplicitAny": false,
     "noImplicitReturns": false,
     "removeComments": true,
     "strictNullChecks": false,
-    "outDir": "build",
-    "baseUrl": "src",
+    "outDir": "test-dist",
     "skipLibCheck": true,
     "lib": [
-      "es6",
-      "es7",
       "es2017",
       "dom"
     ]
   },
-  "exclude": [
-    "dist",
-    "build",
-    "node_modules"
-  ],
-  "types": [
-    "intern"
+  "include": [
+    "../../types"
   ]
 }

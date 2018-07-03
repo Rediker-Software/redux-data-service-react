@@ -4,8 +4,8 @@ import * as React from "react";
 
 import { shallow } from "enzyme";
 import { spy, stub } from "sinon";
-import "TestUtils/TestSetup";
 
+import "./TestUtils/TestSetup";
 import { defaultShowLoadingIndicator, withLoadingIndicator } from "./WithLoadingIndicator";
 import { FakeComponent, usingMount } from "./TestUtils";
 
