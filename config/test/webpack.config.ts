@@ -12,7 +12,7 @@ import { mapKeys } from "lodash";
 
 const { dependencies } = require("../../package.json");
 
-const outPath = join(__dirname, "../../dist");
+const outPath = join(__dirname, "../../test-dist");
 
 const testFilter = process.env.TEST ? process.env.TEST : "*";
 const testSourcePath = join(__dirname, `../../src/**/${testFilter}.test.{ts,tsx}`);
@@ -41,7 +41,6 @@ export default new Config().extend({
     test: [
       "enzyme",
       "faker",
-      "redux-test-utils",
       "sinon",
       "chai",
     ],

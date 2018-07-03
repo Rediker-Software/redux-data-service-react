@@ -1,7 +1,7 @@
 import * as React from "react";
-import { withModelQuery } from "./index";
 import { withRenderProps } from "recompose";
-import { IWithModelQueryOptions } from "./WithModelQuery";
+
+import { IWithModelQueryOptions, withModelQuery } from "./WithModelQuery";
 
 export interface IQueryProps extends IWithModelQueryOptions {
   modelName: string;

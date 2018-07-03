@@ -1,7 +1,6 @@
-import { compose, lifecycle } from "recompose";
+import { compose, lifecycle, ComponentEnhancer } from "recompose";
+import { IModel, getDataService } from "redux-data-service";
 
-import { getDataService } from "redux-data-service/src/index";
-import { IModel } from "../IModel";
 import { withModel } from "./WithModel";
 
 /**
@@ -10,13 +9,12 @@ import { withModel } from "./WithModel";
  * @param {string} dataServiceName name of service to retrieve from service provider
  * @param {string} idPropKey property name to find the id for the model on
  * @param {string} modelPropKey name of model prop name to enhance component with
- * @returns {"recompose".ComponentEnhancer<P, P>}
  */
 export function withNewModel<P = any>(
   dataServiceName: string,
   idPropKey: string = dataServiceName + "Id",
   modelPropKey: string = dataServiceName,
-) {
+): ComponentEnhancer<P, P> {
   return compose<P, P>(
     lifecycle<P, {}>({
       componentDidMount() {

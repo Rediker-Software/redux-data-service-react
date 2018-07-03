@@ -2,12 +2,14 @@ import "rxjs/add/operator/switchMap";
 import "rxjs/add/operator/combineLatest";
 import { Observable } from "rxjs/Observable";
 
-import { plural } from "pluralize";
-import { branch, compose, defaultProps, mapPropsStream } from "recompose";
-import { defaultsDeep } from "lodash";
-
+import { branch, compose, defaultProps, mapPropsStreamWithConfig } from "recompose";
 import { getDataService } from "redux-data-service";
-// import { withLoadingIndicator } from "../../../Common/Indicators";
+
+import { defaultsDeep } from "lodash";
+import { plural } from "pluralize";
+
+import { withLoadingIndicator } from "./WithLoadingIndicator";
+import rxjsConfig from "recompose/rxjsObservableConfig";
 
 export interface IWithModelQueryOptions {
   modelName?: string;
@@ -28,7 +30,7 @@ export function withModelQuery<P = {}>(options?: IWithModelQueryOptions | P) {
     defaultProps(options || {}),
     branch(
       ({ items, modelName }) => items == null && modelName != null,
-      mapPropsStream<any, P>((props$: Observable<any>) =>
+      mapPropsStreamWithConfig(rxjsConfig)<any, P>((props$: Observable<any>) =>
         props$.combineLatest(
           props$.switchMap(({ modelName, query }) => {
             const service = getDataService(modelName);
@@ -40,6 +42,6 @@ export function withModelQuery<P = {}>(options?: IWithModelQueryOptions | P) {
         ),
       ),
     ),
-    // withLoadingIndicator,
+    withLoadingIndicator<IWithModelQueryOptions>(({ items }) => items == null),
   );
 }
