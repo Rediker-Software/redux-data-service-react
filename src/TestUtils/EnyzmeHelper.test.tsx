@@ -1,13 +1,13 @@
  // tslint:disable:no-unused-expression
-import "TestUtils/TestSetup";
 
 import * as React from "react";
 
+import "./TestSetup";
 import { FakeComponent } from "./FakeComponent";
 import { usingMount } from "./EnzymeHelper";
 
 declare var intern;
-const { describe, it, beforeEach } = intern.getPlugin("interface.bdd");
+const { describe, it } = intern.getPlugin("interface.bdd");
 const { expect } = intern.getPlugin("chai");
 
 describe("EnzymeHelper", () => {
