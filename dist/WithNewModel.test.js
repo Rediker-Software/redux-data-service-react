@@ -3,12 +3,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
 var redux_data_service_1 = require("redux-data-service");
 var enzyme_1 = require("enzyme");
+var enzyme_adapter_react_16_1 = require("enzyme-adapter-react-16");
 var sinon_1 = require("sinon");
-require("./TestUtils/TestSetup");
 var TestUtils_1 = require("./TestUtils");
 var WithNewModel_1 = require("./WithNewModel");
 var _a = intern.getPlugin("interface.bdd"), describe = _a.describe, it = _a.it, beforeEach = _a.beforeEach;
 var expect = intern.getPlugin("chai").expect;
+enzyme_1.configure({ adapter: new enzyme_adapter_react_16_1.default() });
 describe("withModelOrCreateNew", function () {
     var store;
     beforeEach(function () {
