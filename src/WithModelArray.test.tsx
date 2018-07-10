@@ -3,6 +3,7 @@
 import * as React from "react";
 import { fakeModelModule, getDataService, initializeTestServices, seedServiceList } from "redux-data-service";
 
+import { of as of$ } from "rxjs/observable/of";
 import { Subject } from "rxjs/Subject";
 import { spy, stub } from "sinon";
 
@@ -30,6 +31,10 @@ describe("withModelArray", () => {
   });
 
   describe("base functionality", () => {
+    beforeEach(() => {
+      stub(fakeService, "getByIds").returns(of$(fakeModels));
+    });
+
     it("renders the component", () => {
       usingMount(<Component fakeModelIds={fakeModelIds}/>, (wrapper) => {
         expect(wrapper.find(FakeComponent).exists()).to.be.true;
@@ -58,6 +63,10 @@ describe("withModelArray", () => {
   });
 
   describe("optional fields", () => {
+    beforeEach(() => {
+      stub(fakeService, "getByIds").returns(of$(fakeModels));
+    });
+
     it("accepts a idPropKey and looks for the ids in the prop with that name", () => {
       const altIdPropField = "randomIdPropField";
       Component = withModelArray("fakeModel", altIdPropField)(FakeComponent);
@@ -78,8 +87,8 @@ describe("withModelArray", () => {
   });
 
   describe("live observable", () => {
-    let stubGetById;
     let fakeModelObservable;
+    let stubGetById;
 
     beforeEach(() => {
       fakeModelObservable = new Subject();

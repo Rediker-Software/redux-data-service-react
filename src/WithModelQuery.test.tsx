@@ -2,7 +2,9 @@
 
 import * as React from "react";
 import { getDataService, initializeTestServices, seedServiceList, fakeModelModule } from "redux-data-service";
+
 import { Subject } from "rxjs/Subject";
+import { of as of$ } from "rxjs/observable/of";
 
 import { spy, stub } from "sinon";
 import { lorem } from "faker";
@@ -82,7 +84,7 @@ describe("withModelQuery", () => {
 
     beforeEach(() => {
       fakeService = getDataService("fakeModel");
-      stubGetDefaultQueryParams = stub(fakeService, "getDefaultQueryParams").returns(query);
+      stubGetDefaultQueryParams = stub(fakeService, "getDefaultQueryParams").returns(of$(query));
       stubGetByQuery = stub(fakeService, "getByQuery").callThrough();
     });
 

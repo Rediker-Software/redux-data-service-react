@@ -1,5 +1,7 @@
-import "rxjs/add/operator/switchMap";
 import "rxjs/add/operator/combineLatest";
+import "rxjs/add/operator/distinctUntilChanged";
+import "rxjs/add/operator/map";
+import "rxjs/add/operator/switchMap";
 import { Observable } from "rxjs/Observable";
 
 import { branch, compose, defaultProps, mapPropsStreamWithConfig } from "recompose";
@@ -11,11 +13,13 @@ import { plural } from "pluralize";
 import { withLoadingIndicator } from "./WithLoadingIndicator";
 import rxjsConfig from "recompose/rxjsObservableConfig";
 
-export interface IWithModelQueryOptions {
-  modelName?: string;
+export interface IWithModelQueryProps {
   query?: any;
-  items?: any;
-  isLoading?: boolean;
+  items?: any[];
+}
+
+export interface IWithModelQueryOptions extends IWithModelQueryProps {
+  modelName?: string;
 }
 
 /**
@@ -26,7 +30,7 @@ export interface IWithModelQueryOptions {
  * automatically unsubscribes on unmount
  */
 export function withModelQuery<P = {}>(options?: IWithModelQueryOptions | P) {
-  return compose<P, P>(
+  return compose<P & { items: any[] }, P>(
     defaultProps(options || {}),
     branch(
       ({ items, modelName }) => items == null && modelName != null,
@@ -34,11 +38,12 @@ export function withModelQuery<P = {}>(options?: IWithModelQueryOptions | P) {
         props$.combineLatest(
           props$.switchMap(({ modelName, query }) => {
             const service = getDataService(modelName);
-            const queryParams = defaultsDeep({}, query, service.getDefaultQueryParams());
-
-            return service.getByQuery(queryParams);
+            return service
+              .getDefaultQueryParams()
+              .map(defaultQueryParams => defaultsDeep({}, query, defaultQueryParams))
+              .switchMap(queryParams => service.getByQuery(queryParams));
           }),
-          ({ modelName, query, ...props }, items) => ({ items, isLoading: items == null, ...props }),
+          ({ modelName, query, ...props }, items) => ({ items, ...props }),
         ),
       ),
     ),
