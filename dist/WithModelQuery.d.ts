@@ -1,12 +1,17 @@
 /// <reference path="../node_modules/@types/recompose/index.d.ts" />
 /// <reference path="../types/recompose.d.ts" />
 /// <reference types="recompose" />
-import "rxjs/add/operator/switchMap";
 import "rxjs/add/operator/combineLatest";
-export interface IWithModelQueryOptions {
-    modelName?: string;
+import "rxjs/add/operator/distinctUntilChanged";
+import "rxjs/add/operator/map";
+import "rxjs/add/operator/switchMap";
+export interface IWithModelQueryProps {
     query?: any;
-    items?: any;
-    isLoading?: boolean;
+    items?: any[];
 }
-export declare function withModelQuery<P = {}>(options?: IWithModelQueryOptions | P): 'recompose'.ComponentEnhancer<P, P>;
+export interface IWithModelQueryOptions extends IWithModelQueryProps {
+    modelName?: string;
+}
+export declare function withModelQuery<P = {}>(options?: IWithModelQueryOptions | P): 'recompose'.ComponentEnhancer<P & {
+    items: any[];
+}, P>;

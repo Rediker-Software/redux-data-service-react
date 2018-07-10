@@ -10,6 +10,7 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
 var redux_data_service_1 = require("redux-data-service");
+var of_1 = require("rxjs/observable/of");
 var Subject_1 = require("rxjs/Subject");
 var sinon_1 = require("sinon");
 var TestUtils_1 = require("./TestUtils");
@@ -29,6 +30,9 @@ describe("withModelArray", function () {
         Component = WithModelArray_1.withModelArray("fakeModel")(TestUtils_1.FakeComponent);
     });
     describe("base functionality", function () {
+        beforeEach(function () {
+            sinon_1.stub(fakeService, "getByIds").returns(of_1.of(fakeModels));
+        });
         it("renders the component", function () {
             TestUtils_1.usingMount(React.createElement(Component, { fakeModelIds: fakeModelIds }), function (wrapper) {
                 expect(wrapper.find(TestUtils_1.FakeComponent).exists()).to.be.true;
@@ -52,6 +56,9 @@ describe("withModelArray", function () {
         });
     });
     describe("optional fields", function () {
+        beforeEach(function () {
+            sinon_1.stub(fakeService, "getByIds").returns(of_1.of(fakeModels));
+        });
         it("accepts a idPropKey and looks for the ids in the prop with that name", function () {
             var _a;
             var altIdPropField = "randomIdPropField";
@@ -69,8 +76,8 @@ describe("withModelArray", function () {
         });
     });
     describe("live observable", function () {
-        var stubGetById;
         var fakeModelObservable;
+        var stubGetById;
         beforeEach(function () {
             fakeModelObservable = new Subject_1.Subject();
             stubGetById = sinon_1.stub(fakeService, "getByIds").returns(fakeModelObservable);

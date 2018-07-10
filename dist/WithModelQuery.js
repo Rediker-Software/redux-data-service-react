@@ -17,8 +17,10 @@ var __rest = (this && this.__rest) || function (s, e) {
     return t;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-require("rxjs/add/operator/switchMap");
 require("rxjs/add/operator/combineLatest");
+require("rxjs/add/operator/distinctUntilChanged");
+require("rxjs/add/operator/map");
+require("rxjs/add/operator/switchMap");
 var recompose_1 = require("recompose");
 var redux_data_service_1 = require("redux-data-service");
 var lodash_1 = require("lodash");
@@ -32,11 +34,13 @@ function withModelQuery(options) {
         return props$.combineLatest(props$.switchMap(function (_a) {
             var modelName = _a.modelName, query = _a.query;
             var service = redux_data_service_1.getDataService(modelName);
-            var queryParams = lodash_1.defaultsDeep({}, query, service.getDefaultQueryParams());
-            return service.getByQuery(queryParams);
+            return service
+                .getDefaultQueryParams()
+                .map(function (defaultQueryParams) { return lodash_1.defaultsDeep({}, query, defaultQueryParams); })
+                .switchMap(function (queryParams) { return service.getByQuery(queryParams); });
         }), function (_a, items) {
             var modelName = _a.modelName, query = _a.query, props = __rest(_a, ["modelName", "query"]);
-            return (__assign({ items: items, isLoading: items == null }, props));
+            return (__assign({ items: items }, props));
         });
     })), WithLoadingIndicator_1.withLoadingIndicator(function (_a) {
         var items = _a.items;
