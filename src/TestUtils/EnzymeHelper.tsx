@@ -1,8 +1,6 @@
 import * as React from "react";
 import { mount, ReactWrapper } from "enzyme";
 
-import "./TestSetup";
-
 /**
  * Helper function to handle mounting and unmounting a component using enzyme to ensure resources are cleaned up.
  *

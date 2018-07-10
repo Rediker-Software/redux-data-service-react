@@ -1,11 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
-require("./TestSetup");
+var enzyme_1 = require("enzyme");
+var enzyme_adapter_react_16_1 = require("enzyme-adapter-react-16");
 var FakeComponent_1 = require("./FakeComponent");
 var EnzymeHelper_1 = require("./EnzymeHelper");
 var _a = intern.getPlugin("interface.bdd"), describe = _a.describe, it = _a.it;
 var expect = intern.getPlugin("chai").expect;
+enzyme_1.configure({ adapter: new enzyme_adapter_react_16_1.default() });
 describe("EnzymeHelper", function () {
     describe("usingMount", function () {
         it("mounts the component and runs the function", function () {

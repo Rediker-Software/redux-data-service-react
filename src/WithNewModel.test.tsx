@@ -3,10 +3,10 @@
 import * as React from "react";
 import { fakeModelModule, getDataService, initializeTestServices, seedService } from "redux-data-service";
 
-import { mount } from "enzyme";
+import { mount, configure } from "enzyme";
+import Adapter from "enzyme-adapter-react-16";
 import { stub } from "sinon";
 
-import "./TestUtils/TestSetup";
 import { usingMount } from "./TestUtils";
 
 import { withNewModel } from "./WithNewModel";
@@ -14,6 +14,8 @@ import { withNewModel } from "./WithNewModel";
 declare var intern;
 const { describe, it, beforeEach } = intern.getPlugin("interface.bdd");
 const { expect } = intern.getPlugin("chai");
+
+configure({ adapter: new Adapter() });
 
 describe("withModelOrCreateNew", () => {
   let store;
