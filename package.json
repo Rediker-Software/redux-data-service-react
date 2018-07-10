@@ -4,6 +4,7 @@
   "private": false,
   "description": "",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "test": "cross-env NODE_ENV=test webpack && intern",
     "test:build": "cross-env NODE_ENV=test webpack",

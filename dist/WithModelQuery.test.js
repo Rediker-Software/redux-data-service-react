@@ -11,6 +11,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
 var redux_data_service_1 = require("redux-data-service");
 var Subject_1 = require("rxjs/Subject");
+var of_1 = require("rxjs/observable/of");
 var sinon_1 = require("sinon");
 var faker_1 = require("faker");
 var TestUtils_1 = require("./TestUtils");
@@ -72,7 +73,7 @@ describe("withModelQuery", function () {
         var stubGetByQuery;
         beforeEach(function () {
             fakeService = redux_data_service_1.getDataService("fakeModel");
-            stubGetDefaultQueryParams = sinon_1.stub(fakeService, "getDefaultQueryParams").returns(query);
+            stubGetDefaultQueryParams = sinon_1.stub(fakeService, "getDefaultQueryParams").returns(of_1.of(query));
             stubGetByQuery = sinon_1.stub(fakeService, "getByQuery").callThrough();
         });
         it("gets the default query params from the service", function () {
