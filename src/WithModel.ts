@@ -13,13 +13,7 @@ import {withLoadingIndicator} from "./WithLoadingIndicator";
  *
  * Automatically updates (rerenders) the component when the observable updates and
  * automatically unsubscribes on unmount
- *
- * @generic P: lifeCycle method output type
- * @param dataServiceName name of service to retrieve from service provider
- * @param idPropKey property name to find the id for the model on
- * @param modelPropKey name of model prop name to enhance component with
  */
-
 export function withModel<P>(
   dataServiceName: string,
   idPropKey: string = dataServiceName + "Id",

@@ -12,11 +12,6 @@ import rxjsConfig from "recompose/rxjsObservableConfig";
  *
  * Automatically updates (rerenders) the component when the observable updates and
  * automatically unsubscribes on unmount
- *
- * @generic P: lifeCycle method output type
- * @param dataServiceName name of service to retrieve from service provider
- * @param idPropKey property name to find the list of ids from which to load the given list of models
- * @param modelPropKey name of component prop to enhance the component with the list of models
  */
 export function withModelArray<P>(
   dataServiceName: string,

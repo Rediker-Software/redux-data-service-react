@@ -4,7 +4,7 @@ import "rxjs/add/operator/map";
 import "rxjs/add/operator/switchMap";
 import { Observable } from "rxjs/Observable";
 
-import { branch, compose, defaultProps, mapPropsStreamWithConfig } from "recompose";
+import {branch, ComponentEnhancer, compose, defaultProps, mapPropsStreamWithConfig} from "recompose";
 import { getDataService } from "redux-data-service";
 
 import { defaultsDeep } from "lodash";
@@ -29,7 +29,7 @@ export interface IWithModelQueryOptions extends IWithModelQueryProps {
  * Automatically updates (rerenders) the component when the observable updates and
  * automatically unsubscribes on unmount
  */
-export function withModelQuery<P = {}>(options?: IWithModelQueryOptions | P) {
+export function withModelQuery<P = {}>(options?: IWithModelQueryOptions | P): ComponentEnhancer<P, P> {
   return compose<P & { items: any[] }, P>(
     defaultProps(options || {}),
     branch(
