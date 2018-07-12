@@ -4264,9 +4264,9 @@ redent@^1.0.0:
     indent-string "^2.1.0"
     strip-indent "^1.0.1"
 
-redux-data-service@^0.0.12:
-  version "0.0.12"
-  resolved "https://registry.yarnpkg.com/redux-data-service/-/redux-data-service-0.0.12.tgz#c81c731eeba0b57442954517f467610dd8af4e47"
+redux-data-service@^0.0.15:
+  version "0.0.15"
+  resolved "https://registry.yarnpkg.com/redux-data-service/-/redux-data-service-0.0.15.tgz#5819ed0a17d2665346a7f92c289ed6ca040590ed"
   dependencies:
     date-fns "2.0.0-alpha.7"
     immutable "^4.0.0-rc.9"
