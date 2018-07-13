@@ -1,10 +1,11 @@
 {
   "name": "redux-data-service-react",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "private": false,
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "files": ["dist"],
   "scripts": {
     "test": "cross-env NODE_ENV=test webpack && intern",
     "test:build": "cross-env NODE_ENV=test webpack",
@@ -13,7 +14,7 @@
     "test:ci": "cross-env NODE_ENV=test webpack && intern config=@ci",
     "build": "tsc -p tsconfig.json",
     "tslint": "tslint -c tslint.json -p tsconfig.json",
-    "typedoc": "typedoc --options typedoc.json && http-server docs -p 9384 -c-1"
+    "typedoc": "typedoc --options typedoc.json"
   },
   "devDependencies": {
     "@types/node": "8.0.53",
@@ -41,6 +42,7 @@
     "tslint-react": "^3.4.0",
     "tslint-webpack-plugin": "^1.1.1",
     "typedoc": "^0.11.1",
+    "typedoc-plugin-markdown": "^1.1.13",
     "typescript": "^2.6.1",
     "uglifyjs-webpack-plugin": "^1.1.8",
     "webpack": "^3.8.1",
@@ -49,7 +51,6 @@
   },
   "dependencies": {
     "lodash": "^4.17.5",
-    "re-reselect": "^1.0.1",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
     "recompose": "^0.27.1",

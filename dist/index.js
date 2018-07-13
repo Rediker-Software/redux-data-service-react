@@ -4,6 +4,7 @@ function __export(m) {
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 __export(require("./Configure"));
+__export(require("./DefaultLoadingComponent"));
 __export(require("./Query"));
 __export(require("./TestUtils"));
 __export(require("./WithLoadingIndicator"));
