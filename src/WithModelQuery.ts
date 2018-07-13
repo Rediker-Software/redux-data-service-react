@@ -33,7 +33,7 @@ export function withModelQuery<P = {}>(options?: IWithModelQueryOptions | P): Co
   return compose<P & { items: any[] }, P>(
     defaultProps(options || {}),
     branch(
-      ({ items, modelName }) => items == null && modelName != null,
+      ({ items, modelName }) => modelName && items == null && modelName != null,
       mapPropsStreamWithConfig(rxjsConfig)<any, P>((props$: Observable<any>) =>
         props$.combineLatest(
           props$.switchMap(({ modelName, query }) => {

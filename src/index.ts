@@ -1,4 +1,5 @@
 export * from "./Configure";
+export * from "./DefaultLoadingComponent";
 export * from "./Query";
 export * from "./TestUtils";
 export * from "./WithLoadingIndicator";
