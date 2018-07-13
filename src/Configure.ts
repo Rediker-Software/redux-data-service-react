@@ -1,13 +1,21 @@
+import { DefaultLoadingComponent } from "./DefaultLoadingComponent";
+
 export interface IConfiguration {
-  loadingComponent: React.ComponentType<any>;
+  loadingComponent?: React.ComponentType<any>;
 }
 
-let configuration: IConfiguration = {} as IConfiguration;
+let configuration: IConfiguration = {
+  loadingComponent: DefaultLoadingComponent,
+};
 
 export function getConfiguration() {
   return configuration;
 }
 
-export function configure(config: IConfiguration, configureStore): void {
-  configuration = config;
+export function configure(config: IConfiguration): void {
+  configuration = { ...config };
+
+  if (configuration.loadingComponent == null) {
+    configuration.loadingComponent = DefaultLoadingComponent;
+  }
 }
