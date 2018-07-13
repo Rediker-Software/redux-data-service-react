@@ -1,0 +1,10 @@
+{
+  "name": "redux-data-service-react",
+  "out": "docs",
+  "mode": "file",
+  "theme": "markdown",
+  "ignoreCompilerErrors": "false",
+  "preserveConstEnums": "true",
+  "exclude": "**/*+(test|mock|story).*",
+  "stripInternal": "false"
+}

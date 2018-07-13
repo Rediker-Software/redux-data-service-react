@@ -29,7 +29,7 @@ var rxjsObservableConfig_1 = require("recompose/rxjsObservableConfig");
 function withModelQuery(options) {
     return recompose_1.compose(recompose_1.defaultProps(options || {}), recompose_1.branch(function (_a) {
         var items = _a.items, modelName = _a.modelName;
-        return items == null && modelName != null;
+        return modelName && items == null && modelName != null;
     }, recompose_1.mapPropsStreamWithConfig(rxjsObservableConfig_1.default)(function (props$) {
         return props$.combineLatest(props$.switchMap(function (_a) {
             var modelName = _a.modelName, query = _a.query;
