@@ -23,7 +23,7 @@
 
 **● isLoading**: *`boolean`*
 
-*Defined in [WithLoadingIndicator.tsx:11](https://github.com/Rediker-Software/redux-data-service-react/blob/dcc8392/src/WithLoadingIndicator.tsx#L11)*
+*Defined in [WithLoadingIndicator.tsx:11](https://github.com/Rediker-Software/redux-data-service-react/blob/bf1008a/src/WithLoadingIndicator.tsx#L11)*
 
 ___
 <a id="loadingcomponent"></a>
@@ -32,7 +32,7 @@ ___
 
 **● loadingComponent**: *`React.ComponentType`*
 
-*Defined in [WithLoadingIndicator.tsx:12](https://github.com/Rediker-Software/redux-data-service-react/blob/dcc8392/src/WithLoadingIndicator.tsx#L12)*
+*Defined in [WithLoadingIndicator.tsx:12](https://github.com/Rediker-Software/redux-data-service-react/blob/bf1008a/src/WithLoadingIndicator.tsx#L12)*
 
 ___
 

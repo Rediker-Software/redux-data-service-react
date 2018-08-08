@@ -48,7 +48,7 @@
 **● Query**: * `ComponentClass`<[IQueryProps](interfaces/iqueryprops.md)> &#124; `StatelessComponent`<[IQueryProps](interfaces/iqueryprops.md)>
 * =  withRenderProps<IQueryProps>(withModelQuery())
 
-*Defined in [Query.tsx:12](https://github.com/Rediker-Software/redux-data-service-react/blob/dcc8392/src/Query.tsx#L12)*
+*Defined in [Query.tsx:12](https://github.com/Rediker-Software/redux-data-service-react/blob/bf1008a/src/Query.tsx#L12)*
 
 ___
 
@@ -60,7 +60,7 @@ ___
 
 ▸ **DefaultLoadingComponent**(): `Element`
 
-*Defined in [DefaultLoadingComponent.tsx:3](https://github.com/Rediker-Software/redux-data-service-react/blob/dcc8392/src/DefaultLoadingComponent.tsx#L3)*
+*Defined in [DefaultLoadingComponent.tsx:3](https://github.com/Rediker-Software/redux-data-service-react/blob/bf1008a/src/DefaultLoadingComponent.tsx#L3)*
 
 **Returns:** `Element`
 
@@ -71,7 +71,7 @@ ___
 
 ▸ **configure**(config: *[IConfiguration](interfaces/iconfiguration.md)*): `void`
 
-*Defined in [Configure.ts:15](https://github.com/Rediker-Software/redux-data-service-react/blob/dcc8392/src/Configure.ts#L15)*
+*Defined in [Configure.ts:15](https://github.com/Rediker-Software/redux-data-service-react/blob/bf1008a/src/Configure.ts#L15)*
 
 **Parameters:**
 
@@ -88,7 +88,7 @@ ___
 
 ▸ **defaultShowLoadingIndicator**(__namedParameters: *`object`*): `boolean`
 
-*Defined in [WithLoadingIndicator.tsx:15](https://github.com/Rediker-Software/redux-data-service-react/blob/dcc8392/src/WithLoadingIndicator.tsx#L15)*
+*Defined in [WithLoadingIndicator.tsx:15](https://github.com/Rediker-Software/redux-data-service-react/blob/bf1008a/src/WithLoadingIndicator.tsx#L15)*
 
 **Parameters:**
 
@@ -105,7 +105,7 @@ ___
 
 ▸ **getConfiguration**(): [IConfiguration](interfaces/iconfiguration.md)
 
-*Defined in [Configure.ts:11](https://github.com/Rediker-Software/redux-data-service-react/blob/dcc8392/src/Configure.ts#L11)*
+*Defined in [Configure.ts:11](https://github.com/Rediker-Software/redux-data-service-react/blob/bf1008a/src/Configure.ts#L11)*
 
 **Returns:** [IConfiguration](interfaces/iconfiguration.md)
 
@@ -116,7 +116,7 @@ ___
 
 ▸ **usingMount**(component: * `React.ComponentType`<`any`> &#124; `Element`*, whileMounted: *`function`*, mountOptions?: *`object`*): `void`
 
-*Defined in [TestUtils/EnzymeHelper.tsx:11](https://github.com/Rediker-Software/redux-data-service-react/blob/dcc8392/src/TestUtils/EnzymeHelper.tsx#L11)*
+*Defined in [TestUtils/EnzymeHelper.tsx:11](https://github.com/Rediker-Software/redux-data-service-react/blob/bf1008a/src/TestUtils/EnzymeHelper.tsx#L11)*
 
 Helper function to handle mounting and unmounting a component using enzyme to ensure resources are cleaned up.
 
@@ -137,7 +137,7 @@ ___
 
 ▸ **withLoadingIndicator**P(test?: *[IShowLoadingIndicator](interfaces/ishowloadingindicator.md)< `P` &#124; `any`>*, loadingComponent?: *`React.ComponentType`<`any`>*): `ComponentEnhancer`<`P`, `P`>
 
-*Defined in [WithLoadingIndicator.tsx:25](https://github.com/Rediker-Software/redux-data-service-react/blob/dcc8392/src/WithLoadingIndicator.tsx#L25)*
+*Defined in [WithLoadingIndicator.tsx:25](https://github.com/Rediker-Software/redux-data-service-react/blob/bf1008a/src/WithLoadingIndicator.tsx#L25)*
 
 Displays a loading component if the given test function returns true.
 
@@ -164,7 +164,7 @@ ___
 
 ▸ **withModel**P(dataServiceName: *`string`*, idPropKey?: *`string`*, modelPropKey?: *`string`*): `ComponentEnhancer`<`P`, `P`>
 
-*Defined in [WithModel.ts:17](https://github.com/Rediker-Software/redux-data-service-react/blob/dcc8392/src/WithModel.ts#L17)*
+*Defined in [WithModel.ts:17](https://github.com/Rediker-Software/redux-data-service-react/blob/bf1008a/src/WithModel.ts#L17)*
 
 An HOC to inject a model into a component given the name of the DataService for that model.
 
@@ -190,7 +190,7 @@ ___
 
 ▸ **withModelArray**P(dataServiceName: *`string`*, idPropKey?: *`string`*, modelPropKey?: *`string`*): `ComponentEnhancer`<`P`, `P`>
 
-*Defined in [WithModelArray.ts:16](https://github.com/Rediker-Software/redux-data-service-react/blob/dcc8392/src/WithModelArray.ts#L16)*
+*Defined in [WithModelArray.ts:16](https://github.com/Rediker-Software/redux-data-service-react/blob/bf1008a/src/WithModelArray.ts#L16)*
 
 An HOC to inject a model array into a component given the name of the DataService for that model and a list of ids.
 
@@ -216,7 +216,7 @@ ___
 
 ▸ **withModelQuery**P(options?: * [IWithModelQueryOptions](interfaces/iwithmodelqueryoptions.md) &#124; `P`*): `ComponentEnhancer`<`P`, `P`>
 
-*Defined in [WithModelQuery.ts:32](https://github.com/Rediker-Software/redux-data-service-react/blob/dcc8392/src/WithModelQuery.ts#L32)*
+*Defined in [WithModelQuery.ts:32](https://github.com/Rediker-Software/redux-data-service-react/blob/bf1008a/src/WithModelQuery.ts#L32)*
 
 An HOC to inject a model array into a component given the name of the DataService for that model and some query params which will be passed to the API to load those items.
 
@@ -240,7 +240,7 @@ ___
 
 ▸ **withNewModel**P(dataServiceName: *`string`*, idPropKey?: *`string`*, modelPropKey?: *`string`*): `ComponentEnhancer`<`P`, `P`>
 
-*Defined in [WithNewModel.tsx:13](https://github.com/Rediker-Software/redux-data-service-react/blob/dcc8392/src/WithNewModel.tsx#L13)*
+*Defined in [WithNewModel.tsx:13](https://github.com/Rediker-Software/redux-data-service-react/blob/bf1008a/src/WithNewModel.tsx#L13)*
 
 An HOC which returns a new unsaved model if one is not provided.
 
@@ -267,7 +267,7 @@ ___
 
 **configuration**: *`object`*
 
-*Defined in [Configure.ts:7](https://github.com/Rediker-Software/redux-data-service-react/blob/dcc8392/src/Configure.ts#L7)*
+*Defined in [Configure.ts:7](https://github.com/Rediker-Software/redux-data-service-react/blob/bf1008a/src/Configure.ts#L7)*
 
 <a id="configuration.loadingcomponent"></a>
 
@@ -275,7 +275,7 @@ ___
 
 **● loadingComponent**: *[DefaultLoadingComponent]()* =  DefaultLoadingComponent
 
-*Defined in [Configure.ts:8](https://github.com/Rediker-Software/redux-data-service-react/blob/dcc8392/src/Configure.ts#L8)*
+*Defined in [Configure.ts:8](https://github.com/Rediker-Software/redux-data-service-react/blob/bf1008a/src/Configure.ts#L8)*
 
 ___
 
