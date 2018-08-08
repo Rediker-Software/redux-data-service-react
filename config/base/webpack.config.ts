@@ -6,7 +6,7 @@ import { TsConfigPathsPlugin } from "awesome-typescript-loader";
 import { join } from "path";
 import Config from "webpack-config";
 
-const {dependencies} = require("../../package.json"); // tslint:disable-line
+const {peerDependencies} = require("../../package.json"); // tslint:disable-line
 
 const outPath = join(__dirname, "../../test-dist");
 const sourcePath = join(__dirname, "../../src");
@@ -15,7 +15,7 @@ export default new Config().merge({
   context: sourcePath,
   entry: {
     main: "./index.tsx",
-    vendor: Object.keys(dependencies),
+    vendor: Object.keys(peerDependencies),
   },
   node: {
     // workaround for webpack-dev-server issue

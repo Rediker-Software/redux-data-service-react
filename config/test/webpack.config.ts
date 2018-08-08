@@ -11,7 +11,7 @@ import { TsConfigPathsPlugin } from "awesome-typescript-loader";
 import { join } from "path";
 import { mapKeys } from "lodash";
 
-const { dependencies } = require("../../package.json");
+const { peerDependencies } = require("../../package.json");
 
 const outPath = join(__dirname, "../../test-dist");
 
@@ -44,7 +44,7 @@ export default new Config().extend({
       "sinon",
       "chai",
     ],
-    vendor: [...Object.keys(dependencies)],
+    vendor: [...Object.keys(peerDependencies)],
   },
   module: {
     loaders: [
