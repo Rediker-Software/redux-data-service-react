@@ -4,13 +4,12 @@ import "rxjs/add/operator/map";
 import "rxjs/add/operator/switchMap";
 import { Observable } from "rxjs/Observable";
 
-import {branch, ComponentEnhancer, compose, defaultProps, mapPropsStreamWithConfig} from "recompose";
+import {branch, compose, ComponentEnhancer, defaultProps, mapPropsStreamWithConfig} from "recompose";
 import { getDataService } from "redux-data-service";
 
 import { defaultsDeep } from "lodash";
-import { plural } from "pluralize";
 
-import { withLoadingIndicator } from "./WithLoadingIndicator";
+import { withLoadingIndicator, IWithLoadingIndicatorProps } from "./WithLoadingIndicator";
 import rxjsConfig from "recompose/rxjsObservableConfig";
 
 export interface IWithModelQueryProps {
@@ -18,7 +17,7 @@ export interface IWithModelQueryProps {
   items?: any[];
 }
 
-export interface IWithModelQueryOptions extends IWithModelQueryProps {
+export interface IWithModelQueryOptions extends IWithModelQueryProps, IWithLoadingIndicatorProps {
   modelName?: string;
 }
 
@@ -29,7 +28,7 @@ export interface IWithModelQueryOptions extends IWithModelQueryProps {
  * Automatically updates (rerenders) the component when the observable updates and
  * automatically unsubscribes on unmount
  */
-export function withModelQuery<P = {}>(options?: IWithModelQueryOptions | P): ComponentEnhancer<P, P> {
+export function withModelQuery<P = {}>(options?: IWithModelQueryOptions & P): ComponentEnhancer<P, P> {
   return compose<P & { items: any[] }, P>(
     defaultProps(options || {}),
     branch(

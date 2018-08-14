@@ -10,6 +10,7 @@ export interface IShowLoadingIndicator<P> {
 export interface IWithLoadingIndicatorProps {
   isLoading?: boolean;
   loadingComponent?: React.ComponentType;
+  loadingComponentProps?: object;
 }
 
 export const defaultShowLoadingIndicator = ({ isLoading }: IWithLoadingIndicatorProps): boolean => isLoading;
@@ -29,11 +30,12 @@ export function withLoadingIndicator<P = IWithLoadingIndicatorProps>(
   return compose<P, P>(
     defaultProps({
       loadingComponent: loadingComponent || getConfiguration().loadingComponent,
+      loadingComponentProps: {},
     }),
     branch<P>(
       test,
-      renderComponent<IWithLoadingIndicatorProps>(({ loadingComponent: Loading }) => <Loading/>),
+      renderComponent<IWithLoadingIndicatorProps>(({ loadingComponent: Loading, loadingComponentProps }) => <Loading {...loadingComponentProps}/>),
     ),
-    mapProps(({ isLoading, loadingComponent: Loading, ...props }) => props),
+    mapProps(({ isLoading, loadingComponent: Loading, loadingComponentProps, ...props }) => props),
   );
 }

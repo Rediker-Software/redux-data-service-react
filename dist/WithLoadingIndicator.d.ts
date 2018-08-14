@@ -6,6 +6,7 @@ export interface IShowLoadingIndicator<P> {
 export interface IWithLoadingIndicatorProps {
     isLoading?: boolean;
     loadingComponent?: React.ComponentType;
+    loadingComponentProps?: object;
 }
 export declare const defaultShowLoadingIndicator: ({ isLoading }: IWithLoadingIndicatorProps) => boolean;
 export declare function withLoadingIndicator<P = IWithLoadingIndicatorProps>(test?: IShowLoadingIndicator<P | any>, loadingComponent?: React.ComponentType<any>): ComponentEnhancer<P, P>;

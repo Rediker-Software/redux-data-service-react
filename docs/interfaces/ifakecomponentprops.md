@@ -22,7 +22,7 @@
 
 **● fakeProp**: *`any`*
 
-*Defined in [TestUtils/FakeComponent.tsx:4](https://github.com/Rediker-Software/redux-data-service-react/blob/bf1008a/src/TestUtils/FakeComponent.tsx#L4)*
+*Defined in [TestUtils/FakeComponent.tsx:4](https://github.com/Rediker-Software/redux-data-service-react/blob/431cbf8/src/TestUtils/FakeComponent.tsx#L4)*
 
 ___
 
