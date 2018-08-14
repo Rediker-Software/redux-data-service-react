@@ -1,4 +1,12 @@
 "use strict";
+var __assign = (this && this.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
+};
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -20,11 +28,12 @@ function withLoadingIndicator(test, loadingComponent) {
     if (test === void 0) { test = exports.defaultShowLoadingIndicator; }
     return recompose_1.compose(recompose_1.defaultProps({
         loadingComponent: loadingComponent || Configure_1.getConfiguration().loadingComponent,
+        loadingComponentProps: {},
     }), recompose_1.branch(test, recompose_1.renderComponent(function (_a) {
-        var Loading = _a.loadingComponent;
-        return React.createElement(Loading, null);
+        var Loading = _a.loadingComponent, loadingComponentProps = _a.loadingComponentProps;
+        return React.createElement(Loading, __assign({}, loadingComponentProps));
     })), recompose_1.mapProps(function (_a) {
-        var isLoading = _a.isLoading, Loading = _a.loadingComponent, props = __rest(_a, ["isLoading", "loadingComponent"]);
+        var isLoading = _a.isLoading, Loading = _a.loadingComponent, loadingComponentProps = _a.loadingComponentProps, props = __rest(_a, ["isLoading", "loadingComponent", "loadingComponentProps"]);
         return props;
     }));
 }
