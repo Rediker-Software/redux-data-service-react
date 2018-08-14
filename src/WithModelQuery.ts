@@ -4,14 +4,12 @@ import "rxjs/add/operator/map";
 import "rxjs/add/operator/switchMap";
 import { Observable } from "rxjs/Observable";
 
-import * as React from "react";
-
-import {branch, ComponentEnhancer, compose, defaultProps, mapPropsStreamWithConfig} from "recompose";
+import {branch, compose, defaultProps, mapPropsStreamWithConfig} from "recompose";
 import { getDataService } from "redux-data-service";
 
 import { defaultsDeep } from "lodash";
 
-import { withLoadingIndicator } from "./WithLoadingIndicator";
+import { withLoadingIndicator, IWithLoadingIndicatorProps } from "./WithLoadingIndicator";
 import rxjsConfig from "recompose/rxjsObservableConfig";
 
 export interface IWithModelQueryProps {
@@ -19,10 +17,8 @@ export interface IWithModelQueryProps {
   items?: any[];
 }
 
-export interface IWithModelQueryOptions extends IWithModelQueryProps {
+export interface IWithModelQueryOptions extends IWithModelQueryProps, IWithLoadingIndicatorProps {
   modelName?: string;
-  loadingComponent?: React.ComponentType<any>;
-  componentProps?: object;
 }
 
 /**
@@ -50,8 +46,6 @@ export function withModelQuery<P = {}>(options?: IWithModelQueryOptions & P): Co
         ),
       ),
     ),
-    typeof options !== "undefined" && options.hasOwnProperty("componentProps")
-      ? withLoadingIndicator<IWithModelQueryOptions>(({ items }) => items == null, options.loadingComponent, options.componentProps)
-      : withLoadingIndicator<IWithModelQueryOptions>(({ items }) => items == null),
+    withLoadingIndicator<IWithModelQueryOptions>(({ items }) => items == null),
   );
 }
