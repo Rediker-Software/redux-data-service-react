@@ -10,7 +10,6 @@ import {branch, ComponentEnhancer, compose, defaultProps, mapPropsStreamWithConf
 import { getDataService } from "redux-data-service";
 
 import { defaultsDeep } from "lodash";
-import { plural } from "pluralize";
 
 import { withLoadingIndicator } from "./WithLoadingIndicator";
 import rxjsConfig from "recompose/rxjsObservableConfig";
@@ -23,6 +22,7 @@ export interface IWithModelQueryProps {
 export interface IWithModelQueryOptions extends IWithModelQueryProps {
   modelName?: string;
   loadingComponent?: React.ComponentType<any>;
+  componentProps?: object;
 }
 
 /**
@@ -50,8 +50,8 @@ export function withModelQuery<P = {}>(options?: IWithModelQueryOptions & P): Co
         ),
       ),
     ),
-    typeof options !== "undefined" && options.hasOwnProperty("loadingComponent")
-      ? withLoadingIndicator<IWithModelQueryOptions>(({ items }) => items == null, options.loadingComponent)
+    typeof options !== "undefined" && options.hasOwnProperty("componentProps")
+      ? withLoadingIndicator<IWithModelQueryOptions>(({ items }) => items == null, options.loadingComponent, options.componentProps)
       : withLoadingIndicator<IWithModelQueryOptions>(({ items }) => items == null),
   );
 }
