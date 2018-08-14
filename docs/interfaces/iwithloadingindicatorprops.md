@@ -6,12 +6,15 @@
 
 **IWithLoadingIndicatorProps**
 
+↳  [IWithModelQueryOptions](iwithmodelqueryoptions.md)
+
 ## Index
 
 ### Properties
 
 * [isLoading](iwithloadingindicatorprops.md#isloading)
 * [loadingComponent](iwithloadingindicatorprops.md#loadingcomponent)
+* [loadingComponentProps](iwithloadingindicatorprops.md#loadingcomponentprops)
 
 ---
 
@@ -23,7 +26,7 @@
 
 **● isLoading**: *`boolean`*
 
-*Defined in [WithLoadingIndicator.tsx:11](https://github.com/Rediker-Software/redux-data-service-react/blob/bf1008a/src/WithLoadingIndicator.tsx#L11)*
+*Defined in [WithLoadingIndicator.tsx:11](https://github.com/Rediker-Software/redux-data-service-react/blob/431cbf8/src/WithLoadingIndicator.tsx#L11)*
 
 ___
 <a id="loadingcomponent"></a>
@@ -32,7 +35,16 @@ ___
 
 **● loadingComponent**: *`React.ComponentType`*
 
-*Defined in [WithLoadingIndicator.tsx:12](https://github.com/Rediker-Software/redux-data-service-react/blob/bf1008a/src/WithLoadingIndicator.tsx#L12)*
+*Defined in [WithLoadingIndicator.tsx:12](https://github.com/Rediker-Software/redux-data-service-react/blob/431cbf8/src/WithLoadingIndicator.tsx#L12)*
+
+___
+<a id="loadingcomponentprops"></a>
+
+### `<Optional>` loadingComponentProps
+
+**● loadingComponentProps**: *`object`*
+
+*Defined in [WithLoadingIndicator.tsx:13](https://github.com/Rediker-Software/redux-data-service-react/blob/431cbf8/src/WithLoadingIndicator.tsx#L13)*
 
 ___
 

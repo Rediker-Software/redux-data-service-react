@@ -66,4 +66,13 @@ describe("withLoadingIndicator", () => {
       expect(wrapper.find(FakeComponent).exists()).to.be.true;
     });
   });
+
+  it("renders the loading component specified as a prop with the given props", () => {
+    const Component = withLoadingIndicator<any>()(exampleComponent);
+    const testLoadingComponent = ({value}) => <span>{value}</span>;
+
+    usingMount(<Component isLoading loadingComponent={testLoadingComponent} loadingComponentProps={{ value: "hello world" }}/>, (wrapper) => {
+      expect(wrapper.text()).to.equal("hello world");
+    });
+  });
 });

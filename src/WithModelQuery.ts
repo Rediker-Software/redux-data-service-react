@@ -4,7 +4,7 @@ import "rxjs/add/operator/map";
 import "rxjs/add/operator/switchMap";
 import { Observable } from "rxjs/Observable";
 
-import {branch, compose, defaultProps, mapPropsStreamWithConfig} from "recompose";
+import {branch, compose, ComponentEnhancer, defaultProps, mapPropsStreamWithConfig} from "recompose";
 import { getDataService } from "redux-data-service";
 
 import { defaultsDeep } from "lodash";

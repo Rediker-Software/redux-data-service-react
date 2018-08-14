@@ -51,4 +51,14 @@ describe("withLoadingIndicator", function () {
             expect(wrapper.find(TestUtils_1.FakeComponent).exists()).to.be.true;
         });
     });
+    it("renders the loading component specified as a prop with the given props", function () {
+        var Component = WithLoadingIndicator_1.withLoadingIndicator()(exampleComponent);
+        var testLoadingComponent = function (_a) {
+            var value = _a.value;
+            return React.createElement("span", null, value);
+        };
+        TestUtils_1.usingMount(React.createElement(Component, { isLoading: true, loadingComponent: testLoadingComponent, loadingComponentProps: { value: "hello world" } }), function (wrapper) {
+            expect(wrapper.text()).to.equal("hello world");
+        });
+    });
 });
