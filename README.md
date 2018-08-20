@@ -242,10 +242,14 @@ If you provide the `items` prop, they will pass through to the wrapped component
 
 To test components decorated with the HOCs provided by this library:
 
-1. `Register each Model/DataService pair using the the `initializeTestServices` function provided by `redux-data-service`.
+1. Register each Model/DataService pair using the the `initializeTestServices` function provided by `redux-data-service`.
 2. Use `seedService` or `seedServiceList` from `redux-data-service` to pre-populate Redux with mock data.
-  > Note: the seed functions require a `createMock<ModelName>` function which returns a mock instance of the given model, to be registered with `initializeTestServices`. For example, use `createMockStudent` to seed the `student` model.
-3. You may optionally use the `usingMount` Enzyme helper provided by `redux-data-service-react`, which will mount your component, fire a callback with the mounted component's wrapper, then cleanly tear down your component.
+  - Note: the seed functions require a `createMock<ModelName>` function which returns a mock instance of the given model to be registered with `initializeTestServices`.
+  - For example, use `createMockStudent` to seed the `student` model.
+3. You may optionally use the `usingMount` Enzyme helper provided by `redux-data-service-react`, which will:
+  - mount your component
+  - fire a callback with the mounted component's wrapper
+  - then cleanly tear down your component.
 
 ### Example
 
