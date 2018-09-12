@@ -25,7 +25,7 @@
 
 **● items**: *`any`[]*
 
-*Defined in [WithModelQuery.ts:17](https://github.com/Rediker-Software/redux-data-service-react/blob/431cbf8/src/WithModelQuery.ts#L17)*
+*Defined in [WithModelQuery.ts:17](https://github.com/Rediker-Software/redux-data-service-react/blob/2c860bf/src/WithModelQuery.ts#L17)*
 
 ___
 <a id="query"></a>
@@ -34,7 +34,7 @@ ___
 
 **● query**: *`any`*
 
-*Defined in [WithModelQuery.ts:16](https://github.com/Rediker-Software/redux-data-service-react/blob/431cbf8/src/WithModelQuery.ts#L16)*
+*Defined in [WithModelQuery.ts:16](https://github.com/Rediker-Software/redux-data-service-react/blob/2c860bf/src/WithModelQuery.ts#L16)*
 
 ___
 

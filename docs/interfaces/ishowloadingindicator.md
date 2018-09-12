@@ -11,7 +11,7 @@
 ## Callable
 ▸ **__call**(props: *`P`*): `boolean`
 
-*Defined in [WithLoadingIndicator.tsx:6](https://github.com/Rediker-Software/redux-data-service-react/blob/431cbf8/src/WithLoadingIndicator.tsx#L6)*
+*Defined in [WithLoadingIndicator.tsx:6](https://github.com/Rediker-Software/redux-data-service-react/blob/2c860bf/src/WithLoadingIndicator.tsx#L6)*
 
 **Parameters:**
 
