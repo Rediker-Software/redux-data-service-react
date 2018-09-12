@@ -8,14 +8,26 @@ import { mount, ReactWrapper } from "enzyme";
  * @param whileMounted Function to execute while component is mounted
  * @param mountOptions options passed into mount as second param
  */
-export function usingMount(component: React.ComponentType<any> | JSX.Element, whileMounted: (wrapper: ReactWrapper) => void, mountOptions = {}) {
+export function usingMount(
+  component: React.ComponentType<any> | JSX.Element,
+  whileMounted: (wrapper: ReactWrapper) => Promise<any> | void,
+  mountOptions = {},
+): Promise<any> | void {
   let wrapper;
+  let promise;
   try {
     wrapper = mount(component, mountOptions);
-    whileMounted(wrapper);
+
+    promise = whileMounted(wrapper);
   } finally {
-    if (wrapper) {
+    if (promise instanceof Promise) {
+      promise
+        .then(() => wrapper.unmount())
+        .catch(() => wrapper.unmount());
+    } else if (wrapper) {
       wrapper.unmount();
     }
   }
+
+  return (promise instanceof Promise) ? promise : undefined;
 }
