@@ -15,9 +15,9 @@ export function usingMount(
 ): Promise<any> | void {
   let wrapper;
   let promise;
+
   try {
     wrapper = mount(component, mountOptions);
-
     promise = whileMounted(wrapper);
   } finally {
     if (promise instanceof Promise) {
