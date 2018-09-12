@@ -45,13 +45,19 @@ describe("EnzymeHelper", () => {
 
     it("throws any exceptions", () => {
       let didRun = false;
-      expect( () =>
+      expect(() =>
         usingMount(<span />, (wrapper) => {
           didRun = true;
           throw new Error("test");
         }),
       ).to.throw("test");
       expect(didRun).to.be.true;
+    });
+
+    it("awaits promises", async () => {
+      await usingMount(<FakeComponent fakeProp="value" />, () => new Promise(resolve => {
+        resolve();
+      }));
     });
   });
 });
