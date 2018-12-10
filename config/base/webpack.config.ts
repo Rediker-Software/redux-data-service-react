@@ -8,7 +8,7 @@ import Config from "webpack-config";
 
 const {peerDependencies} = require("../../package.json"); // tslint:disable-line
 
-const outPath = join(__dirname, "../../test-dist");
+const outPath = join(__dirname, "../../dist");
 const sourcePath = join(__dirname, "../../src");
 
 export default new Config().merge({
