@@ -30,13 +30,18 @@ export default new Config().merge({
   },
   plugins: [
     new CleanWebpackPlugin([outPath], {verbose: true, allowExternal: true}),
-    new webpack.optimize.CommonsChunkPlugin({
-      filename: "[name].js",
-      minChunks: Infinity,
-      name: "vendor",
-    }),
     new webpack.optimize.AggressiveMergingPlugin(),
   ],
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          chunks: "all",
+          name: "vendor",
+        },
+      },
+    },
+  },
   resolve: {
     extensions: [".js", ".jsx", ".ts", ".tsx"],
     // Fix webpack's default behavior to not load packages with jsnext:main module
