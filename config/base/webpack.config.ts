@@ -35,7 +35,7 @@ export default new Config().merge({
   optimization: {
     splitChunks: {
       cacheGroups: {
-        vendor: {
+        default: {
           chunks: "all",
           name: "vendor",
         },
