@@ -6,6 +6,7 @@ import { fakeModelModule, initializeTestServices, seedServiceList } from "redux-
 import { spy, stub } from "sinon";
 import { lorem, random } from "faker";
 
+import "./TestUtils/TestSetup";
 import { usingMount } from "./TestUtils";
 import { Query } from "./Query";
 

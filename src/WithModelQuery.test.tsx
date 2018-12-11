@@ -9,6 +9,7 @@ import { of as of$ } from "rxjs/observable/of";
 import { spy, stub } from "sinon";
 import { lorem } from "faker";
 
+import "./TestUtils/TestSetup";
 import { FakeComponent, usingMount } from "./TestUtils";
 import { withModelQuery } from "./WithModelQuery";
 

@@ -7,6 +7,7 @@ import { of as of$ } from "rxjs/observable/of";
 import { Subject } from "rxjs/Subject";
 import { spy, stub } from "sinon";
 
+import "./TestUtils/TestSetup";
 import { FakeComponent, usingMount } from "./TestUtils";
 import { withModelArray } from "./WithModelArray";
 

@@ -34,6 +34,7 @@ export default new Config().extend({
   "config/base/webpack.config.ts": (config) => {
     delete config.entry;
     delete config.plugins;
+    delete config.output;
     return config;
   },
 }).merge({
@@ -46,6 +47,11 @@ export default new Config().extend({
       "chai",
     ],
     vendor: [...Object.keys(peerDependencies)],
+  },
+  output: {
+    filename: "[name].js",
+    path: outPath,
+    publicPath: "/",
   },
   module: {
     rules: [

@@ -35,9 +35,10 @@ export default new Config().merge({
   optimization: {
     splitChunks: {
       cacheGroups: {
-        default: {
-          chunks: "all",
+        commons: {
+          test: /[\\/]node_modules[\\/]/,
           name: "vendor",
+          chunks: "all",
         },
       },
     },

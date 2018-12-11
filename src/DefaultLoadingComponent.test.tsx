@@ -2,16 +2,14 @@
 
 import * as React from "react";
 
-import { shallow, configure } from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
+import { shallow } from "enzyme";
 
+import "./TestUtils/TestSetup";
 import { DefaultLoadingComponent } from "./DefaultLoadingComponent";
 
 declare var intern;
 const { describe, it } = intern.getPlugin("interface.bdd");
 const { expect } = intern.getPlugin("chai");
-
-configure({ adapter: new Adapter() });
 
 describe("<DefaultLoadingComponent />", () => {
 
