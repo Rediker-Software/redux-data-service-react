@@ -37,6 +37,7 @@ export default new Config().extend({
     return config;
   },
 }).merge({
+  mode: "none",
   entry: {
     ...entries,
     test: [
@@ -47,7 +48,7 @@ export default new Config().extend({
     vendor: [...Object.keys(peerDependencies)],
   },
   module: {
-    loaders: [
+    rules: [
       // .ts, .tsx
       {
         test: /\.tsx?$/,
@@ -59,11 +60,6 @@ export default new Config().extend({
     new TsConfigPathsPlugin({configFileName: "config/test/tsconfig.json"}),
     new TSLintPlugin({ config: "tslint.json", files: "src/**/*.{ts,tsx}" }),
     new CleanWebpackPlugin([outPath], { verbose: true, allowExternal: true }),
-    new webpack.optimize.CommonsChunkPlugin({
-      filename: "[name].bundle.js",
-      minChunks: Infinity,
-      names: ["vendor", "test"],
-    }),
     new webpack.optimize.AggressiveMergingPlugin(),
   ],
 });
