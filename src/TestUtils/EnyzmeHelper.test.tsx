@@ -2,7 +2,7 @@
 
 import * as React from "react";
 
-import "./TestUtils/TestSetup";
+import "./TestSetup";
 import { FakeComponent } from "./FakeComponent";
 import { usingMount } from "./EnzymeHelper";
 
