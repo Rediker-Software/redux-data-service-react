@@ -37,7 +37,7 @@ export default new Config().extend({
     return config;
   },
 }).merge({
-  mode: "none",
+  mode: "production",
   entry: {
     ...entries,
     test: [

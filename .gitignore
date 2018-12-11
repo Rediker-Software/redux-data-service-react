@@ -8,6 +8,7 @@
 node_modules
 build
 test-dist
+dist
 tmp
 *.log*
 junit-results.xml
