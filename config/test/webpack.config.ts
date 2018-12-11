@@ -38,7 +38,8 @@ export default new Config().extend({
     return config;
   },
 }).merge({
-  mode: "production",
+  mode: "none",
+  devtool: "inline-source-map",
   entry: {
     ...entries,
     test: [
