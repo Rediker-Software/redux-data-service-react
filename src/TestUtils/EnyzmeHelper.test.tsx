@@ -2,16 +2,13 @@
 
 import * as React from "react";
 
-import { configure } from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
+import "./TestSetup";
 import { FakeComponent } from "./FakeComponent";
 import { usingMount } from "./EnzymeHelper";
 
 declare var intern;
 const { describe, it } = intern.getPlugin("interface.bdd");
 const { expect } = intern.getPlugin("chai");
-
-configure({ adapter: new Adapter() });
 
 describe("EnzymeHelper", () => {
   describe("usingMount", () => {

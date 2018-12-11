@@ -6,6 +6,7 @@ import { fakeModelModule, getDataService, initializeTestServices, seedService } 
 import { Subject } from "rxjs/Subject";
 import { spy, stub } from "sinon";
 
+import "./TestUtils/TestSetup";
 import { FakeComponent, usingMount } from "./TestUtils";
 import { withModel } from "./WithModel";
 

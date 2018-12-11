@@ -20,5 +20,8 @@
   "include": [
     "./src/**/*",
     "./types"
+  ],
+  "exclude": [
+    "**/*.test.*"
   ]
 }

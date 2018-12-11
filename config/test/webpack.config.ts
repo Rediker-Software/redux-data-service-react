@@ -34,9 +34,12 @@ export default new Config().extend({
   "config/base/webpack.config.ts": (config) => {
     delete config.entry;
     delete config.plugins;
+    delete config.output;
     return config;
   },
 }).merge({
+  mode: "none",
+  devtool: "inline-source-map",
   entry: {
     ...entries,
     test: [
@@ -46,8 +49,13 @@ export default new Config().extend({
     ],
     vendor: [...Object.keys(peerDependencies)],
   },
+  output: {
+    filename: "[name].js",
+    path: outPath,
+    publicPath: "/",
+  },
   module: {
-    loaders: [
+    rules: [
       // .ts, .tsx
       {
         test: /\.tsx?$/,
@@ -59,11 +67,6 @@ export default new Config().extend({
     new TsConfigPathsPlugin({configFileName: "config/test/tsconfig.json"}),
     new TSLintPlugin({ config: "tslint.json", files: "src/**/*.{ts,tsx}" }),
     new CleanWebpackPlugin([outPath], { verbose: true, allowExternal: true }),
-    new webpack.optimize.CommonsChunkPlugin({
-      filename: "[name].bundle.js",
-      minChunks: Infinity,
-      names: ["vendor", "test"],
-    }),
     new webpack.optimize.AggressiveMergingPlugin(),
   ],
 });

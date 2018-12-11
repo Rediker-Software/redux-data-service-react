@@ -10,8 +10,9 @@
     "noImplicitAny": false,
     "noImplicitReturns": false,
     "removeComments": true,
+    "sourceMap": true,
     "strictNullChecks": false,
-    "outDir": "test-dist",
+    "outDir": "../../test-dist",
     "skipLibCheck": true,
     "lib": [
       "es2017",

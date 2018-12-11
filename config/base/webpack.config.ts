@@ -8,7 +8,7 @@ import Config from "webpack-config";
 
 const {peerDependencies} = require("../../package.json"); // tslint:disable-line
 
-const outPath = join(__dirname, "../../test-dist");
+const outPath = join(__dirname, "../../dist");
 const sourcePath = join(__dirname, "../../src");
 
 export default new Config().merge({
@@ -30,13 +30,19 @@ export default new Config().merge({
   },
   plugins: [
     new CleanWebpackPlugin([outPath], {verbose: true, allowExternal: true}),
-    new webpack.optimize.CommonsChunkPlugin({
-      filename: "[name].js",
-      minChunks: Infinity,
-      name: "vendor",
-    }),
     new webpack.optimize.AggressiveMergingPlugin(),
   ],
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        commons: {
+          test: /[\\/]node_modules[\\/]/,
+          name: "vendor",
+          chunks: "all",
+        },
+      },
+    },
+  },
   resolve: {
     extensions: [".js", ".jsx", ".ts", ".tsx"],
     // Fix webpack's default behavior to not load packages with jsnext:main module

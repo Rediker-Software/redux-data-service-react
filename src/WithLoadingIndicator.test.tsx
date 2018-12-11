@@ -2,10 +2,10 @@
 
 import * as React from "react";
 
-import { configure, shallow } from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
+import { shallow } from "enzyme";
 import { spy, stub } from "sinon";
 
+import "./TestUtils/TestSetup";
 import { defaultShowLoadingIndicator, withLoadingIndicator } from "./WithLoadingIndicator";
 import { DefaultLoadingComponent } from "./DefaultLoadingComponent";
 import { FakeComponent, usingMount } from "./TestUtils";
@@ -13,8 +13,6 @@ import { FakeComponent, usingMount } from "./TestUtils";
 declare var intern;
 const { describe, it, beforeEach } = intern.getPlugin("interface.bdd");
 const { expect } = intern.getPlugin("chai");
-
-configure({ adapter: new Adapter() });
 
 describe("withLoadingIndicator", () => {
 
