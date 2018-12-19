@@ -1,4 +1,4 @@
-// tslint:disable:max-classes-per-file no-unused-expression
+// tslint:disable: no-unused-expression
 
 import * as React from "react";
 import { fakeModelModule, getDataService, initializeTestServices, seedService } from "redux-data-service";
@@ -14,7 +14,7 @@ declare var intern;
 const { describe, it, beforeEach } = intern.getPlugin("interface.bdd");
 const { expect } = intern.getPlugin("chai");
 
-const exampleServiceName = "fakeModel";
+const modelName = "fakeModel";
 
 describe("withModel", () => {
   let fakeModel;
@@ -25,54 +25,74 @@ describe("withModel", () => {
   beforeEach(() => {
     initializeTestServices(fakeModelModule);
 
-    fakeService = getDataService(exampleServiceName);
-    fakeModel = seedService(exampleServiceName);
+    fakeService = getDataService(modelName);
+    fakeModel = seedService(modelName);
     fakeModelId = fakeModel.id;
 
-    Component = withModel(exampleServiceName)(FakeComponent);
+    Component = withModel({ modelName })(FakeComponent);
   });
 
   describe("base functionality", () => {
     it("renders the component", () => {
-      usingMount(<Component fakeModelId={fakeModelId}/>, (wrapper) => {
+      usingMount(<Component id={fakeModelId}/>, (wrapper) => {
         expect(wrapper.find(FakeComponent).exists()).to.be.true;
       });
     });
 
     it("returns a component with the correct model", () => {
-      usingMount(<Component fakeModelId={fakeModelId}/>, (wrapper) => {
-        expect(wrapper.find(FakeComponent).props()).to.deep.include({ fakeModel }, "the enhanced component is given the model");
+      usingMount(<Component id={fakeModelId}/>, (wrapper) => {
+        expect(wrapper.find(FakeComponent).props()).to.deep.include({ model: fakeModel }, "the enhanced component is given the model");
       });
     });
 
-    it("receives the modelId as a fall through prop", () => {
-      usingMount(<Component fakeModelId={fakeModelId}/>, (wrapper) => {
-        expect(wrapper.find(FakeComponent).props()).to.deep.include({ fakeModelId }, "the enhanced component is given the model id");
+    it("receives the id as a fall through prop", () => {
+      usingMount(<Component id={fakeModelId}/>, (wrapper) => {
+        expect(wrapper.find(FakeComponent).props()).to.deep.include({ id: fakeModelId }, "the enhanced component is given the model id");
       });
     });
 
     it("allows any other props through", () => {
       const additionalProps = { favoriteAnimal: "Alpaca" };
 
-      usingMount(<Component {...additionalProps} fakeModelId={fakeModelId}/>, (wrapper) => {
-        expect(wrapper.find(FakeComponent).props()).to.deep.equal({ fakeModel, fakeModelId, ...additionalProps });
+      usingMount(<Component {...additionalProps} id={fakeModelId}/>, (wrapper) => {
+        expect(
+          wrapper.find(FakeComponent).props(),
+        ).to.deep.equal({
+          model: fakeModel,
+          id: fakeModelId,
+          ...additionalProps,
+        });
       });
     });
   });
 
   describe("optional fields", () => {
-    it("accepts a idPropKey and looks for the id in the prop with that name", () => {
+    it("accepts an idPropKey and looks for the id in the prop with that name", () => {
       const altIdPropField = "randomIdPropField";
-      Component = withModel(exampleServiceName, altIdPropField)(FakeComponent);
+
+      Component = withModel({
+        modelName,
+        idPropKey: altIdPropField,
+      })(FakeComponent);
 
       usingMount(<Component {...{ [altIdPropField]: fakeModelId }} />, (wrapper) => {
-        expect(wrapper.find(FakeComponent).props()).to.include({ fakeModel, [altIdPropField]: fakeModelId });
+        expect(
+          wrapper.find(FakeComponent).props(),
+        ).to.include({
+          model: fakeModel,
+          [altIdPropField]: fakeModelId,
+        });
       });
     });
 
     it("accepts a modelPropKey and enhances the component with the model under that prop name", () => {
       const altModelPropField = "randomModelPropField";
-      Component = withModel(exampleServiceName, "fakeModelId", altModelPropField)(FakeComponent);
+
+      Component = withModel({
+        modelName,
+        idPropKey: "fakeModelId",
+        modelPropKey: altModelPropField,
+      })(FakeComponent);
 
       usingMount(<Component fakeModelId={fakeModelId}/>, (wrapper) => {
         expect(wrapper.find(FakeComponent).props()).to.include({ [altModelPropField]: fakeModel });
@@ -90,7 +110,7 @@ describe("withModel", () => {
     });
 
     it("calls the getById function", () => {
-      usingMount(<Component fakeModelId={fakeModelId}/>, () => {
+      usingMount(<Component id={fakeModelId}/>, () => {
         expect(stubGetById.calledOnce).to.be.true;
       });
     });
@@ -98,7 +118,7 @@ describe("withModel", () => {
     it("subscribes to the observable when the component mounts", () => {
       const stubSubscribe = stub(fakeModelObservable, "subscribe").callThrough();
 
-      usingMount(<Component fakeModelId={fakeModelId}/>, (wrapper) => {
+      usingMount(<Component id={fakeModelId}/>, (wrapper) => {
         expect(stubSubscribe.calledOnce).to.be.true;
       });
     });
@@ -108,29 +128,29 @@ describe("withModel", () => {
       const stubSubscribe = stub(fakeModelObservable, "subscribe")
         .returns({ unsubscribe: stubUnsubscribe });
 
-      usingMount(<Component fakeModelId={fakeModelId}/>, (wrapper) => {
+      usingMount(<Component id={fakeModelId}/>, (wrapper) => {
         wrapper.unmount();
         expect(stubUnsubscribe.calledOnce).to.be.true;
       });
     });
 
     it("adds the model to the component", () => {
-      usingMount(<Component fakeModelId={fakeModelId}/>, (wrapper) => {
+      usingMount(<Component id={fakeModelId}/>, (wrapper) => {
         fakeModelObservable.next(fakeModel);
         wrapper.update();
-        expect(wrapper.find(FakeComponent).props()).to.deep.include({ fakeModel });
+        expect(wrapper.find(FakeComponent).props()).to.deep.include({ model: fakeModel });
       });
     });
 
     it("updates the component when the observable updates", () => {
-      usingMount(<Component fakeModelId={fakeModelId}/>, (wrapper) => {
+      usingMount(<Component id={fakeModelId}/>, (wrapper) => {
         fakeModelObservable.next(fakeModel);
         wrapper.update();
-        expect(wrapper.find(FakeComponent).props()).to.deep.include({ fakeModel });
-        const newerFakeModel = seedService(exampleServiceName);
+        expect(wrapper.find(FakeComponent).props()).to.deep.include({ model: fakeModel });
+        const newerFakeModel = seedService(modelName);
         fakeModelObservable.next(newerFakeModel);
         wrapper.update();
-        expect(wrapper.find(FakeComponent).props()).to.deep.include({ fakeModel: newerFakeModel });
+        expect(wrapper.find(FakeComponent).props()).to.deep.include({ model: newerFakeModel });
       });
     });
   });

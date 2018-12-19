@@ -1,35 +1,36 @@
-import { compose, lifecycle, ComponentEnhancer } from "recompose";
+import { compose, lifecycle, ComponentEnhancer, defaultProps } from "recompose";
 import { IModel, getDataService } from "redux-data-service";
 
-import { withModel } from "./WithModel";
+import { withModel, IWithModelProps } from "./WithModel";
 
 /**
  * An HOC which returns a new unsaved model if one is not provided.
- *
- * @param {string} dataServiceName name of service to retrieve from service provider
- * @param {string} idPropKey property name to find the id for the model on
- * @param {string} modelPropKey name of model prop name to enhance component with
  */
-export function withNewModel<P = any>(
-  dataServiceName: string,
-  idPropKey: string = dataServiceName + "Id",
-  modelPropKey: string = dataServiceName,
-): ComponentEnhancer<P, P> {
+export function withNewModel<P = any>(options?: IWithModelProps): ComponentEnhancer<P, P> {
   return compose<P, P>(
-    lifecycle<P, {}>({
+    defaultProps({
+      idPropKey: "id",
+      modelPropKey: "model",
+      ...options,
+    }),
+    lifecycle<P & IWithModelProps, {}>({
       componentDidMount() {
+        const { idPropKey, modelPropKey, modelName } = this.props;
+
         if (!this.props[idPropKey] && !this.props[modelPropKey]) {
-          const model = getDataService(dataServiceName).createNew();
+          const model = getDataService(modelName).createNew();
           this.setState({ [idPropKey]: model.id });
         }
       },
       componentWillUnmount() {
+        const { modelPropKey } = this.props;
+
         const model = this.props[modelPropKey] as IModel<any>;
         if (model && model.isNew) {
           model.unload();
         }
       },
     }),
-    withModel(dataServiceName, idPropKey, modelPropKey),
+    withModel(options),
   );
 }

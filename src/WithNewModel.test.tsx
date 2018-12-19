@@ -15,7 +15,7 @@ declare var intern;
 const { describe, it, beforeEach } = intern.getPlugin("interface.bdd");
 const { expect } = intern.getPlugin("chai");
 
-describe("withModelOrCreateNew", () => {
+describe("withNewModel", () => {
   let store;
 
   beforeEach(() => {
@@ -25,8 +25,8 @@ describe("withModelOrCreateNew", () => {
   it("creates a new model if one was not provided", () => {
     let model;
 
-    const Component = withNewModel("fakeModel")(props => {
-      model = props.fakeModel;
+    const Component = withNewModel({ modelName: "fakeModel" })(props => {
+      model = props.model;
       return <span/>;
     });
 
@@ -39,12 +39,12 @@ describe("withModelOrCreateNew", () => {
     const fakeModel = seedService("fakeModel");
     let model;
 
-    const Component = withNewModel("fakeModel")(props => {
-      model = props.fakeModel;
+    const Component = withNewModel({ modelName: "fakeModel" })(props => {
+      model = props.model;
       return <span/>;
     });
 
-    usingMount(<Component fakeModel={fakeModel}/>, () => {
+    usingMount(<Component model={fakeModel}/>, () => {
       expect(model).to.have.property("id").to.equal(fakeModel.id);
     }, { context: { store } });
   });
@@ -53,12 +53,12 @@ describe("withModelOrCreateNew", () => {
     const fakeModel = seedService("fakeModel");
     let modelId;
 
-    const Component = withNewModel("fakeModel")(props => {
-      modelId = props.fakeModelId;
+    const Component = withNewModel({ modelName: "fakeModel" })(props => {
+      modelId = props.id;
       return <span/>;
     });
 
-    usingMount(<Component fakeModelId={fakeModel.id}/>, () => {
+    usingMount(<Component id={fakeModel.id}/>, () => {
       expect(modelId).to.equal(fakeModel.id);
     }, { context: { store } });
   });
@@ -68,9 +68,9 @@ describe("withModelOrCreateNew", () => {
     const fakeModel = fakeModelService.createNew();
     const unloadStub = stub(fakeModel, "unload");
 
-    const Component = withNewModel("fakeModel")(() => <span/>);
+    const Component = withNewModel({ modelName: "fakeModel" })(() => <span/>);
 
-    const wrapper = mount(<Component fakeModel={fakeModel}/>, { context: { store } });
+    const wrapper = mount(<Component model={fakeModel}/>, { context: { store } });
     wrapper.unmount();
 
     expect(unloadStub.calledOnce).to.be.true;
@@ -80,9 +80,9 @@ describe("withModelOrCreateNew", () => {
     const fakeModel = seedService("fakeModel");
     const unloadStub = stub(fakeModel, "unload");
 
-    const Component = withNewModel("fakeModel")(() => <span/>);
+    const Component = withNewModel({ modelName: "fakeModel" })(() => <span/>);
 
-    const wrapper = mount(<Component fakeModel={fakeModel}/>, { context: { store } });
+    const wrapper = mount(<Component model={fakeModel}/>, { context: { store } });
     wrapper.unmount();
 
     expect(unloadStub.called).to.be.false;
