@@ -5,6 +5,7 @@ import { fakeModelModule, getDataService, initializeTestServices, seedService } 
 
 import { Subject } from "rxjs/Subject";
 import { spy, stub } from "sinon";
+import { random } from "faker";
 
 import "./TestUtils/TestSetup";
 import { FakeComponent, usingMount } from "./TestUtils";
@@ -154,4 +155,38 @@ describe("withModel", () => {
       });
     });
   });
+
+  describe("when the modelName is given as a prop", () => {
+
+    beforeEach(() => {
+      Component = withModel()(FakeComponent);
+    });
+
+    it("renders the component with a modelName given as a prop", () => {
+      usingMount(<Component modelName={modelName} id={fakeModelId}/>, (wrapper) => {
+        expect(wrapper.find(FakeComponent).exists()).to.be.true;
+      });
+    });
+
+    it("renders a component with the correct model for the given modelName", () => {
+      usingMount(<Component modelName={modelName} id={fakeModelId}/>, (wrapper) => {
+        expect(wrapper.find(FakeComponent).props()).to.deep.include({ model: fakeModel });
+      });
+    });
+
+    it("does not allow IWithModelProps to fall-through as props to the wrapped component", () => {
+      const additionalProps = { favoriteAnimal: "Alpaca" };
+
+      usingMount(<Component modelName={modelName} {...additionalProps} id={fakeModelId}/>, (wrapper) => {
+        expect(
+          wrapper.find(FakeComponent).props(),
+        ).to.not.include.keys([
+          "idPropKey",
+          "modelPropKey",
+          "modelName",
+        ]);
+      });
+    });
+  });
+
 });
