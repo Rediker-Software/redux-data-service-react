@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES5",
-    "jsx": "React",
+    "jsx": "react",
     "module": "commonjs",
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
