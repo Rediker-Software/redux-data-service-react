@@ -1,7 +1,13 @@
-import { compose, lifecycle, ComponentEnhancer, defaultProps } from "recompose";
-import { IModel, getDataService } from "redux-data-service";
+import {
+  ComponentEnhancer,
+  compose,
+  defaultProps,
+  lifecycle,
+} from "recompose";
 
-import { withModel, IWithModelProps } from "./WithModel";
+import { getDataService, IModel } from "redux-data-service";
+
+import { IWithModelProps, withModel } from "./WithModel";
 
 /**
  * An HOC which returns a new unsaved model if one is not provided.

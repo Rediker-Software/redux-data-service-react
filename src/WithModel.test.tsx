@@ -181,9 +181,7 @@ describe("withModel", () => {
     });
 
     it("does not allow IWithModelProps to fall-through as props to the wrapped component", () => {
-      const additionalProps = { favoriteAnimal: "Alpaca" };
-
-      usingMount(<Component modelName={modelName} {...additionalProps} id={fakeModelId}/>, (wrapper) => {
+      usingMount(<Component modelName={modelName} id={fakeModelId}/>, (wrapper) => {
         expect(
           wrapper.find(FakeComponent).props(),
         ).to.not.include.keys([
