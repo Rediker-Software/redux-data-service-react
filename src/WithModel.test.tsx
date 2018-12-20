@@ -1,11 +1,16 @@
 // tslint:disable: no-unused-expression
 
 import * as React from "react";
-import { fakeModelModule, getDataService, initializeTestServices, seedService } from "redux-data-service";
+
+import {
+  fakeModelModule,
+  getDataService,
+  initializeTestServices,
+  seedService,
+} from "redux-data-service";
 
 import { Subject } from "rxjs/Subject";
 import { spy, stub } from "sinon";
-import { random } from "faker";
 
 import "./TestUtils/TestSetup";
 import { FakeComponent, usingMount } from "./TestUtils";
@@ -126,7 +131,8 @@ describe("withModel", () => {
 
     it("unsubscribes from the observable when the component unmounts", () => {
       const stubUnsubscribe = spy();
-      const stubSubscribe = stub(fakeModelObservable, "subscribe")
+
+      stub(fakeModelObservable, "subscribe")
         .returns({ unsubscribe: stubUnsubscribe });
 
       usingMount(<Component id={fakeModelId}/>, (wrapper) => {

@@ -8,9 +8,6 @@ import {
   FakeModel,
 } from "redux-data-service";
 
-import { spy, stub } from "sinon";
-import { lorem, random } from "faker";
-
 import "./TestUtils/TestSetup";
 import { usingMount } from "./TestUtils";
 import { NewModel } from "./NewModel";

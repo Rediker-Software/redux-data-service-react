@@ -3,7 +3,15 @@ import "rxjs/add/operator/combineLatest";
 
 import { Observable } from "rxjs/Observable";
 import rxjsConfig from "recompose/rxjsObservableConfig";
-import { branch, ComponentEnhancer, compose, defaultProps, mapProps, mapPropsStreamWithConfig } from "recompose";
+
+import {
+  branch,
+  ComponentEnhancer,
+  compose,
+  defaultProps,
+  mapProps,
+  mapPropsStreamWithConfig,
+} from "recompose";
 
 import { getDataService } from "redux-data-service";
 import { withLoadingIndicator } from "./WithLoadingIndicator";
