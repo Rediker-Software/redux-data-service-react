@@ -51,7 +51,7 @@
     "react": "^16.3.0",
     "react-dom": "^16.4.0",
     "recompose": "^0.27.1",
-    "redux-data-service": "^0.0.16",
+    "redux-data-service": "0.0.32",
     "rxjs": "^5.5.6"
   },
   "peerDependencies": {
