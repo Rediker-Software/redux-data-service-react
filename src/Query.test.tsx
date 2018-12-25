@@ -42,7 +42,7 @@ describe("<Query />", () => {
   it("returns a component with the correct list of items", () => {
     usingMount(Component, (wrapper) => {
       const texts = wrapper.find("li").map(node => node.text());
-      expect(texts).to.deep.equal(items.map(item => item.fullText));
+      expect(texts).to.include.members(items.map(item => item.fullText));
     });
   });
 });

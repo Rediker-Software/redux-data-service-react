@@ -1,10 +1,11 @@
+import "rxjs/add/observable/of";
 import "rxjs/add/operator/combineLatest";
 import "rxjs/add/operator/distinctUntilChanged";
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/switchMap";
 import { Observable } from "rxjs/Observable";
 
-import {branch, compose, ComponentEnhancer, defaultProps, mapPropsStreamWithConfig} from "recompose";
+import { branch, compose, ComponentEnhancer, defaultProps, mapPropsStreamWithConfig } from "recompose";
 import { getDataService, IQueryManager, IQueryParams, IQueryBuilder, QueryBuilder } from "redux-data-service";
 
 import { defaultsDeep } from "lodash";
@@ -13,7 +14,7 @@ import { withLoadingIndicator, IWithLoadingIndicatorProps } from "./WithLoadingI
 import rxjsConfig from "recompose/rxjsObservableConfig";
 
 export interface IWithModelQueryProps {
-  query?: IQueryParams;
+  query?: IQueryParams | IQueryBuilder;
   items?: any[];
 }
 
@@ -29,20 +30,28 @@ export interface IWithModelQueryOptions extends IWithModelQueryProps, IWithLoadi
  * automatically unsubscribes on unmount
  */
 export function withModelQuery<P = {}>(options?: IWithModelQueryOptions & P): ComponentEnhancer<P, P> {
-  return compose<P & { items: any[], queryManager: IQueryManager<any> }, P>(
+  return compose<P & { items: any[], query: IQueryManager<any> }, P & IWithModelQueryOptions>(
     defaultProps(options || {}),
     branch(
-      ({ items, modelName }) => modelName && items == null && modelName != null,
+      ({ items, modelName }) => modelName && items == null,
       mapPropsStreamWithConfig(rxjsConfig)<any, P>((props$: Observable<any>) =>
         props$.combineLatest(
           props$.switchMap(({ modelName, query }: IWithModelQueryOptions) => {
             const service = getDataService(modelName);
-            return service
-              .getDefaultQueryParams()
-              .map(defaultQueryParams => new QueryBuilder(modelName, defaultsDeep({}, query, defaultQueryParams)))
-              .switchMap(queryBuilder => service.getByQuery(queryBuilder)) // change to emit QueryManager and items (so current implementations do not break)
+
+            const observable = (query instanceof QueryBuilder)
+              ? Observable.of(query)
+              : service
+                .getDefaultQueryParams()
+                .map(defaultQueryParams => new QueryBuilder(modelName, defaultsDeep({}, query, defaultQueryParams)));
+
+            return observable.switchMap(queryBuilder => service.getByQuery(queryBuilder));
           }),
-          ({ modelName, query, ...props }, items, queryManager) => ({ items, queryManager, ...props }),
+          ({ modelName, query, ...props }, queryManager) => ({
+            query: queryManager,
+            items: queryManager && queryManager.items,
+            ...props,
+          }),
         ),
       ),
     ),
