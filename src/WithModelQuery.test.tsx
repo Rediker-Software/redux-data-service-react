@@ -1,7 +1,7 @@
 // tslint:disable:max-classes-per-file no-unused-expression
 
 import * as React from "react";
-import { getDataService, initializeTestServices, seedServiceList, fakeModelModule } from "redux-data-service";
+import { getDataService, initializeTestServices, seedServiceList, fakeModelModule, QueryManager } from "redux-data-service";
 
 import { Subject } from "rxjs/Subject";
 import { of as of$ } from "rxjs/observable/of";
@@ -44,9 +44,9 @@ describe("withModelQuery", () => {
       });
     });
 
-    it("does not receive the query as a fall through prop", () => {
+    it("receives the query as a QueryManager", () => {
       usingMount(<Component query={query}/>, (wrapper) => {
-        expect(wrapper.find(FakeComponent).prop("query")).to.be.undefined;
+        expect(wrapper.find(FakeComponent).prop("query")).to.be.an.instanceof(QueryManager);
       });
     });
 
@@ -97,7 +97,7 @@ describe("withModelQuery", () => {
 
     it("uses the service's default query params by default", () => {
       usingMount(<Component/>, () => {
-        expect(stubGetByQuery.firstCall.args[0]).to.deep.equal(query);
+        expect(stubGetByQuery.firstCall.args[0].queryParams).to.deep.equal(query);
       });
     });
 
@@ -105,7 +105,7 @@ describe("withModelQuery", () => {
       const otherFakeQuery = { fullText: lorem.word() };
 
       usingMount(<Component query={otherFakeQuery}/>, () => {
-        expect(stubGetByQuery.firstCall.args[0]).to.deep.equal(otherFakeQuery);
+        expect(stubGetByQuery.firstCall.args[0].queryParams).to.deep.equal(otherFakeQuery);
       });
     });
 
@@ -113,7 +113,7 @@ describe("withModelQuery", () => {
       const otherFakeQuery = { lastName: lorem.word() };
 
       usingMount(<Component query={otherFakeQuery}/>, () => {
-        expect(stubGetByQuery.firstCall.args[0]).to.deep.equal({
+        expect(stubGetByQuery.firstCall.args[0].queryParams).to.deep.equal({
           lastName: otherFakeQuery.lastName,
           fullText: query.fullText,
         });
