@@ -7,3 +7,4 @@ export * from "./WithModel";
 export * from "./WithModelArray";
 export * from "./WithModelQuery";
 export * from "./WithNewModel";
+export * from "./Components";
