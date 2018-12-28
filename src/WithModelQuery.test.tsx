@@ -86,7 +86,7 @@ describe("withModelQuery", () => {
     beforeEach(() => {
       fakeService = getDataService("fakeModel");
       stubGetDefaultQueryParams = stub(fakeService, "getDefaultQueryParams").returns(of$(query));
-      stubGetByQuery = stub(fakeService, "getByQuery").callThrough();
+      stubGetByQuery = stub(fakeService, "getByQuery").returns(of$(new QueryManager(query)));
     });
 
     it("gets the default query params from the service", () => {
@@ -103,16 +103,14 @@ describe("withModelQuery", () => {
 
     it("optionally overrides the default query params", () => {
       const otherFakeQuery = { fullText: lorem.word() };
-
-      usingMount(<Component query={otherFakeQuery}/>, () => {
+      usingMount(<Component query={otherFakeQuery} />, () => {
         expect(stubGetByQuery.firstCall.args[0].queryParams).to.deep.equal(otherFakeQuery);
       });
     });
 
     it("merges incoming query params with default query params", () => {
       const otherFakeQuery = { lastName: lorem.word() };
-
-      usingMount(<Component query={otherFakeQuery}/>, () => {
+      usingMount(<Component query={otherFakeQuery} />, () => {
         expect(stubGetByQuery.firstCall.args[0].queryParams).to.deep.equal({
           lastName: otherFakeQuery.lastName,
           fullText: query.fullText,
@@ -131,9 +129,13 @@ describe("withModelQuery", () => {
   describe("live observable", () => {
     let stubGetByQuery;
     let fakeModelObservable;
+    let otherQuery;
+    let otherItems;
 
     beforeEach(() => {
       const fakeService = getDataService("fakeModel");
+      otherQuery = { lastName: lorem.word() };
+      otherItems = seedServiceList("fakeModel", 5, otherQuery);
       fakeModelObservable = new Subject();
       stubGetByQuery = stub(fakeService, "getByQuery").returns(fakeModelObservable);
     });
@@ -170,22 +172,25 @@ describe("withModelQuery", () => {
     });
 
     it("adds the models to the component", () => {
-      usingMount(<Component query={query}/>, (wrapper) => {
-        fakeModelObservable.next(items);
+      usingMount(<Component query={query} />, (wrapper) => {
+        const queryManager = new QueryManager(query, items);
+        fakeModelObservable.next(queryManager);
         wrapper.update();
         expect(wrapper.find(FakeComponent).props()).to.deep.include({ items });
       });
     });
 
     it("updates the component when the observable updates", () => {
-      usingMount(<Component query={query}/>, (wrapper) => {
-        fakeModelObservable.next(items);
+      usingMount(<Component query={query} />, (wrapper) => {
+        const queryManager = new QueryManager(query, items);
+        fakeModelObservable.next(queryManager);
         wrapper.update();
         expect(wrapper.find(FakeComponent).props()).to.deep.include({ items });
-        const newerFakeModels = seedServiceList("fakeModel");
-        fakeModelObservable.next(newerFakeModels);
+
+        const otherQueryManager = new QueryManager(otherQuery, otherItems);
+        fakeModelObservable.next(otherQueryManager);
         wrapper.update();
-        expect(wrapper.find(FakeComponent).props()).to.deep.include({ items: newerFakeModels });
+        expect(wrapper.find(FakeComponent).props()).to.deep.include({ items: otherItems });
       });
     });
   });
