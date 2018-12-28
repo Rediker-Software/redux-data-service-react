@@ -1,4 +1,4 @@
-import { configure, addDecorator } from "@storybook/react";
+import { addDecorator, configure } from "@storybook/react";
 import { withInfo } from "@storybook/addon-info";
 import backgrounds from "@storybook/addon-backgrounds";
 import centered from "@storybook/addon-centered";
@@ -22,10 +22,5 @@ addDecorator(backgrounds([
   { name: "White", value: "white" },
 ]));
 addDecorator(centered);
-// addDecorator(AppSetupDecorator);
-/* addDecorator((story) => {
-  initializeTestServices(modules);
-  return story();
-}); */
 
 configure(loadStories, module);

@@ -6,7 +6,7 @@ import "rxjs/add/operator/switchMap";
 import { Observable } from "rxjs/Observable";
 
 import { branch, compose, ComponentEnhancer, defaultProps, mapPropsStreamWithConfig } from "recompose";
-import { getDataService, IQueryManager, IQueryParams, IQueryBuilder, QueryBuilder } from "redux-data-service";
+import { getDataService, IQueryBuilder, IQueryManager, IQueryParams, QueryBuilder } from "redux-data-service";
 
 import { defaultsDeep } from "lodash";
 

@@ -1,9 +1,7 @@
 import React from "react";
 import { Grid, Paper, Table, TableRow, TableCell, TableHead, TableBody } from "@material-ui/core";
 
-
-
-/** A custom "CombinationRender" for react-storybook-addon-props-combinations addon */
+/** A custom "CombinationRenderer" for react-storybook-addon-props-combinations addon */
 export const CombinationRenderer = ({ Component, props }) => {
   const propNames = Object
     .keys(props)
@@ -37,9 +35,3 @@ export const CombinationRenderer = ({ Component, props }) => {
     </Grid>
   );
 }
-
-/* export const AppSetupDecorator = (story) => (
-  <AppProvider history={createMemoryHistory()}>
-    {story()}
-  </AppProvider>
-); */
