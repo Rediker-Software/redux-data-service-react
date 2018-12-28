@@ -1,7 +1,7 @@
 // tslint:disable:max-classes-per-file no-unused-expression
 
 import * as React from "react";
-import { getDataService, initializeTestServices, seedServiceList, fakeModelModule, QueryManager } from "redux-data-service";
+import { fakeModelModule, getDataService, initializeTestServices, QueryManager, seedServiceList } from "redux-data-service";
 
 import { Subject } from "rxjs/Subject";
 import { of as of$ } from "rxjs/observable/of";
