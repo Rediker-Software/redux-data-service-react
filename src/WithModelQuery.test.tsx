@@ -1,7 +1,15 @@
 // tslint:disable:max-classes-per-file no-unused-expression
 
 import * as React from "react";
-import { getDataService, initializeTestServices, seedServiceList, fakeModelModule, QueryManager } from "redux-data-service";
+import {
+  fakeModelModule,
+  getDataService,
+  initializeTestServices,
+  IQueryParams,
+  QueryBuilder,
+  QueryManager,
+  seedServiceList
+} from "redux-data-service";
 
 import { Subject } from "rxjs/Subject";
 import { of as of$ } from "rxjs/observable/of";
@@ -118,8 +126,23 @@ describe("withModelQuery", () => {
       });
     });
 
+    it("uses expected query params given query as a QueryBuilder", () => {
+      const queryBuilderParams = { firstName: lorem.word() };
+      const queryBuilder = new QueryBuilder("fakeService", queryBuilderParams);
+      usingMount(<Component query={queryBuilder} />, (wrapper) => {
+        expect(stubGetByQuery.firstCall.args[0].queryParams).to.deep.include(queryBuilderParams);
+      });
+    });
+
+    it("uses expected query params given query as QueryParams", () => {
+      const queryParams = { firstName: lorem.word() } as IQueryParams;
+      usingMount(<Component query={queryParams} />, (wrapper) => {
+        expect(stubGetByQuery.firstCall.args[0].queryParams).to.deep.include(queryParams);
+      });
+    });
+
     it("does not get default query params if items were provided as a prop", () => {
-      usingMount(<Component items={items}/>, () => {
+      usingMount(<Component items={items} />, () => {
         expect(stubGetDefaultQueryParams.callCount).to.equal(0);
       });
     });
