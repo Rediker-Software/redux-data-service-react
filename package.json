@@ -5,7 +5,9 @@
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "test": "cross-env NODE_ENV=test webpack && intern",
     "test:build": "cross-env NODE_ENV=test webpack",
@@ -14,10 +16,18 @@
     "test:ci": "cross-env NODE_ENV=test webpack && intern config=@ci",
     "build": "tsc -p tsconfig.json",
     "build:release": "yarn tslint && yarn test && yarn typedoc && yarn build",
+    "storybook": "start-storybook -p 9383 -c config/storybook",
+    "build:storybook": "build-storybook -c config/storybook -o ./dist/storybook",
     "tslint": "tslint -c tslint.json -p tsconfig.json",
     "typedoc": "typedoc --options typedoc.json"
   },
   "devDependencies": {
+    "@dump247/storybook-state": "^1.5.0",
+    "@storybook/addon-backgrounds": "^3.4.10",
+    "@storybook/addon-centered": "^3.4.10",
+    "@storybook/addon-info": "^3.4.10",
+    "@storybook/addon-viewport": "3.4.10",
+    "@storybook/react": "^4.1.3",
     "@types/node": "8.0.53",
     "@types/react": "^16.3.17",
     "@types/react-dom": "16.0.3",
@@ -25,6 +35,7 @@
     "@types/recompose": "^0.26.1",
     "@types/webpack": "4.4.21",
     "awesome-typescript-loader": "^5.2.1",
+    "babel-core": "^6.26.3",
     "clean-webpack-plugin": "^1.0.0",
     "cross-env": "^5.1.3",
     "enzyme": "^3.3.0",
@@ -33,8 +44,15 @@
     "fast-glob": "^2.2.2",
     "fs": "^0.0.1-security",
     "intern": "^4.2.0",
+    "lodash": "^4.17.5",
+    "react": "^16.3.0",
+    "react-dom": "^16.4.0",
     "react-hot-loader": "^3.1.3",
+    "react-storybook-addon-props-combinations": "^1.1.0",
+    "recompose": "^0.27.1",
+    "redux-data-service": "0.0.35",
     "redux-devtools-extension": "^2.13.5",
+    "rxjs": "^5.5.6",
     "sinon": "6.0.0",
     "ts-node": "^4.1.0",
     "tslint": "^5.9.1",
@@ -46,20 +64,14 @@
     "webpack": "^4.27.1",
     "webpack-cli": "^3.1.2",
     "webpack-config": "^7.5.0",
-    "webpack-dev-server": "^3.1.10",
-    "lodash": "^4.17.5",
-    "react": "^16.3.0",
-    "react-dom": "^16.4.0",
-    "recompose": "^0.27.1",
-    "redux-data-service": "0.0.32",
-    "rxjs": "^5.5.6"
+    "webpack-dev-server": "^3.1.10"
   },
   "peerDependencies": {
     "lodash": "^4.17.5",
     "react": "^16.3.0",
     "react-dom": "^16.4.0",
     "recompose": "^0.27.1",
-    "redux-data-service": "^0.0.16",
+    "redux-data-service": "0.0.35",
     "rxjs": "^5.5.6"
   }
 }
