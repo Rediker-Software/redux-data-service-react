@@ -3,8 +3,7 @@
 import * as React from "react";
 import { fakeModelModule, initializeTestServices, seedServiceList } from "redux-data-service";
 
-import { spy, stub } from "sinon";
-import { lorem, random } from "faker";
+import { random } from "faker";
 
 import "./TestUtils/TestSetup";
 import { usingMount } from "./TestUtils";
