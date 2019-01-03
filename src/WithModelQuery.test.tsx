@@ -41,31 +41,31 @@ describe("withModelQuery", () => {
 
   describe("base functionality", () => {
     it("renders the component", () => {
-      usingMount(<Component query={query}/>, (wrapper) => {
+      usingMount(<Component query={query} />, (wrapper) => {
         expect(wrapper.find(FakeComponent).exists()).to.be.true;
       });
     });
 
     it("returns a component with the correct list of models", () => {
-      usingMount(<Component query={query}/>, (wrapper) => {
+      usingMount(<Component query={query} />, (wrapper) => {
         expect(wrapper.find(FakeComponent).prop("items")).to.have.members(items, "the enhanced component is given the models");
       });
     });
 
     it("receives the query as a QueryManager", () => {
-      usingMount(<Component query={query}/>, (wrapper) => {
+      usingMount(<Component query={query} />, (wrapper) => {
         expect(wrapper.find(FakeComponent).prop("query")).to.be.an.instanceof(QueryManager);
       });
     });
 
     it("does not receive the modelName as a fall through prop", () => {
-      usingMount(<Component query={query}/>, (wrapper) => {
+      usingMount(<Component query={query} />, (wrapper) => {
         expect(wrapper.find(FakeComponent).prop("modelName")).to.be.undefined;
       });
     });
 
     it("receives the items, if given, as a fall through prop", () => {
-      usingMount(<Component items={items}/>, (wrapper) => {
+      usingMount(<Component items={items} />, (wrapper) => {
         expect(wrapper.find(FakeComponent).prop("items")).to.equal(items, "the enhanced component is given the models");
       });
     });
@@ -73,14 +73,14 @@ describe("withModelQuery", () => {
     it("allows any other props through", () => {
       const additionalProps = { favoriteAnimal: "Alpaca" };
 
-      usingMount(<Component {...additionalProps} query={query}/>, (wrapper) => {
+      usingMount(<Component {...additionalProps} query={query} />, (wrapper) => {
         expect(wrapper.find(FakeComponent).props()).to.deep.include(additionalProps);
       });
     });
 
     it("allows modelName to be specified as a prop", () => {
       Component = withModelQuery<any>()(FakeComponent);
-      usingMount(<Component modelName="fakeModel" query={query}/>, (wrapper) => {
+      usingMount(<Component modelName="fakeModel" query={query} />, (wrapper) => {
         expect(wrapper.find(FakeComponent).prop("items")).to.have.members(items);
       });
     });
@@ -98,13 +98,13 @@ describe("withModelQuery", () => {
     });
 
     it("gets the default query params from the service", () => {
-      usingMount(<Component/>, () => {
+      usingMount(<Component />, () => {
         expect(stubGetDefaultQueryParams.callCount).to.equal(1);
       });
     });
 
     it("uses the service's default query params by default", () => {
-      usingMount(<Component/>, () => {
+      usingMount(<Component />, () => {
         expect(stubGetByQuery.firstCall.args[0].queryParams).to.deep.equal(query);
       });
     });
@@ -134,10 +134,32 @@ describe("withModelQuery", () => {
       });
     });
 
-    it("uses expected query params given query as QueryParams", () => {
+    it("uses expected query params given query as IQueryParams", () => {
       const queryParams = { firstName: lorem.word() } as IQueryParams;
       usingMount(<Component query={queryParams} />, (wrapper) => {
         expect(stubGetByQuery.firstCall.args[0].queryParams).to.deep.include(queryParams);
+      });
+    });
+
+    it("does not call getDefaultQueryParams if query is an instance of IQueryBuilder", () => {
+      const queryBuilderParams = { firstName: lorem.word() };
+      const queryBuilder = new QueryBuilder("fakeService", queryBuilderParams);
+      usingMount(<Component query={queryBuilder} />, (wrapper) => {
+        expect(stubGetDefaultQueryParams.callCount).to.equal(0);
+      });
+    });
+
+    it("calls getDefaultQueryParams if query is an instance of IQueryParams", () => {
+      const queryParams = { firstName: lorem.word() } as IQueryParams;
+      usingMount(<Component query={queryParams} />, (wrapper) => {
+        expect(stubGetDefaultQueryParams.callCount).to.equal(1);
+      });
+    });
+
+    it("calls getByQuery with instanceof QueryBuilder if query is an instance of IQueryParams", () => {
+      const queryParams = { firstName: lorem.word() } as IQueryParams;
+      usingMount(<Component query={queryParams} />, (wrapper) => {
+        expect(stubGetByQuery.firstCall.args[0]).to.be.an.instanceof(QueryBuilder);
       });
     });
 
@@ -164,13 +186,13 @@ describe("withModelQuery", () => {
     });
 
     it("calls the getByQuery function", () => {
-      usingMount(<Component query={query}/>, () => {
+      usingMount(<Component query={query} />, () => {
         expect(stubGetByQuery.callCount).to.equal(1);
       });
     });
 
     it("does not call the getByQuery function if items were provided as a prop", () => {
-      usingMount(<Component items={items}/>, () => {
+      usingMount(<Component items={items} />, () => {
         expect(stubGetByQuery.callCount).to.equal(0);
       });
     });
@@ -178,7 +200,7 @@ describe("withModelQuery", () => {
     it("subscribes to the observable when the component mounts", () => {
       const stubSubscribe = stub(fakeModelObservable, "subscribe").callThrough();
 
-      usingMount(<Component query={query}/>, () => {
+      usingMount(<Component query={query} />, () => {
         expect(stubSubscribe.callCount).to.equal(1);
       });
     });
@@ -188,7 +210,7 @@ describe("withModelQuery", () => {
       stub(fakeModelObservable, "subscribe")
         .returns({ unsubscribe: stubUnsubscribe });
 
-      usingMount(<Component query={query}/>, (wrapper) => {
+      usingMount(<Component query={query} />, (wrapper) => {
         wrapper.unmount();
         expect(stubUnsubscribe.callCount).to.equal(1);
       });
