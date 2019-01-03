@@ -47,7 +47,7 @@ export function withModelQuery<P = {}>(options?: IWithModelQueryOptions & P): Co
 
             return observable.switchMap(queryBuilder => service.getByQuery(queryBuilder));
           }),
-          ({ modelName, query, ...props }, queryManager) => ({
+          ({ query, ...props }, queryManager) => ({
             query: queryManager,
             items: queryManager && queryManager.items,
             ...props,
