@@ -8,7 +8,7 @@ import {
   IQueryParams,
   QueryBuilder,
   QueryManager,
-  seedServiceList
+  seedServiceList,
 } from "redux-data-service";
 
 import { Subject } from "rxjs/Subject";

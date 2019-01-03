@@ -1,15 +1,12 @@
 import * as React from "react";
-import { initializeTestServices, seedServiceList } from "redux-data-service";
-
-import { usingMount, simulateScrollEvent } from "TestUtils";
-
-import "TestUtils/TestSetup";
-import modules from "Modules";
+import { seedServiceList, initializeTestServices, fakeModelModule } from "redux-data-service";
+import { Paper, withStyles } from "@material-ui/core";
+import { compose, setDisplayName } from "recompose";
 
 import { InfiniteScroll } from "./InfiniteScroll";
-import { Paper } from "@material-ui/core";
-import { compose, setDisplayName } from "recompose";
-import { withStyle } from "Style";
+
+import { usingMount } from "../TestUtils";
+import "../TestUtils/TestSetup";
 
 declare var intern;
 const { describe, it, beforeEach } = intern.getPlugin("interface.bdd");
@@ -18,9 +15,11 @@ const { expect } = intern.getPlugin("chai");
 describe("<InfiniteScroll />", () => {
   const TestContainer = compose<{}, {}>(
     setDisplayName("TestContainer"),
-    withStyle({
-      height: 50,
-      width: 50,
+    withStyles({
+      root: {
+        height: 50,
+        width: 50,
+      },
     }),
   )(({ children, ...props }) => (
     <Paper {...props}>
@@ -35,22 +34,29 @@ describe("<InfiniteScroll />", () => {
 
   const TestContainerItem = compose<IPaperContainerItemProps, IPaperContainerItemProps>(
     setDisplayName("TestContainerItem"),
-    withStyle({
-      height: 10,
-      width: 10,
+    withStyles({
+      root: {
+        height: 10,
+        width: 10,
+      },
     }),
   )(({ children, ...props }) => (
     <Paper {...props}>
       Test Item Text
     </Paper>
-  ));
+    ));
+
+  const fakeService = "fakeModel";
 
   beforeEach(() => {
-    initializeTestServices(modules);
-    seedServiceList<any>("person", 10, { organizationId: "1", pageNumber: 1 });
-    seedServiceList<any>("person", 10, { organizationId: "1", pageNumber: 2 });
-    seedServiceList<any>("person", 10, { organizationId: "1", pageNumber: 3 });
-    seedServiceList<any>("person", 10, { organizationId: "1", pageNumber: 4 });
+    initializeTestServices(fakeModelModule);
+
+    seedServiceList<any>("fakeModel", 10, {}, { queryParams: { page: 1 }, hasNext: true, hasPrevious: false });
+    seedServiceList<any>("fakeModel", 10, {}, { queryParams: { page: 10 }, hasNext: false, hasPrevious: true });
+
+    for (let i = 2; i < 10; i++) {
+      seedServiceList<any>("fakeModel", 10, {}, { queryParams: { page: i }, hasNext: true, hasPrevious: true });
+    }
   });
 
   it("renders an <InfiniteScroll/>", () => {
@@ -58,9 +64,9 @@ describe("<InfiniteScroll />", () => {
       <InfiniteScroll
         containerComponent={TestContainer}
         itemComponent={TestContainerItem}
-        serviceName="person"
+        serviceName={fakeService}
       />, wrapper =>
-        expect(wrapper.find("InfiniteScroll").exists()).to.be.true
+        expect(wrapper.find("InfiniteScroll").exists()).to.be.true,
     );
   });
 
@@ -69,9 +75,9 @@ describe("<InfiniteScroll />", () => {
       <InfiniteScroll
         containerComponent={TestContainer}
         itemComponent={TestContainerItem}
-        serviceName="person"
+        serviceName={fakeService}
       />, wrapper =>
-        expect(wrapper.find("TestContainer").exists()).to.be.true
+        expect(wrapper.find("TestContainer").exists()).to.be.true,
     );
   });
 
@@ -81,9 +87,9 @@ describe("<InfiniteScroll />", () => {
         containerComponent={TestContainer}
         containerProps={{ testContainerProp: "testing container prop" }}
         itemComponent={TestContainerItem}
-        serviceName="person"
+        serviceName={fakeService}
       />, wrapper =>
-        expect(wrapper.find("TestContainer").prop("testContainerProp")).to.equal("testing container prop")
+        expect(wrapper.find("TestContainer").prop("testContainerProp")).to.equal("testing container prop"),
     );
   });
 
@@ -92,9 +98,9 @@ describe("<InfiniteScroll />", () => {
       <InfiniteScroll
         containerComponent={TestContainer}
         itemComponent={TestContainerItem}
-        serviceName="person"
+        serviceName={fakeService}
       />, wrapper =>
-        expect(wrapper.find("TestContainerItem").exists()).to.be.true
+        expect(wrapper.find("TestContainerItem").exists()).to.be.true,
     );
   });
 
@@ -104,9 +110,9 @@ describe("<InfiniteScroll />", () => {
         containerComponent={TestContainer}
         itemComponent={TestContainerItem}
         itemProps={{ testItemProp: "testing item prop" }}
-        serviceName="person"
+        serviceName={fakeService}
       />, wrapper =>
-        expect(wrapper.find("TestContainerItem").first().prop("testItemProp")).to.equal("testing item prop")
+        expect(wrapper.find("TestContainerItem").first().prop("testItemProp")).to.equal("testing item prop"),
     );
   });
 
@@ -117,23 +123,23 @@ describe("<InfiniteScroll />", () => {
           containerComponent={TestContainer}
           itemComponent={TestContainerItem}
           itemProps={{ testItemProp: "testing item prop" }}
-          queryParams={{ pageNumber: 3 }}
-          serviceName="person"
+          queryParams={{ page: 3 }}
+          serviceName={fakeService}
         />, wrapper =>
-          expect(wrapper.find("ComponentFromStream").last().prop("query")).to.deep.equal({ pageNumber: 3 })
+          expect(wrapper.find("ComponentFromStream").last().prop("query")).to.deep.include({ queryParams: { page: 3 } }),
       );
     });
 
-   /* it("loads existing next page", () => {
+    it("loads existing next page", () => {
       usingMount(
         <InfiniteScroll
           containerComponent={TestContainer}
           itemComponent={TestContainerItem}
           itemProps={{ testItemProp: "testing item prop" }}
-          queryParams={{ pageNumber: 3 }}
-          serviceName="person"
+          queryParams={{ page: 3, } }
+          serviceName={fakeService}
         />, wrapper =>
-          expect(wrapper.find("ComponentFromStream").last().prop("query")).to.deep.equal("{ pageNumber: 4 }")
+          expect(wrapper.find("ComponentFromStream").last().prop("query")).to.deep.include({ queryParams: { page: 4 } })
       );
     });
 
@@ -143,12 +149,12 @@ describe("<InfiniteScroll />", () => {
           containerComponent={TestContainer}
           itemComponent={TestContainerItem}
           itemProps={{ testItemProp: "testing item prop" }}
-          queryParams={{ pageNumber: 3 }}
-          serviceName="person"
+          queryParams={{ page: 3, } }
+          serviceName={fakeService}
         />, wrapper =>
-          expect(wrapper.find("ComponentFromStream").first().prop("query")).to.deep.equal("{ pageNumber: 2 }")
+          expect(wrapper.find("ComponentFromStream").first().prop("query")).to.deep.include({ queryParams: { page: 2 } })
       );
-    }); */
+    });
   });
 
   /*describe("Scrolling Events", () => {
@@ -158,10 +164,10 @@ describe("<InfiniteScroll />", () => {
           containerComponent={TestContainer}
           itemComponent={TestContainerItem}
           itemProps={{ testItemProp: "testing item prop" }}
-          serviceName="person"
+          serviceName={fakeService}
         />, wrapper => {
           simulateScrollEvent(wrapper, "Scrollbar", { currentTarget: { scrollTop: 110 } }); //, clientHeight: 50, scrollHeight: 200 } });
-          return expect(wrapper.find("Query").first().prop("query")).to.equal("{ pageNumber: 3 }");
+          return expect(wrapper.find("Query").first().prop("query")).to.equal("{ page: 3 }");
         }
       );
     });
@@ -172,12 +178,12 @@ describe("<InfiniteScroll />", () => {
           containerComponent={TestContainer}
           itemComponent={TestContainerItem}
           itemProps={{ testItemProp: "testing item prop" }}
-          queryParams={{ pageNumber: 3 }}
-          serviceName="person"
+          queryParams={{ page: 3 }}
+          serviceName={fakeService}
         />, wrapper => {
           simulateScrollEvent(wrapper, "Scrollbar", { currentTarget: { scrollTop: 10 } }); //, clientHeight: 50, scrollHeight: 200 } }); 
           simulateScrollEvent(wrapper, "Scrollbar", { currentTarget: { scrollTop: 0 } }); //, clientHeight: 50, scrollHeight: 200 } });
-          return expect(wrapper.find("Query").last().prop("query")).to.equal("{ pageNumber: 1 }");
+          return expect(wrapper.find("Query").last().prop("query")).to.equal("{ page: 1 }");
         }
       );
     });
@@ -188,7 +194,7 @@ describe("<InfiniteScroll />", () => {
           containerComponent={TestContainer}
           itemComponent={TestContainerItem}
           itemProps={{ testItemProp: "testing item prop" }}
-          serviceName="person"
+          serviceName={fakeService}
         />, wrapper =>
           expect(wrapper.find("TestContainerItem").first().prop("testItemProp")).to.equal("testing item prop")
       );
@@ -200,7 +206,7 @@ describe("<InfiniteScroll />", () => {
           containerComponent={TestContainer}
           itemComponent={TestContainerItem}
           itemProps={{ testItemProp: "testing item prop" }}
-          serviceName="person"
+          serviceName={fakeService}
         />, wrapper =>
           expect(wrapper.find("TestContainerItem").first().prop("testItemProp")).to.equal("testing item prop")
       );
@@ -212,7 +218,7 @@ describe("<InfiniteScroll />", () => {
           containerComponent={TestContainer}
           itemComponent={TestContainerItem}
           itemProps={{ testItemProp: "testing item prop" }}
-          serviceName="person"
+          serviceName={fakeService}
         />, wrapper =>
           expect(wrapper.find("TestContainerItem").first().prop("testItemProp")).to.equal("testing item prop")
       );
@@ -224,7 +230,7 @@ describe("<InfiniteScroll />", () => {
           containerComponent={TestContainer}
           itemComponent={TestContainerItem}
           itemProps={{ testItemProp: "testing item prop" }}
-          serviceName="person"
+          serviceName={fakeService}
         />, wrapper =>
           expect(wrapper.find("TestContainerItem").first().prop("testItemProp")).to.equal("testing item prop")
       );
@@ -236,7 +242,7 @@ describe("<InfiniteScroll />", () => {
           containerComponent={TestContainer}
           itemComponent={TestContainerItem}
           itemProps={{ testItemProp: "testing item prop" }}
-          serviceName="person"
+          serviceName={fakeService}
         />, wrapper =>
           expect(wrapper.find("TestContainerItem").first().prop("testItemProp")).to.equal("testing item prop")
       );
