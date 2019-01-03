@@ -55,11 +55,11 @@ storiesOf("InfiniteScroll", module)
   .addDecorator((story) => {
     initializeTestServices(fakeModelModule);
 
-    seedServiceList<any>("fakeModel", 20, { fullText: "page 1" }, { queryParams: { page: 1 }, hasNext: true, nextPage: 2, hasPrevious: false });
-    seedServiceList<any>("fakeModel", 20, { fullText: "page 10" }, { queryParams: { page: 10 }, hasNext: false, hasPrevious: true, previousPage: 9 });
+    seedServiceList<any>("fakeModel", 25, { fullText: "page 1" }, { queryParams: { page: 1 }, hasNext: true, nextPage: 2, hasPrevious: false });
+    seedServiceList<any>("fakeModel", 25, { fullText: "page 10" }, { queryParams: { page: 10 }, hasNext: false, hasPrevious: true, previousPage: 9 });
 
     for (let i = 2; i < 10; i++) {
-      seedServiceList<any>("fakeModel", 20, { fullText: `page ${i}` }, { queryParams: { page: i }, hasNext: true, nextPage: i + 1, hasPrevious: true, previousPage: i - 1 });
+      seedServiceList<any>("fakeModel", 25, { fullText: `page ${i}` }, { queryParams: { page: i }, hasNext: true, nextPage: i + 1, hasPrevious: true, previousPage: i - 1 });
     }
 
     return story();
