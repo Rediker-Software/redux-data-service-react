@@ -1,5 +1,5 @@
 import * as React from "react";
-import { seedServiceList, initializeTestServices, fakeModelModule } from "redux-data-service";
+import { fakeModelModule, initializeTestServices, seedServiceList } from "redux-data-service";
 
 import { storiesOf } from "@storybook/react";
 

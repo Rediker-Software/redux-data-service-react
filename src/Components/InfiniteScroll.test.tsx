@@ -1,13 +1,13 @@
 import * as React from "react";
-import { seedServiceList, initializeTestServices, fakeModelModule } from "redux-data-service";
+import { fakeModelModule, initializeTestServices, seedServiceList } from "redux-data-service";
 
 import { InfiniteScroll } from "./InfiniteScroll";
 
-import { usingMount, simulateScrollEvent } from "../TestUtils";
+import { simulateScrollEvent, usingMount } from "../TestUtils";
 import "../TestUtils/TestSetup";
 
 declare var intern;
-const { describe, it, beforeEach } = intern.getPlugin("interface.bdd");
+const { beforeEach, describe, it } = intern.getPlugin("interface.bdd");
 const { expect } = intern.getPlugin("chai");
 
 describe("<InfiniteScroll />", () => {

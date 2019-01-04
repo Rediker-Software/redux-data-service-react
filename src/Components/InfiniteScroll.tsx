@@ -1,7 +1,7 @@
 import * as React from "react";
-import { IModelData, IQueryParams, IQueryBuilder, QueryManager, QueryBuilder, IModel, IQueryManager } from "redux-data-service";
+import { IModel, IModelData, IQueryBuilder, IQueryManager, IQueryParams, QueryBuilder } from "redux-data-service";
 import { Omit } from "redux-data-service/dist/Omit";
-import { compose, defaultProps, setDisplayName, withProps, withStateHandlers, lifecycle, pure, withState } from "recompose";
+import { compose, defaultProps, lifecycle, pure, setDisplayName, withProps, withState, withStateHandlers } from "recompose";
 import { debounce } from "lodash";
 
 import { Query } from "../Query";
