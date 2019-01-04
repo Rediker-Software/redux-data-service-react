@@ -96,7 +96,7 @@ describe("<InfiniteScroll />", () => {
         query={{ page: 3 }}
         modelName={fakeService}
       />, wrapper =>
-        expect(wrapper.find("TestContainer").prop("class")).to.equal("testing container prop"),
+        expect(wrapper.find("TestContainer").prop("className")).to.equal("testing container prop"),
     );
   });
 
