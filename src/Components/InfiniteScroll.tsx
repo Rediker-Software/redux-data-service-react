@@ -1,18 +1,20 @@
 import * as React from "react";
 import { IModelData, IQueryParams, IQueryBuilder, QueryManager, QueryBuilder, IModel, IQueryManager } from "redux-data-service";
-import { compose, setDisplayName, withProps, withStateHandlers, lifecycle, pure, withState } from "recompose";
+import { Omit } from "redux-data-service/dist/Omit";
+import { compose, defaultProps, setDisplayName, withProps, withStateHandlers, lifecycle, pure, withState } from "recompose";
 import { debounce } from "lodash";
+
 import { Query } from "../Query";
 import { withModelQuery } from "../WithModelQuery";
-import { Omit } from "redux-data-service/dist/Omit";
 
 export interface IInfiniteScrollProps<T extends IModelData> {
   modelName: string;
   query: IQueryParams | IQueryBuilder;
   containerComponent: React.ComponentType<{ onScroll: React.UIEventHandler } & any>;
-  itemComponent: React.ComponentType<{ item: T } & any>;
+  modelComponent: React.ComponentType<{ model: T } & any>;
   containerProps?: any;
-  itemProps?: any;
+  modelComponentProps?: any;
+  debounceTime?: number;
 }
 
 export interface IInfiniteScrollInternalProps<T extends IModel<IModelData>> extends Omit<IInfiniteScrollProps<any>, "query"> {
@@ -26,32 +28,35 @@ export interface IInfiniteScrollInternalProps<T extends IModel<IModelData>> exte
 export interface IDisplayPreviousPageProps<T extends IModelData> {
   modelName: string;
   queryManager: IQueryManager<T>;
-  itemComponent: React.ComponentType<{ item: T } & any>;
-  itemProps?: any;
+  modelComponent: React.ComponentType<{ model: T } & any>;
+  modelComponentProps?: any;
 }
 
 const DisplayPreviousPage = compose<IDisplayPreviousPageProps<any>, IDisplayPreviousPageProps<any>>(
   setDisplayName("DisplayPreviousPage"),
   pure,
 )(
-  (({ queryManager, modelName, itemComponent: ItemComponent, itemProps }) => {
+  (({ queryManager, modelName, modelComponent: ModelComponent, modelComponentProps }) => {
     return queryManager.hasPreviousPage() && (
       <Query key={`page-${queryManager.response.previousPage}`} modelName={modelName} query={queryManager.getPreviousPage()}>
         {({ query }) => (
           <>
-            <DisplayPreviousPage queryManager={query} itemComponent={ItemComponent} itemProps={itemProps} modelName={modelName} />
-            {query.items.map(item => (
-              <ItemComponent key={item.id} item={item} {...itemProps} />
+            <DisplayPreviousPage queryManager={query} modelComponent={ModelComponent} modelComponentProps={modelComponentProps} modelName={modelName} />
+            {query.items.map(model => (
+              <ModelComponent key={model.id} model={model} {...modelComponentProps} />
             ))}
           </>
         )}
       </Query>
     );
-  })
+  }),
 );
 
 export const InfiniteScroll = compose<IInfiniteScrollInternalProps<any>, IInfiniteScrollProps<any>>(
   setDisplayName("InfiniteScroll"),
+  defaultProps({
+    debounceTime: 200,
+  }),
   withState<IInfiniteScrollProps<any>, IQueryBuilder, "query", "updateQuery">("query", "updateQuery", ({ query, modelName }) => (
     query instanceof QueryBuilder
       ? query
@@ -59,7 +64,7 @@ export const InfiniteScroll = compose<IInfiniteScrollInternalProps<any>, IInfini
   )),
   withModelQuery(),
   withStateHandlers<{ lastScrollTop: number }, { handleScroll }, IInfiniteScrollInternalProps<any>>(
-    { lastScrollTop: 0, },
+    { lastScrollTop: 0 },
     {
       handleScroll: ({ lastScrollTop }, { query, updateQuery }) => (clientHeight: number, scrollHeight: number, currentScrollTop: number) => {
         const scrollingDown = currentScrollTop > lastScrollTop;
@@ -73,16 +78,14 @@ export const InfiniteScroll = compose<IInfiniteScrollInternalProps<any>, IInfini
       },
     },
   ),
-  withProps(({ handleScroll }) => ({
-    handleScrollDebounced: debounce(handleScroll, 200)
+  withProps(({ handleScroll, debounceTime }) => ({
+    handleScrollDebounced: debounce(handleScroll, debounceTime),
   })),
   withProps(({ handleScrollDebounced }) => ({
-    handleScrollPersistingEvent: (event: React.UIEvent) => {
-      const clientHeight = event.currentTarget.clientHeight;
-      const scrollHeight = event.currentTarget.scrollHeight;
-      const scrollTop = event.currentTarget.scrollTop;
-
-      console.log(clientHeight, scrollHeight, scrollTop);
+    handleScrollPersistingEvent: (event: any) => {
+      const clientHeight = event.target.clientHeight;
+      const scrollHeight = event.target.scrollHeight;
+      const scrollTop = event.target.scrollTop;
 
       handleScrollDebounced(clientHeight, scrollHeight, scrollTop);
     },
@@ -95,25 +98,25 @@ export const InfiniteScroll = compose<IInfiniteScrollInternalProps<any>, IInfini
 )(({
   containerComponent: ContainerComponent,
   containerProps,
-  itemComponent: ItemComponent,
-  itemProps,
+  modelComponent: ModelComponent,
+  modelComponentProps,
   query: queryManager,
   modelName,
   handleScrollPersistingEvent,
 }) => (
     <ContainerComponent {...containerProps} onScroll={handleScrollPersistingEvent}>
       <>
-        <DisplayPreviousPage queryManager={queryManager} itemComponent={ItemComponent} itemProps={itemProps} modelName={modelName} />
+        <DisplayPreviousPage queryManager={queryManager} modelComponent={ModelComponent} modelComponentProps={modelComponentProps} modelName={modelName} />
 
-        {queryManager.items.map(item => (
-          <ItemComponent key={item.id} item={item} {...itemProps} />
+        {queryManager.items.map(model => (
+          <ModelComponent key={model.id} model={model} {...modelComponentProps} />
         ))}
 
         {queryManager.hasNextPage() && (
           <Query modelName={modelName} query={queryManager.getNextPage()}>
             {({ query }) => (
-              query.items.map(item => (
-                <ItemComponent key={item.id} item={item} {...itemProps} />
+              query.items.map(model => (
+                <ModelComponent key={model.id} model={model} {...modelComponentProps} />
               ))
             )}
           </Query>

@@ -1,55 +1,44 @@
 import * as React from "react";
-import { storiesOf } from "@storybook/react";
-import { setDisplayName, compose } from "recompose";
 import { seedServiceList, initializeTestServices, fakeModelModule } from "redux-data-service";
-import { Grid, Typography, Paper, withStyles } from "@material-ui/core";
+
+import { storiesOf } from "@storybook/react";
 
 import { InfiniteScroll } from "./InfiniteScroll";
 
-const InfiniteScrollStoryContainer = compose<{}, {}>(
-  setDisplayName("InfiniteScrollStoryContainer"),
-  withStyles({
-    root: {
-      height: 500,
-      width: 500,
-      border: "solid 1px black",
-      backgroundColor: "white !important",
-      overflow: "auto",
-    },
-  }),
-)(({ children, ...props }) => (
-  <Paper {...props}>
-      {children}
-  </Paper>
-));
+const InfiniteScrollStoryContainer = (props) => {
+  const style = {
+    height: 500,
+    width: 500,
+    border: "solid 1px black",
+    backgroundColor: "white !important",
+    overflow: "auto",
+  };
+
+  return (
+    <div style={style} {...props}>
+      {props.children}
+    </div>
+  );
+};
 
 interface IInfiniteScrollStoryContainerItemProps {
-  item: any;
+  model: any;
 }
 
-const InfiniteScrollStoryContainerItem = compose<IInfiniteScrollStoryContainerItemProps, IInfiniteScrollStoryContainerItemProps>(
-  setDisplayName("InfiniteScrollStoryContainerItem"),
-  withStyles({
-    container: {
-      padding: "25px",
-      borderBottomColor: "grey",
-      borderBottom: "solid",
-    },
-  }),
-)(({ children, item, ...props }) => (
-    <Grid container spacing={16}>
-      <Grid container item xs spacing={8}>
-        <Grid item xs={12}>
-        ID: {item.id}
-        </Grid>
-        <Grid item xs={12}>
-          <Typography>
-          Title: {item.fullText}
-          </Typography>
-        </Grid>
-      </Grid>
-    </Grid>
-));
+const InfiniteScrollStoryContainerItem = ({ model }: IInfiniteScrollStoryContainerItemProps) => {
+  const style = {
+    height: model.id % 100 + 50,
+    padding: "25px",
+    borderBottom: "solid 1px #999",
+  };
+
+  return (
+    <div style={style}>
+      <p>ID: {model.id}</p>
+      <p>Title: {model.fullText}</p>
+    </div>
+  );
+};
 
 storiesOf("InfiniteScroll", module)
   .addDecorator((story) => {
@@ -59,15 +48,20 @@ storiesOf("InfiniteScroll", module)
     seedServiceList<any>("fakeModel", 25, { fullText: "page 10" }, { queryParams: { page: 10 }, hasNext: false, hasPrevious: true, previousPage: 9 });
 
     for (let i = 2; i < 10; i++) {
-      seedServiceList<any>("fakeModel", 25, { fullText: `page ${i}` }, { queryParams: { page: i }, hasNext: true, nextPage: i + 1, hasPrevious: true, previousPage: i - 1 });
+      seedServiceList<any>(
+        "fakeModel",
+        25,
+        { fullText: `page ${i}` },
+        { queryParams: { page: i }, hasNext: true, nextPage: i + 1, hasPrevious: true, previousPage: i - 1 },
+      );
     }
 
     return story();
   })
-  .add("With Scrollable Grid Example", () => (
+  .add("With Variable Heights", () => (
     <InfiniteScroll
       containerComponent={InfiniteScrollStoryContainer}
-      itemComponent={InfiniteScrollStoryContainerItem}
+      modelComponent={InfiniteScrollStoryContainerItem}
       modelName="fakeModel"
       query={{ page: 1 }}
     />

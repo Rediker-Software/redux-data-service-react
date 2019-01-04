@@ -1,11 +1,9 @@
 import * as React from "react";
 import { seedServiceList, initializeTestServices, fakeModelModule } from "redux-data-service";
-import { Paper, withStyles } from "@material-ui/core";
-import { compose, setDisplayName } from "recompose";
 
 import { InfiniteScroll } from "./InfiniteScroll";
 
-import { usingMount } from "../TestUtils";
+import { usingMount, simulateScrollEvent } from "../TestUtils";
 import "../TestUtils/TestSetup";
 
 declare var intern;
@@ -13,49 +11,55 @@ const { describe, it, beforeEach } = intern.getPlugin("interface.bdd");
 const { expect } = intern.getPlugin("chai");
 
 describe("<InfiniteScroll />", () => {
-  const TestContainer = compose<{}, {}>(
-    setDisplayName("TestContainer"),
-    withStyles({
-      root: {
-        height: 50,
-        width: 50,
-      },
-    }),
-  )(({ children, ...props }) => (
-    <Paper {...props}>
-      {children}
-    </Paper>
-  ));
+  const testContainerHeight = 50;
+
+  const TestContainer = (props) => {
+    const style = {
+      height: testContainerHeight,
+      width: 50,
+      overflow: "auto",
+    };
+
+    return (
+      <div style={style} {...props}>
+        {props.children}
+      </div>
+    );
+  };
 
   interface IPaperContainerItemProps {
     item: any;
     displayValueField: string;
   }
 
-  const TestContainerItem = compose<IPaperContainerItemProps, IPaperContainerItemProps>(
-    setDisplayName("TestContainerItem"),
-    withStyles({
-      root: {
-        height: 10,
-        width: 10,
-      },
-    }),
-  )(({ children, ...props }) => (
-    <Paper {...props}>
-      Test Item Text
-    </Paper>
-    ));
+  const testContainerItemHeight = 10;
+
+  const testContainerItemStyle = {
+    height: testContainerItemHeight,
+  };
+
+  const TestContainerItem = ({ children, model, ...props }) => (
+    <span style={testContainerItemStyle} className={model.fullText}>
+      {model.fullText}
+    </span>
+  );
 
   const fakeService = "fakeModel";
+  const itemsPerPage = 10;
 
   beforeEach(() => {
     initializeTestServices(fakeModelModule);
 
-    seedServiceList<any>("fakeModel", 10, {}, { queryParams: { page: 1 }, hasNext: true, hasPrevious: false });
-    seedServiceList<any>("fakeModel", 10, {}, { queryParams: { page: 10 }, hasNext: false, hasPrevious: true });
+    seedServiceList<any>("fakeModel", itemsPerPage, { fullText: "page1" }, { queryParams: { page: 1 }, hasNext: true, nextPage: 2, hasPrevious: false });
+    seedServiceList<any>("fakeModel", itemsPerPage, { fullText: "page10" }, { queryParams: { page: 10 }, hasNext: false, hasPrevious: true, previousPage: 9 });
 
     for (let i = 2; i < 10; i++) {
-      seedServiceList<any>("fakeModel", 10, {}, { queryParams: { page: i }, hasNext: true, hasPrevious: true });
+      seedServiceList<any>(
+        "fakeModel",
+        itemsPerPage,
+        { fullText: `page${i}` },
+        { queryParams: { page: i }, hasNext: true, nextPage: i + 1, hasPrevious: true, previousPage: i - 1 },
+      );
     }
   });
 
@@ -63,8 +67,9 @@ describe("<InfiniteScroll />", () => {
     usingMount(
       <InfiniteScroll
         containerComponent={TestContainer}
-        itemComponent={TestContainerItem}
-        serviceName={fakeService}
+        modelComponent={TestContainerItem}
+        query={{ page: 3 }}
+        modelName={fakeService}
       />, wrapper =>
         expect(wrapper.find("InfiniteScroll").exists()).to.be.true,
     );
@@ -74,8 +79,9 @@ describe("<InfiniteScroll />", () => {
     usingMount(
       <InfiniteScroll
         containerComponent={TestContainer}
-        itemComponent={TestContainerItem}
-        serviceName={fakeService}
+        modelComponent={TestContainerItem}
+        query={{ page: 3 }}
+        modelName={fakeService}
       />, wrapper =>
         expect(wrapper.find("TestContainer").exists()).to.be.true,
     );
@@ -85,11 +91,12 @@ describe("<InfiniteScroll />", () => {
     usingMount(
       <InfiniteScroll
         containerComponent={TestContainer}
-        containerProps={{ testContainerProp: "testing container prop" }}
-        itemComponent={TestContainerItem}
-        serviceName={fakeService}
+        containerProps={{ className: "testing container prop" }}
+        modelComponent={TestContainerItem}
+        query={{ page: 3 }}
+        modelName={fakeService}
       />, wrapper =>
-        expect(wrapper.find("TestContainer").prop("testContainerProp")).to.equal("testing container prop"),
+        expect(wrapper.find("TestContainer").prop("class")).to.equal("testing container prop"),
     );
   });
 
@@ -97,8 +104,9 @@ describe("<InfiniteScroll />", () => {
     usingMount(
       <InfiniteScroll
         containerComponent={TestContainer}
-        itemComponent={TestContainerItem}
-        serviceName={fakeService}
+        modelComponent={TestContainerItem}
+        query={{ page: 3 }}
+        modelName={fakeService}
       />, wrapper =>
         expect(wrapper.find("TestContainerItem").exists()).to.be.true,
     );
@@ -108,9 +116,10 @@ describe("<InfiniteScroll />", () => {
     usingMount(
       <InfiniteScroll
         containerComponent={TestContainer}
-        itemComponent={TestContainerItem}
-        itemProps={{ testItemProp: "testing item prop" }}
-        serviceName={fakeService}
+        modelComponent={TestContainerItem}
+        modelComponentProps={{ testItemProp: "testing item prop" }}
+        query={{ page: 3 }}
+        modelName={fakeService}
       />, wrapper =>
         expect(wrapper.find("TestContainerItem").first().prop("testItemProp")).to.equal("testing item prop"),
     );
@@ -121,12 +130,12 @@ describe("<InfiniteScroll />", () => {
       usingMount(
         <InfiniteScroll
           containerComponent={TestContainer}
-          itemComponent={TestContainerItem}
-          itemProps={{ testItemProp: "testing item prop" }}
-          queryParams={{ page: 3 }}
-          serviceName={fakeService}
+          modelComponent={TestContainerItem}
+          modelComponentProps={{ testItemProp: "testing item prop" }}
+          query={{ page: 3 }}
+          modelName={fakeService}
         />, wrapper =>
-          expect(wrapper.find("ComponentFromStream").last().prop("query")).to.deep.include({ queryParams: { page: 3 } }),
+          expect(wrapper.find("ComponentFromStream").first().prop("query")).to.deep.include({ queryParams: { page: 3 } }),
       );
     });
 
@@ -134,118 +143,150 @@ describe("<InfiniteScroll />", () => {
       usingMount(
         <InfiniteScroll
           containerComponent={TestContainer}
-          itemComponent={TestContainerItem}
-          itemProps={{ testItemProp: "testing item prop" }}
-          queryParams={{ page: 3, } }
-          serviceName={fakeService}
+          modelComponent={TestContainerItem}
+          modelComponentProps={{ testItemProp: "testing item prop" }}
+          query={{ page: 3 }}
+          modelName={fakeService}
         />, wrapper =>
-          expect(wrapper.find("ComponentFromStream").last().prop("query")).to.deep.include({ queryParams: { page: 4 } })
+          expect(wrapper.find("ComponentFromStream").last().prop("query")).to.deep.include({ queryParams: { page: 4 } }),
       );
     });
 
-    it("loads existing previous page", () => {
+    it("loads all previous pages", () => {
       usingMount(
         <InfiniteScroll
           containerComponent={TestContainer}
-          itemComponent={TestContainerItem}
-          itemProps={{ testItemProp: "testing item prop" }}
-          queryParams={{ page: 3, } }
-          serviceName={fakeService}
-        />, wrapper =>
-          expect(wrapper.find("ComponentFromStream").first().prop("query")).to.deep.include({ queryParams: { page: 2 } })
+          modelComponent={TestContainerItem}
+          modelComponentProps={{ testItemProp: "testing item prop" }}
+          query={{ page: 4 }}
+          modelName={fakeService}
+        />, wrapper => {
+          expect(wrapper.find(".page1")).to.have.lengthOf(10);
+          expect(wrapper.find(".page2")).to.have.lengthOf(10);
+          expect(wrapper.find(".page3")).to.have.lengthOf(10);
+        },
       );
     });
   });
 
-  /*describe("Scrolling Events", () => {
-    it("loads new next page when scrolling down, scroll bottom height is less than the client height and next page exists", () => {
-      usingMount(
+  describe("Scrolling Events", () => {
+    it("loads new next page when scrolling down, scroll bottom height is less than half the client height and next page exists", async () => {
+      const debounceTime = 200;
+
+      await usingMount(
         <InfiniteScroll
           containerComponent={TestContainer}
-          itemComponent={TestContainerItem}
-          itemProps={{ testItemProp: "testing item prop" }}
-          serviceName={fakeService}
+          modelComponent={TestContainerItem}
+          modelComponentProps={{ testItemProp: "testing item prop" }}
+          query={{ page: 3 }}
+          modelName={fakeService}
+          debounceTime={debounceTime}
         />, wrapper => {
-          simulateScrollEvent(wrapper, "Scrollbar", { currentTarget: { scrollTop: 110 } }); //, clientHeight: 50, scrollHeight: 200 } });
-          return expect(wrapper.find("Query").first().prop("query")).to.equal("{ page: 3 }");
-        }
+          return new Promise((resolve, reject) => {
+            simulateScrollEvent(wrapper, "TestContainer", { target: { scrollTop: 200, clientHeight: 50, scrollHeight: 200 } });
+
+            setTimeout(() => {
+              try {
+                wrapper.update();
+                expect(wrapper.find(".page5")).to.have.lengthOf(10);
+                resolve();
+              } catch (e) {
+                reject(e);
+              }
+            }, debounceTime + 100);
+          });
+        },
       );
     });
 
-    it("loads new previous page when scrolling up, scroll top height is less than the client height and previous page exists", () => {
-      usingMount(
+    it("page load is unchanged when scrolling down and next page does not exist", async () => {
+      const debounceTime = 200;
+
+      await usingMount(
         <InfiniteScroll
           containerComponent={TestContainer}
-          itemComponent={TestContainerItem}
-          itemProps={{ testItemProp: "testing item prop" }}
-          queryParams={{ page: 3 }}
-          serviceName={fakeService}
+          modelComponent={TestContainerItem}
+          modelComponentProps={{ testItemProp: "testing item prop" }}
+          query={{ page: 10 }}
+          modelName={fakeService}
+          debounceTime={debounceTime}
         />, wrapper => {
-          simulateScrollEvent(wrapper, "Scrollbar", { currentTarget: { scrollTop: 10 } }); //, clientHeight: 50, scrollHeight: 200 } }); 
-          simulateScrollEvent(wrapper, "Scrollbar", { currentTarget: { scrollTop: 0 } }); //, clientHeight: 50, scrollHeight: 200 } });
-          return expect(wrapper.find("Query").last().prop("query")).to.equal("{ page: 1 }");
-        }
+          return new Promise((resolve, reject) => {
+            expect(wrapper.find("TestContainerItem")).to.have.lengthOf(100); // verify page load before scrolling
+            simulateScrollEvent(wrapper, "TestContainer", { target: { scrollTop: 200, clientHeight: 50, scrollHeight: 200 } });
+
+            setTimeout(() => {
+              try {
+                wrapper.update();
+                expect(wrapper.find("TestContainerItem")).to.have.lengthOf(100); // verify pageload is unchanged
+                resolve();
+              } catch (e) {
+                reject(e);
+              }
+            }, debounceTime + 100);
+          });
+        },
       );
     });
 
-    it("page load is unchanged when scrolling down and next page does not exist", () => {
-      usingMount(
+    it("page load is unchanged when scrolling down and scroll bottom height is not less than client height", async () => {
+      const debounceTime = 200;
+
+      await usingMount(
         <InfiniteScroll
           containerComponent={TestContainer}
-          itemComponent={TestContainerItem}
-          itemProps={{ testItemProp: "testing item prop" }}
-          serviceName={fakeService}
-        />, wrapper =>
-          expect(wrapper.find("TestContainerItem").first().prop("testItemProp")).to.equal("testing item prop")
+          modelComponent={TestContainerItem}
+          modelComponentProps={{ testItemProp: "testing item prop" }}
+          query={{ page: 2 }}
+          modelName={fakeService}
+          debounceTime={debounceTime}
+        />, wrapper => {
+          return new Promise((resolve, reject) => {
+            expect(wrapper.find("TestContainerItem")).to.have.lengthOf(30); // verify page load before scrolling
+            simulateScrollEvent(wrapper, "TestContainer", { target: { scrollTop: 100, clientHeight: 50, scrollHeight: 200 } });
+
+            setTimeout(() => {
+              try {
+                wrapper.update();
+                expect(wrapper.find("TestContainerItem")).to.have.lengthOf(30); // verify pageload is unchanged
+                resolve();
+              } catch (e) {
+                reject(e);
+              }
+            }, debounceTime + 100);
+          });
+        },
       );
     });
 
-    it("page load is unchanged when scrolling down and scroll bottom height is not less than client height", () => {
-      usingMount(
-        <InfiniteScroll
-          containerComponent={TestContainer}
-          itemComponent={TestContainerItem}
-          itemProps={{ testItemProp: "testing item prop" }}
-          serviceName={fakeService}
-        />, wrapper =>
-          expect(wrapper.find("TestContainerItem").first().prop("testItemProp")).to.equal("testing item prop")
-      );
-    });
+    it("page load is unchanged when scroll top equals last scroll top value", async () => {
+      const debounceTime = 200;
 
-    it("page load is unchanged when scrolling up and previous page does not exist", () => {
-      usingMount(
+      await usingMount(
         <InfiniteScroll
           containerComponent={TestContainer}
-          itemComponent={TestContainerItem}
-          itemProps={{ testItemProp: "testing item prop" }}
-          serviceName={fakeService}
-        />, wrapper =>
-          expect(wrapper.find("TestContainerItem").first().prop("testItemProp")).to.equal("testing item prop")
-      );
-    });
+          modelComponent={TestContainerItem}
+          modelComponentProps={{ testItemProp: "testing item prop" }}
+          query={{ page: 2 }}
+          modelName={fakeService}
+          debounceTime={debounceTime}
+        />, wrapper => {
+          return new Promise((resolve, reject) => {
+            expect(wrapper.find("TestContainerItem")).to.have.lengthOf(30); // verify page load before scrolling
+            simulateScrollEvent(wrapper, "TestContainer", { target: { scrollTop: 0, clientHeight: 50, scrollHeight: 200 } });
 
-    it("page load is unchanged when scrolling up and scroll top height is not less than client height", () => {
-      usingMount(
-        <InfiniteScroll
-          containerComponent={TestContainer}
-          itemComponent={TestContainerItem}
-          itemProps={{ testItemProp: "testing item prop" }}
-          serviceName={fakeService}
-        />, wrapper =>
-          expect(wrapper.find("TestContainerItem").first().prop("testItemProp")).to.equal("testing item prop")
+            setTimeout(() => {
+              try {
+                wrapper.update();
+                expect(wrapper.find("TestContainerItem")).to.have.lengthOf(30); // verify pageload is unchanged
+                resolve();
+              } catch (e) {
+                reject(e);
+              }
+            }, debounceTime + 100);
+          });
+        },
       );
     });
-
-    it("page load is unchanged when scroll top equals last scroll top value", () => {
-      usingMount(
-        <InfiniteScroll
-          containerComponent={TestContainer}
-          itemComponent={TestContainerItem}
-          itemProps={{ testItemProp: "testing item prop" }}
-          serviceName={fakeService}
-        />, wrapper =>
-          expect(wrapper.find("TestContainerItem").first().prop("testItemProp")).to.equal("testing item prop")
-      );
-    });
-  });*/
+  });
 });
