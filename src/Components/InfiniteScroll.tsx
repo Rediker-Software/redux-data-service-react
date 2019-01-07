@@ -52,6 +52,10 @@ const DisplayPreviousPage = compose<IDisplayPreviousPageProps<any>, IDisplayPrev
   }),
 );
 
+/**
+ * Adds infinite scroll capability to a container and model component, querying for the next page of results when scrolling down.
+ * The container component must be scrollable.
+ */
 export const InfiniteScroll = compose<IInfiniteScrollInternalProps<any>, IInfiniteScrollProps<any>>(
   setDisplayName("InfiniteScroll"),
   defaultProps({
