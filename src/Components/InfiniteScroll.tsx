@@ -1,10 +1,11 @@
 import * as React from "react";
 import { IModel, IModelData, IQueryBuilder, IQueryManager, IQueryParams, QueryBuilder } from "redux-data-service";
 import { Omit } from "redux-data-service/dist/Omit";
-import { compose, defaultProps, lifecycle, pure, setDisplayName, withProps, withState, withStateHandlers, mapProps } from "recompose";
+import { compose, defaultProps, lifecycle, pure, setDisplayName, withProps, withState, withStateHandlers } from "recompose";
 import { debounce } from "lodash";
 
 import { Query } from "../Query";
+import { omitProps } from "../Helpers";
 import { withModelQuery } from "../WithModelQuery";
 
 export interface IInfiniteScrollProps<T extends IModelData> {
@@ -101,41 +102,15 @@ export const InfiniteScroll = compose<IInfiniteScrollInternalProps<any>, IInfini
       this.props.handleScrollDebounced.cancel();
     },
   }),
-  mapProps(({
-    query,
-    updateQuery,
-    lastScrollTop,
-    handleScroll,
-    handleScrollDebounced,
-    handleScrollPersistingEvent,
-    modelName,
-    containerComponent,
-    modelComponent,
-    modelComponentProps,
-    debounceTime,
-    ...extraProps }) => ({
-      query,
-      updateQuery,
-      lastScrollTop,
-      handleScroll,
-      handleScrollDebounced,
-      handleScrollPersistingEvent,
-      modelName,
-      containerComponent,
-      modelComponent,
-      modelComponentProps,
-      debounceTime,
-      containerProps: extraProps,
-    })),
+  omitProps(["debounceTime", "handleScroll", "handleScrollDebounced", "lastScrollTop", "updateQuery"]),
 )(({
   containerComponent: ContainerComponent,
-  containerProps,
   modelComponent: ModelComponent,
   modelComponentProps,
   query: queryManager,
   modelName,
   handleScrollPersistingEvent,
-}) => (
+  ...containerProps }) => (
     <ContainerComponent {...containerProps} onScroll={handleScrollPersistingEvent}>
       <DisplayPreviousPage queryManager={queryManager} modelComponent={ModelComponent} modelComponentProps={modelComponentProps} modelName={modelName} />
 
