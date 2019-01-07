@@ -87,16 +87,16 @@ describe("<InfiniteScroll />", () => {
     );
   });
 
-  it("passes container props to container component when container props are given", () => {
+  it("passes extra props to container component when extra props are given", () => {
     usingMount(
       <InfiniteScroll
         containerComponent={TestContainer}
-        containerProps={{ className: "testing container prop" }}
+        extraProp="testing extra prop"
         modelComponent={TestContainerItem}
         query={{ page: 3 }}
         modelName={fakeService}
       />, wrapper =>
-        expect(wrapper.find("TestContainer").prop("className")).to.equal("testing container prop"),
+        expect(wrapper.find("TestContainer").prop("extraProp")).to.equal("testing extra prop"),
     );
   });
 

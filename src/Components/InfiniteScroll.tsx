@@ -1,7 +1,7 @@
 import * as React from "react";
 import { IModel, IModelData, IQueryBuilder, IQueryManager, IQueryParams, QueryBuilder } from "redux-data-service";
 import { Omit } from "redux-data-service/dist/Omit";
-import { compose, defaultProps, lifecycle, pure, setDisplayName, withProps, withState, withStateHandlers } from "recompose";
+import { compose, defaultProps, lifecycle, pure, setDisplayName, withProps, withState, withStateHandlers, mapProps } from "recompose";
 import { debounce } from "lodash";
 
 import { Query } from "../Query";
@@ -12,9 +12,11 @@ export interface IInfiniteScrollProps<T extends IModelData> {
   query: IQueryParams | IQueryBuilder;
   containerComponent: React.ComponentType<{ onScroll: React.UIEventHandler } & any>;
   modelComponent: React.ComponentType<{ model: T } & any>;
-  containerProps?: any;
   modelComponentProps?: any;
   debounceTime?: number;
+
+  /* Any extra props will be passed-through to the container component */
+  [key: string]: any;
 }
 
 export interface IInfiniteScrollInternalProps<T extends IModel<IModelData>> extends Omit<IInfiniteScrollProps<any>, "query"> {
@@ -99,6 +101,32 @@ export const InfiniteScroll = compose<IInfiniteScrollInternalProps<any>, IInfini
       this.props.handleScrollDebounced.cancel();
     },
   }),
+  mapProps(({
+    query,
+    updateQuery,
+    lastScrollTop,
+    handleScroll,
+    handleScrollDebounced,
+    handleScrollPersistingEvent,
+    modelName,
+    containerComponent,
+    modelComponent,
+    modelComponentProps,
+    debounceTime,
+    ...extraProps }) => ({
+      query,
+      updateQuery,
+      lastScrollTop,
+      handleScroll,
+      handleScrollDebounced,
+      handleScrollPersistingEvent,
+      modelName,
+      containerComponent,
+      modelComponent,
+      modelComponentProps,
+      debounceTime,
+      containerProps: extraProps,
+    })),
 )(({
   containerComponent: ContainerComponent,
   containerProps,
