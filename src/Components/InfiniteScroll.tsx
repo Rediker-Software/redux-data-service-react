@@ -105,22 +105,20 @@ export const InfiniteScroll = compose<IInfiniteScrollInternalProps<any>, IInfini
   handleScrollPersistingEvent,
 }) => (
     <ContainerComponent {...containerProps} onScroll={handleScrollPersistingEvent}>
-      <>
-        <DisplayPreviousPage queryManager={queryManager} modelComponent={ModelComponent} modelComponentProps={modelComponentProps} modelName={modelName} />
+      <DisplayPreviousPage queryManager={queryManager} modelComponent={ModelComponent} modelComponentProps={modelComponentProps} modelName={modelName} />
 
-        {queryManager.items.map(model => (
-          <ModelComponent key={model.id} model={model} {...modelComponentProps} />
-        ))}
+      {queryManager.items.map(model => (
+        <ModelComponent key={model.id} model={model} {...modelComponentProps} />
+      ))}
 
-        {queryManager.hasNextPage() && (
-          <Query modelName={modelName} query={queryManager.getNextPage()}>
-            {({ query }) => (
-              query.items.map(model => (
-                <ModelComponent key={model.id} model={model} {...modelComponentProps} />
-              ))
-            )}
-          </Query>
-        )}
-      </>
+      {queryManager.hasNextPage() && (
+        <Query modelName={modelName} query={queryManager.getNextPage()}>
+          {({ query }) => (
+            query.items.map(model => (
+              <ModelComponent key={model.id} model={model} {...modelComponentProps} />
+            ))
+          )}
+        </Query>
+      )}
     </ContainerComponent>
   ));
