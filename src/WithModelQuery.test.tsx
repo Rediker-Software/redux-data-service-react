@@ -58,9 +58,9 @@ describe("withModelQuery", () => {
       });
     });
 
-    it("does not receive the modelName as a fall through prop", () => {
+    it("receives the modelName as a fall through prop", () => {
       usingMount(<Component query={query} />, (wrapper) => {
-        expect(wrapper.find(FakeComponent).prop("modelName")).to.be.undefined;
+        expect(wrapper.find(FakeComponent).prop("modelName")).to.equal("fakeModel");
       });
     });
 
