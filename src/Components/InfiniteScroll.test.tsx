@@ -11,12 +11,11 @@ const { beforeEach, describe, it } = intern.getPlugin("interface.bdd");
 const { expect } = intern.getPlugin("chai");
 
 describe("<InfiniteScroll />", () => {
-  const testContainerHeight = 50;
-
   const TestContainer = (props) => {
     const style = {
-      height: testContainerHeight,
-      width: 50,
+      height: 250,
+      width: 250,
+      border: "solid 1px black",
       overflow: "auto",
     };
 
@@ -27,16 +26,16 @@ describe("<InfiniteScroll />", () => {
     );
   };
 
-  const testContainerModelHeight = 10;
-
   const testContainerModelStyle = {
-    height: testContainerModelHeight,
+    height: 20,
+    padding: "15px",
+    borderBottom: "solid 1px #999",
   };
 
   const TestContainerModel = ({ model }) => (
-    <span style={testContainerModelStyle} className={model.fullText}>
+    <div style={testContainerModelStyle} className={model.fullText}>
       {model.fullText}
-    </span>
+    </div>
   );
 
   const fakeService = "fakeModel";
@@ -75,12 +74,12 @@ describe("<InfiniteScroll />", () => {
     usingMount(
       <InfiniteScroll
         containerComponent={TestContainer}
-        extraProp="testing extra prop"
+        className="testing extra prop"
         modelComponent={TestContainerModel}
         query={{ page: 3 }}
         modelName={fakeService}
       />, wrapper =>
-        expect(wrapper.find("TestContainer").prop("extraProp")).to.equal("testing extra prop"),
+        expect(wrapper.find("TestContainer").prop("className")).to.equal("testing extra prop"),
     );
   });
 
@@ -288,7 +287,15 @@ describe("<InfiniteScroll />", () => {
     });
 
     describe("Virtual Scroll Style", () => {
-      it("renders <ContentPlaceHolder /> for previous and next pages", () => {
+      let div;
+
+      beforeEach(() => {
+        // Attaching div to mount container in order to access client heights, otherwise the heights will be 0 and tests will fail
+        div = document.createElement("div");
+        document.body.appendChild(div);
+      });
+
+      it("renders default <ContentPlaceHolder /> for previous and next pages", () => {
         usingMount(
           <InfiniteScroll
             containerComponent={TestContainer}
@@ -297,12 +304,11 @@ describe("<InfiniteScroll />", () => {
             query={{ page: 4 }}
             modelName={fakeService}
           />, wrapper => {
-            expect(wrapper.find("ContentPlaceHolder")).to.have.lengthOf(2);
+            expect(wrapper.find("DefaultContentPlaceHolder")).to.have.lengthOf(2);
           },
         );
       });
 
-      // TODO: Calculate height of ref? Test failing because currently HTML DOM is not being rendered in test so height of ref is 0
       describe("Scrolling Events", () => {
         it("loads new previous page when scrolling and previous page exists", async () => {
           await usingMount(
@@ -315,19 +321,22 @@ describe("<InfiniteScroll />", () => {
               debounceTime={debounceTime}
             />, wrapper => {
               return new Promise((resolve, reject) => {
-                simulateScrollEvent(wrapper, "TestContainer", { target: { scrollTop: 500, clientHeight: 50, scrollHeight: 200 } });
+                const amountToScrollToPage6 = 2600;
+                simulateScrollEvent(wrapper, "TestContainer", {
+                  target: { scrollTop: amountToScrollToPage6, clientHeight: 250, scrollHeight: 0 },
+                });
 
                 setTimeout(() => {
                   try {
                     wrapper.update();
-                    expect(wrapper.find(".page4")).to.have.lengthOf(10);
+                    expect(wrapper.find(".page5")).to.have.lengthOf(10);
                     resolve();
                   } catch (e) {
                     reject(e);
                   }
                 }, debounceTime + 100);
               });
-            },
+            }, { attachTo: div },
           );
         });
 
@@ -342,7 +351,10 @@ describe("<InfiniteScroll />", () => {
               debounceTime={debounceTime}
             />, wrapper => {
               return new Promise((resolve, reject) => {
-                simulateScrollEvent(wrapper, "TestContainer", { target: { scrollTop: 500, clientHeight: 50, scrollHeight: 200 } });
+                const amountToScrollToPage6 = 2600;
+                simulateScrollEvent(wrapper, "TestContainer", {
+                  target: { scrollTop: amountToScrollToPage6, clientHeight: 250, scrollHeight: 0 },
+                });
 
                 setTimeout(() => {
                   try {
@@ -354,7 +366,7 @@ describe("<InfiniteScroll />", () => {
                   }
                 }, debounceTime + 100);
               });
-            },
+            }, { attachTo: div },
           );
         });
 
@@ -369,7 +381,10 @@ describe("<InfiniteScroll />", () => {
               debounceTime={debounceTime}
             />, wrapper => {
               return new Promise((resolve, reject) => {
-                simulateScrollEvent(wrapper, "TestContainer", { target: { scrollTop: 500, clientHeight: 50, scrollHeight: 200 } });
+                const amountToScrollToPage6 = 2600;
+                simulateScrollEvent(wrapper, "TestContainer", {
+                  target: { scrollTop: amountToScrollToPage6, clientHeight: 250, scrollHeight: 0 },
+                });
 
                 setTimeout(() => {
                   try {
@@ -381,7 +396,7 @@ describe("<InfiniteScroll />", () => {
                   }
                 }, debounceTime + 100);
               });
-            },
+            }, { attachTo: div },
           );
         });
 
@@ -396,20 +411,33 @@ describe("<InfiniteScroll />", () => {
               debounceTime={debounceTime}
             />, wrapper => {
               return new Promise((resolve, reject) => {
-                expect(wrapper.find("TestContainerModel")).to.have.lengthOf(30); // verify page load before scrolling
-                simulateScrollEvent(wrapper, "TestContainer", { target: { scrollTop: 50, clientHeight: 50, scrollHeight: 200 } });
+
+                // verify page load before scrolling
+                expect(wrapper.find("TestContainerModel")).to.have.lengthOf(20);
+                expect(wrapper.find(".page1")).to.have.lengthOf(10);
+                expect(wrapper.find(".page2")).to.have.lengthOf(10);
+
+                const amountToScrollToStayOnPage1 = 250;
+                simulateScrollEvent(wrapper, "TestContainer", {
+                  target: { scrollTop: amountToScrollToStayOnPage1, clientHeight: 250, scrollHeight: 0 },
+                });
 
                 setTimeout(() => {
                   try {
                     wrapper.update();
-                    expect(wrapper.find("TestContainerModel")).to.have.lengthOf(30); // verify pageload is unchanged
+
+                    // verify page load is unchanged
+                    expect(wrapper.find("TestContainerModel")).to.have.lengthOf(20);
+                    expect(wrapper.find(".page1")).to.have.lengthOf(10);
+                    expect(wrapper.find(".page2")).to.have.lengthOf(10);
+
                     resolve();
                   } catch (e) {
                     reject(e);
                   }
                 }, debounceTime + 100);
               });
-            },
+            }, { attachTo: div },
           );
         });
       });
