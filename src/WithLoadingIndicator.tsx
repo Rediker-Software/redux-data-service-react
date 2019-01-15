@@ -9,7 +9,7 @@ export interface IShowLoadingIndicator<P> {
 
 export interface IWithLoadingIndicatorProps {
   isLoading?: boolean;
-  loadingComponent?: React.ComponentType;
+  loadingComponent?: React.ComponentType<any>;
   loadingComponentProps?: object;
 }
 
