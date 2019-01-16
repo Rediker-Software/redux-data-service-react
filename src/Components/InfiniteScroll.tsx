@@ -1,7 +1,7 @@
 import * as React from "react";
 import { IModel, IModelData, IQueryBuilder, IQueryManager, IQueryParams, QueryBuilder } from "redux-data-service";
 import { Omit } from "redux-data-service/dist/Omit";
-import { compose, defaultProps, lifecycle, pure, setDisplayName, withProps, withPropsOnChange, withState, withStateHandlers } from "recompose";
+import { compose, defaultProps, lifecycle, pure, setDisplayName, withHandlers, withProps, withPropsOnChange, withState, withStateHandlers } from "recompose";
 import { debounce } from "lodash";
 
 import { Query } from "../Query";
@@ -139,14 +139,14 @@ export const InfiniteScroll = compose<IInfiniteScrollInternalProps<any>, IInfini
       nextPlaceHolderHeight,
     };
   }),
-  withProps(({
-    currentPageHeightRef,
-    nextPageHeightRef,
-    pageHeightMap,
-    previousPageHeightRef,
-    recordPageHeight,
-  }) => ({
-    updatePageHeightMap: (query) => {
+  withHandlers({
+    updatePageHeightMap: ({
+      currentPageHeightRef,
+      nextPageHeightRef,
+      pageHeightMap,
+      previousPageHeightRef,
+      recordPageHeight,
+    }) => (query) => {
       const currentPageHeight = currentPageHeightRef.current.getBoundingClientRect().height;
       let previousPageHeight;
       let nextPageHeight;
@@ -169,7 +169,7 @@ export const InfiniteScroll = compose<IInfiniteScrollInternalProps<any>, IInfini
       recordPageHeight(updatedPageHeightMap);
       return updatedPageHeightMap;
     },
-  })),
+  }),
   withStateHandlers<{ lastScrollTop: number }, { handleScroll }, IInfiniteScrollInternalProps<any>>(
     { lastScrollTop: 0 },
     {
@@ -202,18 +202,18 @@ export const InfiniteScroll = compose<IInfiniteScrollInternalProps<any>, IInfini
         },
     },
   ),
-  withProps(({ debounceTime, handleScroll }) => ({
+  withPropsOnChange(["debounceTime"], ({ debounceTime, handleScroll }) => ({
     handleScrollDebounced: debounce(handleScroll, debounceTime),
   })),
-  withProps(({ handleScrollDebounced }) => ({
-    handleScrollPersistingEvent: (event: any) => {
+  withHandlers({
+    handleScrollPersistingEvent: ({ handleScrollDebounced }) => (event: any) => {
       const clientHeight = event.target.clientHeight;
       const scrollHeight = event.target.scrollHeight;
       const scrollTop = event.target.scrollTop;
 
       handleScrollDebounced(clientHeight, scrollHeight, scrollTop);
     },
-  })),
+  }),
   lifecycle<{ disableVirtualScrolling, handleScrollDebounced, query: IQueryManager<any>, updatePageHeightMap }, {}>({
     componentDidMount() {
       if (!this.props.disableVirtualScrolling) {
