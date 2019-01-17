@@ -2,7 +2,7 @@ import * as React from "react";
 import { IModel, IModelData, IQueryBuilder, IQueryManager, IQueryParams, QueryBuilder } from "redux-data-service";
 import { Omit } from "redux-data-service/dist/Omit";
 import { compose, defaultProps, lifecycle, pure, setDisplayName, withHandlers, withProps, withPropsOnChange, withState, withStateHandlers } from "recompose";
-import { debounce } from "lodash";
+import { debounce, throttle } from "lodash";
 
 import { Query } from "../Query";
 import { omitProps } from "../Helpers";
@@ -37,6 +37,7 @@ export interface IInfiniteScrollInternalProps<T extends IModel<IModelData>> exte
   previousPageHeightRef: React.RefObject<any>;
   nextPageHeightRef: React.RefObject<any>;
   handleScrollDebounced: (e) => void;
+  handleScrollThrottled: (e) => void;
   handleScrollPersistingEvent: (e) => void;
   previousPlaceHolderHeight: number;
   nextPlaceHolderHeight: number;
@@ -204,13 +205,15 @@ export const InfiniteScroll = compose<IInfiniteScrollInternalProps<any>, IInfini
   ),
   withPropsOnChange(["debounceTime"], ({ debounceTime, handleScroll }) => ({
     handleScrollDebounced: debounce(handleScroll, debounceTime),
+    handleScrollThrottled: throttle(handleScroll, debounceTime),
   })),
   withHandlers({
-    handleScrollPersistingEvent: ({ handleScrollDebounced }) => (event: any) => {
+    handleScrollPersistingEvent: ({ handleScrollDebounced, handleScrollThrottled }) => (event: any) => {
       const clientHeight = event.target.clientHeight;
       const scrollHeight = event.target.scrollHeight;
       const scrollTop = event.target.scrollTop;
 
+      handleScrollThrottled(clientHeight, scrollHeight, scrollTop);
       handleScrollDebounced(clientHeight, scrollHeight, scrollTop);
     },
   }),
