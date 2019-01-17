@@ -1031,6 +1031,10 @@
   version "4.1.3"
   resolved "https://registry.yarnpkg.com/@storybook/channels/-/channels-4.1.3.tgz#38b13650d408e0a3a8f7ab1b2ae03df45c8acf54"
 
+"@storybook/channels@^4.1.4":
+  version "4.1.7"
+  resolved "https://registry.yarnpkg.com/@storybook/channels/-/channels-4.1.7.tgz#bf3412859cca8cd3d221afcd68de348645dbb329"
+
 "@storybook/client-logger@3.4.11":
   version "3.4.11"
   resolved "https://registry.yarnpkg.com/@storybook/client-logger/-/client-logger-3.4.11.tgz#b592ea227f9f330f50925f7c1c266cc658cbc704"
@@ -3831,9 +3835,16 @@ domutils@^1.5.1, domutils@^1.7.0:
     dom-serializer "0"
     domelementtype "1"
 
-dotenv-expand@^4.2.0:
+dotenv-expand@^4.0.1, dotenv-expand@^4.2.0:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/dotenv-expand/-/dotenv-expand-4.2.0.tgz#def1f1ca5d6059d24a766e587942c21106ce1275"
+
+dotenv-webpack@^1.5.5:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/dotenv-webpack/-/dotenv-webpack-1.6.0.tgz#ea5758ce4da1e0c3574ef777a32ee20beb61b3a5"
+  dependencies:
+    dotenv "^5.0.1"
+    dotenv-expand "^4.0.1"
 
 dotenv-webpack@^1.5.7:
   version "1.5.7"
@@ -7478,7 +7489,7 @@ rechoir@^0.6.2:
   dependencies:
     resolve "^1.1.6"
 
-recompose@^0.27.1:
+recompose@0.27.1:
   version "0.27.1"
   resolved "https://registry.yarnpkg.com/recompose/-/recompose-0.27.1.tgz#1a49e931f183634516633bbb4f4edbfd3f38a7ba"
   dependencies:
@@ -7511,7 +7522,6 @@ redbox-react@^1.3.6:
 redux-data-service@0.0.35:
   version "0.0.35"
   resolved "https://registry.yarnpkg.com/redux-data-service/-/redux-data-service-0.0.35.tgz#8c8e806e1b140b9ea4eab575e2673946c6a1fa7a"
-  integrity sha512-tH+MuaSFvo1kiuCUWW7jcoHUcF8hU9so3wBL3zOwPmMQ5Kz0g5SQOGj5l7IrbuiIBZtZfF69FFBOhdqOoUoKHg==
   dependencies:
     date-fns "2.0.0-alpha.7"
     immutable "^4.0.0-rc.9"
