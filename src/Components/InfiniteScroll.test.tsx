@@ -117,8 +117,16 @@ describe("<InfiniteScroll />", () => {
           modelComponentProps={{ testModelProp: "testing model prop" }}
           query={{ page: 5 }}
           modelName={fakeService}
-        />, wrapper =>
-          expect(wrapper.find(".page5")).to.have.lengthOf(pageSize),
+        />, wrapper => new Promise((resolve, reject) => {
+          setTimeout(() => {
+            try {
+              expect(wrapper.find(".page5")).to.have.lengthOf(pageSize);
+              resolve();
+            } catch (e) {
+              reject(e);
+            }
+          }, debounceTime + 100);
+        }),
       );
     });
 
@@ -130,8 +138,16 @@ describe("<InfiniteScroll />", () => {
           modelComponentProps={{ testModelProp: "testing model prop" }}
           query={{ page: 5 }}
           modelName={fakeService}
-        />, wrapper =>
-          expect(wrapper.find(".page4")).to.have.lengthOf(pageSize),
+        />, wrapper => new Promise((resolve, reject) => {
+          setTimeout(() => {
+            try {
+              expect(wrapper.find(".page4")).to.have.lengthOf(pageSize);
+              resolve();
+            } catch (e) {
+              reject(e);
+            }
+          }, debounceTime + 100);
+        }),
       );
     });
 
@@ -143,15 +159,23 @@ describe("<InfiniteScroll />", () => {
           modelComponentProps={{ testModelProp: "testing model prop" }}
           query={{ page: 5 }}
           modelName={fakeService}
-        />, wrapper =>
-          expect(wrapper.find(".page6")).to.have.lengthOf(pageSize),
+        />, wrapper => new Promise((resolve, reject) => {
+          setTimeout(() => {
+            try {
+              expect(wrapper.find(".page6")).to.have.lengthOf(pageSize);
+              resolve();
+            } catch (e) {
+              reject(e);
+            }
+          }, debounceTime + 100);
+        }),
       );
     });
 
     describe("Infinite Scroll Style", () => {
 
-      it("loads all previous pages", () => {
-        usingMount(
+      it("loads all previous pages", async () => {
+        await usingMount(
           <InfiniteScroll
             containerComponent={TestContainer}
             modelComponent={TestContainerModel}

@@ -77,7 +77,6 @@ interface IContentPlaceHolderProps {
 const DefaultContentPlaceHolder = ({ height }: IContentPlaceHolderProps) => {
   const style = {
     height,
-    borderBottom: "solid 1px #999",
   };
 
   return (
@@ -217,26 +216,29 @@ export const InfiniteScroll = compose<IInfiniteScrollInternalProps<any>, IInfini
       handleScrollDebounced(clientHeight, scrollHeight, scrollTop);
     },
   }),
-  lifecycle<{ disableVirtualScrolling, handleScrollDebounced, query: IQueryManager<any>, updatePageHeightMap }, {}>({
+  lifecycle<{ disableVirtualScrolling, handleScrollDebounced, handleScrollThrottled, query: IQueryManager<any>, updatePageHeightMap }, {}>({
     componentDidMount() {
       if (!this.props.disableVirtualScrolling) {
         // Initialize page height map and estimated page height
         this.props.updatePageHeightMap(this.props.query);
       }
     },
-
     componentWillUnmount() {
       this.props.handleScrollDebounced.cancel();
+      this.props.handleScrollThrottled.cancel();
     },
   }),
   omitProps([
     "debounceTime",
     "handleScroll",
     "handleScrollDebounced",
+    "handleScrollThrottled",
     "lastScrollTop",
     "recordPageHeight",
     "updateQuery",
-    "updatePageHeightMap"]),
+    "updatePageHeightMap",
+  ]),
+  pure,
 )(({
   containerComponent: ContainerComponent,
   contentPlaceHolderComponent: ContentPlaceHolder,
