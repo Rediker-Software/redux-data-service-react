@@ -184,7 +184,7 @@ export const InfiniteScroll = compose<IInfiniteScrollInternalProps<any>, IInfini
             let nextPageToLoad = 1;
             let nextPageScrollTop = updatedPageHeightMap[1];
 
-            while (nextPageScrollTop < currentScrollTop && nextPageToLoad < query.response.totalPages) {
+            while (nextPageScrollTop < (currentScrollTop + (clientHeight / 2)) && nextPageToLoad < query.response.totalPages) {
               nextPageToLoad++;
               nextPageScrollTop += nextPageToLoad in updatedPageHeightMap
                 ? updatedPageHeightMap[nextPageToLoad]
