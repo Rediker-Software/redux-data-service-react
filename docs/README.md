@@ -362,7 +362,7 @@ describe("Student", () => {
   }),
 )
 
-*Defined in [Components/InfiniteScroll.tsx:53](https://github.com/Rediker-Software/redux-data-service-react/blob/a3ddc60/src/Components/InfiniteScroll.tsx#L53)*
+*Defined in [Components/InfiniteScroll.tsx:53](https://github.com/Rediker-Software/redux-data-service-react/blob/e0c5bcc/src/Components/InfiniteScroll.tsx#L53)*
 
 ___
 <a id="infinitescroll"></a>
@@ -593,7 +593,7 @@ ___
     </ContainerComponent>
   ))
 
-*Defined in [Components/InfiniteScroll.tsx:92](https://github.com/Rediker-Software/redux-data-service-react/blob/a3ddc60/src/Components/InfiniteScroll.tsx#L92)*
+*Defined in [Components/InfiniteScroll.tsx:92](https://github.com/Rediker-Software/redux-data-service-react/blob/e0c5bcc/src/Components/InfiniteScroll.tsx#L92)*
 
 Adds infinite and virtual scroll capability to a container and model component, querying for the next page of results when scrolling down (or up if virtual scrolling). The container component must be scrollable.
 
@@ -605,7 +605,7 @@ ___
 **● Model**: * `ComponentClass`<[IModelProps](interfaces/imodelprops.md)> &#124; `StatelessComponent`<[IModelProps](interfaces/imodelprops.md)>
 * =  withRenderProps<IModelProps>(withModel())
 
-*Defined in [Model.tsx:10](https://github.com/Rediker-Software/redux-data-service-react/blob/a3ddc60/src/Model.tsx#L10)*
+*Defined in [Model.tsx:10](https://github.com/Rediker-Software/redux-data-service-react/blob/e0c5bcc/src/Model.tsx#L10)*
 
 ___
 <a id="newmodel"></a>
@@ -615,7 +615,7 @@ ___
 **● NewModel**: * `ComponentClass`<[INewModelProps](interfaces/inewmodelprops.md)> &#124; `StatelessComponent`<[INewModelProps](interfaces/inewmodelprops.md)>
 * =  withRenderProps<INewModelProps>(withNewModel())
 
-*Defined in [NewModel.tsx:11](https://github.com/Rediker-Software/redux-data-service-react/blob/a3ddc60/src/NewModel.tsx#L11)*
+*Defined in [NewModel.tsx:11](https://github.com/Rediker-Software/redux-data-service-react/blob/e0c5bcc/src/NewModel.tsx#L11)*
 
 ___
 <a id="query"></a>
@@ -625,7 +625,7 @@ ___
 **● Query**: * `ComponentClass`<[IQueryProps](interfaces/iqueryprops.md)> &#124; `StatelessComponent`<[IQueryProps](interfaces/iqueryprops.md)>
 * =  withRenderProps<IQueryProps>(withModelQuery())
 
-*Defined in [Query.tsx:12](https://github.com/Rediker-Software/redux-data-service-react/blob/a3ddc60/src/Query.tsx#L12)*
+*Defined in [Query.tsx:12](https://github.com/Rediker-Software/redux-data-service-react/blob/e0c5bcc/src/Query.tsx#L12)*
 
 ___
 
@@ -637,7 +637,7 @@ ___
 
 ▸ **DefaultContentPlaceHolder**(__namedParameters: *`object`*): `Element`
 
-*Defined in [Components/InfiniteScroll.tsx:77](https://github.com/Rediker-Software/redux-data-service-react/blob/a3ddc60/src/Components/InfiniteScroll.tsx#L77)*
+*Defined in [Components/InfiniteScroll.tsx:77](https://github.com/Rediker-Software/redux-data-service-react/blob/e0c5bcc/src/Components/InfiniteScroll.tsx#L77)*
 
 **Parameters:**
 
@@ -654,7 +654,7 @@ ___
 
 ▸ **DefaultLoadingComponent**(): `Element`
 
-*Defined in [DefaultLoadingComponent.tsx:3](https://github.com/Rediker-Software/redux-data-service-react/blob/a3ddc60/src/DefaultLoadingComponent.tsx#L3)*
+*Defined in [DefaultLoadingComponent.tsx:3](https://github.com/Rediker-Software/redux-data-service-react/blob/e0c5bcc/src/DefaultLoadingComponent.tsx#L3)*
 
 **Returns:** `Element`
 
@@ -665,7 +665,7 @@ ___
 
 ▸ **average**(items: *`number`[]*): `number`
 
-*Defined in [Helpers/Average.ts:4](https://github.com/Rediker-Software/redux-data-service-react/blob/a3ddc60/src/Helpers/Average.ts#L4)*
+*Defined in [Helpers/Average.ts:4](https://github.com/Rediker-Software/redux-data-service-react/blob/e0c5bcc/src/Helpers/Average.ts#L4)*
 
 Computes the average of the given array of numbers
 
@@ -684,7 +684,7 @@ ___
 
 ▸ **configure**(config: *[IConfiguration](interfaces/iconfiguration.md)*): `void`
 
-*Defined in [Configure.ts:15](https://github.com/Rediker-Software/redux-data-service-react/blob/a3ddc60/src/Configure.ts#L15)*
+*Defined in [Configure.ts:15](https://github.com/Rediker-Software/redux-data-service-react/blob/e0c5bcc/src/Configure.ts#L15)*
 
 **Parameters:**
 
@@ -701,7 +701,7 @@ ___
 
 ▸ **defaultShowLoadingIndicator**(__namedParameters: *`object`*): `boolean`
 
-*Defined in [WithLoadingIndicator.tsx:16](https://github.com/Rediker-Software/redux-data-service-react/blob/a3ddc60/src/WithLoadingIndicator.tsx#L16)*
+*Defined in [WithLoadingIndicator.tsx:16](https://github.com/Rediker-Software/redux-data-service-react/blob/e0c5bcc/src/WithLoadingIndicator.tsx#L16)*
 
 **Parameters:**
 
@@ -718,7 +718,7 @@ ___
 
 ▸ **getConfiguration**(): [IConfiguration](interfaces/iconfiguration.md)
 
-*Defined in [Configure.ts:11](https://github.com/Rediker-Software/redux-data-service-react/blob/a3ddc60/src/Configure.ts#L11)*
+*Defined in [Configure.ts:11](https://github.com/Rediker-Software/redux-data-service-react/blob/e0c5bcc/src/Configure.ts#L11)*
 
 **Returns:** [IConfiguration](interfaces/iconfiguration.md)
 
@@ -729,7 +729,7 @@ ___
 
 ▸ **omitProps**P(keys: *`keyof P`[]*): `InferableComponentEnhancerWithProps`<`P`, `object`>
 
-*Defined in [Helpers/OmitProps.ts:4](https://github.com/Rediker-Software/redux-data-service-react/blob/a3ddc60/src/Helpers/OmitProps.ts#L4)*
+*Defined in [Helpers/OmitProps.ts:4](https://github.com/Rediker-Software/redux-data-service-react/blob/e0c5bcc/src/Helpers/OmitProps.ts#L4)*
 
 **Type parameters:**
 
@@ -749,7 +749,7 @@ ___
 
 ▸ **seedServiceListWithPagingOptions**(serviceName: *`string`*, pageSize: *`number`*, totalPages: *`number`*): `void`
 
-*Defined in [TestUtils/SeedHelper.ts:10](https://github.com/Rediker-Software/redux-data-service-react/blob/a3ddc60/src/TestUtils/SeedHelper.ts#L10)*
+*Defined in [TestUtils/SeedHelper.ts:10](https://github.com/Rediker-Software/redux-data-service-react/blob/e0c5bcc/src/TestUtils/SeedHelper.ts#L10)*
 
 Seeds a given service with a specified number of paged data
 
@@ -770,7 +770,7 @@ ___
 
 ▸ **simulateScrollEvent**(wrapper: *`any`*, selector: *`any`*, mock?: *`any`*): `void`
 
-*Defined in [TestUtils/UIEventSimulation.ts:8](https://github.com/Rediker-Software/redux-data-service-react/blob/a3ddc60/src/TestUtils/UIEventSimulation.ts#L8)*
+*Defined in [TestUtils/UIEventSimulation.ts:8](https://github.com/Rediker-Software/redux-data-service-react/blob/e0c5bcc/src/TestUtils/UIEventSimulation.ts#L8)*
 
 Simulates an onScroll event.
 
@@ -791,7 +791,7 @@ ___
 
 ▸ **usingMount**(component: * `React.ComponentType`<`any`> &#124; `Element`*, whileMounted: *`function`*, mountOptions?: *`object`*):  `Promise`<`any`> &#124; `void`
 
-*Defined in [TestUtils/EnzymeHelper.tsx:11](https://github.com/Rediker-Software/redux-data-service-react/blob/a3ddc60/src/TestUtils/EnzymeHelper.tsx#L11)*
+*Defined in [TestUtils/EnzymeHelper.tsx:11](https://github.com/Rediker-Software/redux-data-service-react/blob/e0c5bcc/src/TestUtils/EnzymeHelper.tsx#L11)*
 
 Helper function to handle mounting and unmounting a component using enzyme to ensure resources are cleaned up.
 
@@ -812,7 +812,7 @@ ___
 
 ▸ **withLoadingIndicator**P(test?: *[IShowLoadingIndicator](interfaces/ishowloadingindicator.md)< `P` &#124; `any`>*, loadingComponent?: *`React.ComponentType`<`any`>*): `ComponentEnhancer`<`P`, `P`>
 
-*Defined in [WithLoadingIndicator.tsx:26](https://github.com/Rediker-Software/redux-data-service-react/blob/a3ddc60/src/WithLoadingIndicator.tsx#L26)*
+*Defined in [WithLoadingIndicator.tsx:26](https://github.com/Rediker-Software/redux-data-service-react/blob/e0c5bcc/src/WithLoadingIndicator.tsx#L26)*
 
 Displays a loading component if the given test function returns true.
 
@@ -839,7 +839,7 @@ ___
 
 ▸ **withModel**P(options?: *[IWithModelProps](interfaces/iwithmodelprops.md)*): `ComponentEnhancer`<`P`,  `P` & [IWithModelProps](interfaces/iwithmodelprops.md)>
 
-*Defined in [WithModel.ts:31](https://github.com/Rediker-Software/redux-data-service-react/blob/a3ddc60/src/WithModel.ts#L31)*
+*Defined in [WithModel.ts:31](https://github.com/Rediker-Software/redux-data-service-react/blob/e0c5bcc/src/WithModel.ts#L31)*
 
 An HOC to inject a model into a component given the name of the DataService for that model.
 
@@ -863,7 +863,7 @@ ___
 
 ▸ **withModelArray**P(dataServiceName: *`string`*, idPropKey?: *`string`*, modelPropKey?: *`string`*): `ComponentEnhancer`<`P`, `P`>
 
-*Defined in [WithModelArray.ts:16](https://github.com/Rediker-Software/redux-data-service-react/blob/a3ddc60/src/WithModelArray.ts#L16)*
+*Defined in [WithModelArray.ts:16](https://github.com/Rediker-Software/redux-data-service-react/blob/e0c5bcc/src/WithModelArray.ts#L16)*
 
 An HOC to inject a model array into a component given the name of the DataService for that model and a list of ids.
 
@@ -889,7 +889,7 @@ ___
 
 ▸ **withModelQuery**P(options?: * [IWithModelQueryOptions](interfaces/iwithmodelqueryoptions.md) & `P`*): `ComponentEnhancer`<`P`, `P`>
 
-*Defined in [WithModelQuery.ts:32](https://github.com/Rediker-Software/redux-data-service-react/blob/a3ddc60/src/WithModelQuery.ts#L32)*
+*Defined in [WithModelQuery.ts:32](https://github.com/Rediker-Software/redux-data-service-react/blob/e0c5bcc/src/WithModelQuery.ts#L32)*
 
 An HOC to inject a model array into a component given the name of the DataService for that model and some query params which will be passed to the API to load those items.
 
@@ -913,7 +913,7 @@ ___
 
 ▸ **withNewModel**P(options?: *[IWithModelProps](interfaces/iwithmodelprops.md)*): `ComponentEnhancer`<`P`, `P`>
 
-*Defined in [WithNewModel.tsx:15](https://github.com/Rediker-Software/redux-data-service-react/blob/a3ddc60/src/WithNewModel.tsx#L15)*
+*Defined in [WithNewModel.tsx:15](https://github.com/Rediker-Software/redux-data-service-react/blob/e0c5bcc/src/WithNewModel.tsx#L15)*
 
 An HOC which returns a new unsaved model if one is not provided.
 
@@ -938,7 +938,7 @@ ___
 
 **configuration**: *`object`*
 
-*Defined in [Configure.ts:7](https://github.com/Rediker-Software/redux-data-service-react/blob/a3ddc60/src/Configure.ts#L7)*
+*Defined in [Configure.ts:7](https://github.com/Rediker-Software/redux-data-service-react/blob/e0c5bcc/src/Configure.ts#L7)*
 
 <a id="configuration.loadingcomponent"></a>
 
@@ -946,7 +946,7 @@ ___
 
 **● loadingComponent**: *[DefaultLoadingComponent]()* =  DefaultLoadingComponent
 
-*Defined in [Configure.ts:8](https://github.com/Rediker-Software/redux-data-service-react/blob/a3ddc60/src/Configure.ts#L8)*
+*Defined in [Configure.ts:8](https://github.com/Rediker-Software/redux-data-service-react/blob/e0c5bcc/src/Configure.ts#L8)*
 
 ___
 

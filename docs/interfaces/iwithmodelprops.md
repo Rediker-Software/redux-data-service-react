@@ -28,7 +28,7 @@
 
 **● idPropKey**: *`string`*
 
-*Defined in [WithModel.ts:21](https://github.com/Rediker-Software/redux-data-service-react/blob/a3ddc60/src/WithModel.ts#L21)*
+*Defined in [WithModel.ts:21](https://github.com/Rediker-Software/redux-data-service-react/blob/e0c5bcc/src/WithModel.ts#L21)*
 
 ___
 <a id="modelname"></a>
@@ -37,7 +37,7 @@ ___
 
 **● modelName**: *`string`*
 
-*Defined in [WithModel.ts:20](https://github.com/Rediker-Software/redux-data-service-react/blob/a3ddc60/src/WithModel.ts#L20)*
+*Defined in [WithModel.ts:20](https://github.com/Rediker-Software/redux-data-service-react/blob/e0c5bcc/src/WithModel.ts#L20)*
 
 ___
 <a id="modelpropkey"></a>
@@ -46,7 +46,7 @@ ___
 
 **● modelPropKey**: *`string`*
 
-*Defined in [WithModel.ts:22](https://github.com/Rediker-Software/redux-data-service-react/blob/a3ddc60/src/WithModel.ts#L22)*
+*Defined in [WithModel.ts:22](https://github.com/Rediker-Software/redux-data-service-react/blob/e0c5bcc/src/WithModel.ts#L22)*
 
 ___
 

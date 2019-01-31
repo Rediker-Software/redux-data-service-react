@@ -7524,10 +7524,10 @@ redbox-react@^1.3.6:
     prop-types "^15.5.4"
     sourcemapped-stacktrace "^1.1.6"
 
-redux-data-service@0.0.36:
-  version "0.0.36"
-  resolved "https://registry.yarnpkg.com/redux-data-service/-/redux-data-service-0.0.36.tgz#048e9834ebc60eb2f0606e618ac6c7c2c8e28122"
-  integrity sha512-Oue3RqaV5GxBI/kUM7hSKqpL+tHtLJHOLfJqemvVe1MG9zfZN35SqcvYy8UXF3FQmZ89IPmqJkiJzhskcKp4yw==
+redux-data-service@0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/redux-data-service/-/redux-data-service-0.2.0.tgz#52be627918b45639f39a7a56e90960fec5d9c9b1"
+  integrity sha512-nVU23mMlC/lKCDuIkHOXZLRK+y4T2RUihp2KiM0/CzpdqbNm8k9fOOmL/xPXeD5SEE5JSf6U414su5NSiMT1Hw==
   dependencies:
     date-fns "2.0.0-alpha.7"
     immutable "^4.0.0-rc.9"
@@ -8800,9 +8800,10 @@ typescript@2.7.2:
   version "2.7.2"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.7.2.tgz#2d615a1ef4aee4f574425cdff7026edf81919836"
 
-typescript@^2.6.1:
+typescript@2.9.2:
   version "2.9.2"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.9.2.tgz#1cbf61d05d6b96269244eb6a3bce4bd914e0f00c"
+  integrity sha512-Gr4p6nFNaoufRIY4NMdpQRNmgxVIGMs4Fcu/ujdYk3nAZqk7supzBE9idmvfZIlH/Cuj//dvi+019qEue9lV0w==
 
 ua-parser-js@^0.7.18:
   version "0.7.18"

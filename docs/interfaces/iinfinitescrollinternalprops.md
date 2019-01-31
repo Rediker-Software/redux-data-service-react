@@ -53,7 +53,7 @@
 
 *Inherited from [IInfiniteScrollProps](iinfinitescrollprops.md).[containerComponent](iinfinitescrollprops.md#containercomponent)*
 
-*Defined in [Components/InfiniteScroll.tsx:15](https://github.com/Rediker-Software/redux-data-service-react/blob/a3ddc60/src/Components/InfiniteScroll.tsx#L15)*
+*Defined in [Components/InfiniteScroll.tsx:15](https://github.com/Rediker-Software/redux-data-service-react/blob/e0c5bcc/src/Components/InfiniteScroll.tsx#L15)*
 
 ___
 <a id="contentplaceholdercomponent"></a>
@@ -64,7 +64,7 @@ ___
 
 *Inherited from [IInfiniteScrollProps](iinfinitescrollprops.md).[contentPlaceHolderComponent](iinfinitescrollprops.md#contentplaceholdercomponent)*
 
-*Defined in [Components/InfiniteScroll.tsx:20](https://github.com/Rediker-Software/redux-data-service-react/blob/a3ddc60/src/Components/InfiniteScroll.tsx#L20)*
+*Defined in [Components/InfiniteScroll.tsx:20](https://github.com/Rediker-Software/redux-data-service-react/blob/e0c5bcc/src/Components/InfiniteScroll.tsx#L20)*
 
 ___
 <a id="currentpageheightref"></a>
@@ -73,7 +73,7 @@ ___
 
 **● currentPageHeightRef**: *`RefObject`<`any`>*
 
-*Defined in [Components/InfiniteScroll.tsx:36](https://github.com/Rediker-Software/redux-data-service-react/blob/a3ddc60/src/Components/InfiniteScroll.tsx#L36)*
+*Defined in [Components/InfiniteScroll.tsx:36](https://github.com/Rediker-Software/redux-data-service-react/blob/e0c5bcc/src/Components/InfiniteScroll.tsx#L36)*
 
 ___
 <a id="debouncetime"></a>
@@ -84,7 +84,7 @@ ___
 
 *Inherited from [IInfiniteScrollProps](iinfinitescrollprops.md).[debounceTime](iinfinitescrollprops.md#debouncetime)*
 
-*Defined in [Components/InfiniteScroll.tsx:18](https://github.com/Rediker-Software/redux-data-service-react/blob/a3ddc60/src/Components/InfiniteScroll.tsx#L18)*
+*Defined in [Components/InfiniteScroll.tsx:18](https://github.com/Rediker-Software/redux-data-service-react/blob/e0c5bcc/src/Components/InfiniteScroll.tsx#L18)*
 
 ___
 <a id="disablevirtualscrolling"></a>
@@ -95,7 +95,7 @@ ___
 
 *Inherited from [IInfiniteScrollProps](iinfinitescrollprops.md).[disableVirtualScrolling](iinfinitescrollprops.md#disablevirtualscrolling)*
 
-*Defined in [Components/InfiniteScroll.tsx:19](https://github.com/Rediker-Software/redux-data-service-react/blob/a3ddc60/src/Components/InfiniteScroll.tsx#L19)*
+*Defined in [Components/InfiniteScroll.tsx:19](https://github.com/Rediker-Software/redux-data-service-react/blob/e0c5bcc/src/Components/InfiniteScroll.tsx#L19)*
 
 ___
 <a id="estimatedpageheight"></a>
@@ -106,7 +106,7 @@ ___
 
 *Inherited from [IInfiniteScrollHeightMapProps](iinfinitescrollheightmapprops.md).[estimatedPageHeight](iinfinitescrollheightmapprops.md#estimatedpageheight)*
 
-*Defined in [Components/InfiniteScroll.tsx:28](https://github.com/Rediker-Software/redux-data-service-react/blob/a3ddc60/src/Components/InfiniteScroll.tsx#L28)*
+*Defined in [Components/InfiniteScroll.tsx:28](https://github.com/Rediker-Software/redux-data-service-react/blob/e0c5bcc/src/Components/InfiniteScroll.tsx#L28)*
 
 ___
 <a id="handlescrolldebounced"></a>
@@ -115,7 +115,7 @@ ___
 
 **● handleScrollDebounced**: *`function`*
 
-*Defined in [Components/InfiniteScroll.tsx:39](https://github.com/Rediker-Software/redux-data-service-react/blob/a3ddc60/src/Components/InfiniteScroll.tsx#L39)*
+*Defined in [Components/InfiniteScroll.tsx:39](https://github.com/Rediker-Software/redux-data-service-react/blob/e0c5bcc/src/Components/InfiniteScroll.tsx#L39)*
 
 #### Type declaration
 ▸(e: *`any`*): `void`
@@ -135,7 +135,7 @@ ___
 
 **● handleScrollPersistingEvent**: *`function`*
 
-*Defined in [Components/InfiniteScroll.tsx:41](https://github.com/Rediker-Software/redux-data-service-react/blob/a3ddc60/src/Components/InfiniteScroll.tsx#L41)*
+*Defined in [Components/InfiniteScroll.tsx:41](https://github.com/Rediker-Software/redux-data-service-react/blob/e0c5bcc/src/Components/InfiniteScroll.tsx#L41)*
 
 #### Type declaration
 ▸(e: *`any`*): `void`
@@ -155,7 +155,7 @@ ___
 
 **● handleScrollThrottled**: *`function`*
 
-*Defined in [Components/InfiniteScroll.tsx:40](https://github.com/Rediker-Software/redux-data-service-react/blob/a3ddc60/src/Components/InfiniteScroll.tsx#L40)*
+*Defined in [Components/InfiniteScroll.tsx:40](https://github.com/Rediker-Software/redux-data-service-react/blob/e0c5bcc/src/Components/InfiniteScroll.tsx#L40)*
 
 #### Type declaration
 ▸(e: *`any`*): `void`
@@ -175,7 +175,7 @@ ___
 
 **● lastScrollTop**: *`number`*
 
-*Defined in [Components/InfiniteScroll.tsx:35](https://github.com/Rediker-Software/redux-data-service-react/blob/a3ddc60/src/Components/InfiniteScroll.tsx#L35)*
+*Defined in [Components/InfiniteScroll.tsx:35](https://github.com/Rediker-Software/redux-data-service-react/blob/e0c5bcc/src/Components/InfiniteScroll.tsx#L35)*
 
 ___
 <a id="modelcomponent"></a>
@@ -186,7 +186,7 @@ ___
 
 *Inherited from [IInfiniteScrollProps](iinfinitescrollprops.md).[modelComponent](iinfinitescrollprops.md#modelcomponent)*
 
-*Defined in [Components/InfiniteScroll.tsx:16](https://github.com/Rediker-Software/redux-data-service-react/blob/a3ddc60/src/Components/InfiniteScroll.tsx#L16)*
+*Defined in [Components/InfiniteScroll.tsx:16](https://github.com/Rediker-Software/redux-data-service-react/blob/e0c5bcc/src/Components/InfiniteScroll.tsx#L16)*
 
 ___
 <a id="modelcomponentprops"></a>
@@ -197,7 +197,7 @@ ___
 
 *Inherited from [IInfiniteScrollProps](iinfinitescrollprops.md).[modelComponentProps](iinfinitescrollprops.md#modelcomponentprops)*
 
-*Defined in [Components/InfiniteScroll.tsx:17](https://github.com/Rediker-Software/redux-data-service-react/blob/a3ddc60/src/Components/InfiniteScroll.tsx#L17)*
+*Defined in [Components/InfiniteScroll.tsx:17](https://github.com/Rediker-Software/redux-data-service-react/blob/e0c5bcc/src/Components/InfiniteScroll.tsx#L17)*
 
 ___
 <a id="modelname"></a>
@@ -208,7 +208,7 @@ ___
 
 *Inherited from [IInfiniteScrollProps](iinfinitescrollprops.md).[modelName](iinfinitescrollprops.md#modelname)*
 
-*Defined in [Components/InfiniteScroll.tsx:13](https://github.com/Rediker-Software/redux-data-service-react/blob/a3ddc60/src/Components/InfiniteScroll.tsx#L13)*
+*Defined in [Components/InfiniteScroll.tsx:13](https://github.com/Rediker-Software/redux-data-service-react/blob/e0c5bcc/src/Components/InfiniteScroll.tsx#L13)*
 
 ___
 <a id="nextpageheightref"></a>
@@ -217,7 +217,7 @@ ___
 
 **● nextPageHeightRef**: *`RefObject`<`any`>*
 
-*Defined in [Components/InfiniteScroll.tsx:38](https://github.com/Rediker-Software/redux-data-service-react/blob/a3ddc60/src/Components/InfiniteScroll.tsx#L38)*
+*Defined in [Components/InfiniteScroll.tsx:38](https://github.com/Rediker-Software/redux-data-service-react/blob/e0c5bcc/src/Components/InfiniteScroll.tsx#L38)*
 
 ___
 <a id="nextplaceholderheight"></a>
@@ -226,7 +226,7 @@ ___
 
 **● nextPlaceHolderHeight**: *`number`*
 
-*Defined in [Components/InfiniteScroll.tsx:43](https://github.com/Rediker-Software/redux-data-service-react/blob/a3ddc60/src/Components/InfiniteScroll.tsx#L43)*
+*Defined in [Components/InfiniteScroll.tsx:43](https://github.com/Rediker-Software/redux-data-service-react/blob/e0c5bcc/src/Components/InfiniteScroll.tsx#L43)*
 
 ___
 <a id="pageheightmap"></a>
@@ -237,7 +237,7 @@ ___
 
 *Inherited from [IInfiniteScrollHeightMapProps](iinfinitescrollheightmapprops.md).[pageHeightMap](iinfinitescrollheightmapprops.md#pageheightmap)*
 
-*Defined in [Components/InfiniteScroll.tsx:27](https://github.com/Rediker-Software/redux-data-service-react/blob/a3ddc60/src/Components/InfiniteScroll.tsx#L27)*
+*Defined in [Components/InfiniteScroll.tsx:27](https://github.com/Rediker-Software/redux-data-service-react/blob/e0c5bcc/src/Components/InfiniteScroll.tsx#L27)*
 
 #### Type declaration
 
@@ -250,7 +250,7 @@ ___
 
 **● previousPageHeightRef**: *`RefObject`<`any`>*
 
-*Defined in [Components/InfiniteScroll.tsx:37](https://github.com/Rediker-Software/redux-data-service-react/blob/a3ddc60/src/Components/InfiniteScroll.tsx#L37)*
+*Defined in [Components/InfiniteScroll.tsx:37](https://github.com/Rediker-Software/redux-data-service-react/blob/e0c5bcc/src/Components/InfiniteScroll.tsx#L37)*
 
 ___
 <a id="previousplaceholderheight"></a>
@@ -259,7 +259,7 @@ ___
 
 **● previousPlaceHolderHeight**: *`number`*
 
-*Defined in [Components/InfiniteScroll.tsx:42](https://github.com/Rediker-Software/redux-data-service-react/blob/a3ddc60/src/Components/InfiniteScroll.tsx#L42)*
+*Defined in [Components/InfiniteScroll.tsx:42](https://github.com/Rediker-Software/redux-data-service-react/blob/e0c5bcc/src/Components/InfiniteScroll.tsx#L42)*
 
 ___
 <a id="query"></a>
@@ -270,7 +270,7 @@ ___
 
 *Overrides [IInfiniteScrollProps](iinfinitescrollprops.md).[query](iinfinitescrollprops.md#query)*
 
-*Defined in [Components/InfiniteScroll.tsx:32](https://github.com/Rediker-Software/redux-data-service-react/blob/a3ddc60/src/Components/InfiniteScroll.tsx#L32)*
+*Defined in [Components/InfiniteScroll.tsx:32](https://github.com/Rediker-Software/redux-data-service-react/blob/e0c5bcc/src/Components/InfiniteScroll.tsx#L32)*
 
 ___
 <a id="updatepageheightmap"></a>
@@ -279,7 +279,7 @@ ___
 
 **● updatePageHeightMap**: *`function`*
 
-*Defined in [Components/InfiniteScroll.tsx:33](https://github.com/Rediker-Software/redux-data-service-react/blob/a3ddc60/src/Components/InfiniteScroll.tsx#L33)*
+*Defined in [Components/InfiniteScroll.tsx:33](https://github.com/Rediker-Software/redux-data-service-react/blob/e0c5bcc/src/Components/InfiniteScroll.tsx#L33)*
 
 #### Type declaration
 ▸(query: *`IQueryManager`<`any`>*): `any`
@@ -299,7 +299,7 @@ ___
 
 **● updateQuery**: *`function`*
 
-*Defined in [Components/InfiniteScroll.tsx:34](https://github.com/Rediker-Software/redux-data-service-react/blob/a3ddc60/src/Components/InfiniteScroll.tsx#L34)*
+*Defined in [Components/InfiniteScroll.tsx:34](https://github.com/Rediker-Software/redux-data-service-react/blob/e0c5bcc/src/Components/InfiniteScroll.tsx#L34)*
 
 #### Type declaration
 ▸(queryBuilder: *`IQueryBuilder`*): `void`
