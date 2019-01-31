@@ -26,16 +26,16 @@
 
 **● isLoading**: *`boolean`*
 
-*Defined in [WithLoadingIndicator.tsx:11](https://github.com/Rediker-Software/redux-data-service-react/blob/2c860bf/src/WithLoadingIndicator.tsx#L11)*
+*Defined in [WithLoadingIndicator.tsx:11](https://github.com/Rediker-Software/redux-data-service-react/blob/a3ddc60/src/WithLoadingIndicator.tsx#L11)*
 
 ___
 <a id="loadingcomponent"></a>
 
 ### `<Optional>` loadingComponent
 
-**● loadingComponent**: *`React.ComponentType`*
+**● loadingComponent**: *`React.ComponentType`<`any`>*
 
-*Defined in [WithLoadingIndicator.tsx:12](https://github.com/Rediker-Software/redux-data-service-react/blob/2c860bf/src/WithLoadingIndicator.tsx#L12)*
+*Defined in [WithLoadingIndicator.tsx:12](https://github.com/Rediker-Software/redux-data-service-react/blob/a3ddc60/src/WithLoadingIndicator.tsx#L12)*
 
 ___
 <a id="loadingcomponentprops"></a>
@@ -44,7 +44,7 @@ ___
 
 **● loadingComponentProps**: *`object`*
 
-*Defined in [WithLoadingIndicator.tsx:13](https://github.com/Rediker-Software/redux-data-service-react/blob/2c860bf/src/WithLoadingIndicator.tsx#L13)*
+*Defined in [WithLoadingIndicator.tsx:13](https://github.com/Rediker-Software/redux-data-service-react/blob/a3ddc60/src/WithLoadingIndicator.tsx#L13)*
 
 ___
 

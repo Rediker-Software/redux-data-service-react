@@ -25,16 +25,17 @@
 
 **● items**: *`any`[]*
 
-*Defined in [WithModelQuery.ts:17](https://github.com/Rediker-Software/redux-data-service-react/blob/2c860bf/src/WithModelQuery.ts#L17)*
+*Defined in [WithModelQuery.ts:18](https://github.com/Rediker-Software/redux-data-service-react/blob/a3ddc60/src/WithModelQuery.ts#L18)*
 
 ___
 <a id="query"></a>
 
 ### `<Optional>` query
 
-**● query**: *`any`*
+**● query**: * `IQueryParams` &#124; `IQueryBuilder`
+*
 
-*Defined in [WithModelQuery.ts:16](https://github.com/Rediker-Software/redux-data-service-react/blob/2c860bf/src/WithModelQuery.ts#L16)*
+*Defined in [WithModelQuery.ts:17](https://github.com/Rediker-Software/redux-data-service-react/blob/a3ddc60/src/WithModelQuery.ts#L17)*
 
 ___
 
