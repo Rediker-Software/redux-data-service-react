@@ -7,17 +7,18 @@ import { InfiniteScroll } from "./InfiniteScroll";
 
 import { seedServiceListWithPagingOptions } from "../TestUtils";
 
-const Container = (props) => {
-  const style = {
-    height: 500,
-    width: 500,
-    border: "solid 1px black",
-    backgroundColor: "white !important",
-    overflow: "auto",
-  };
+const containerStyle = {
+  height: 500,
+  width: 500,
+  border: "solid 1px black",
+  backgroundColor: "white !important",
+  overflow: "auto",
+  display: "block",
+};
 
+const Container = (props) => {
   return (
-    <div style={style} {...props}>
+    <div style={containerStyle} {...props}>
       {props.children}
     </div>
   );
@@ -40,6 +41,39 @@ const ContainerModel = ({ model, uniformHeights }: IContainerModelProps) => {
       <p>ID: {model.id}</p>
       <p>Title: {model.fullText}</p>
     </div>
+  );
+};
+
+const Table = ({ children, items, ...props }) => {
+  return (
+    <table style={containerStyle} {...props}>
+      <tbody>{children}</tbody>
+    </table>
+  );
+};
+
+const TableRow = ({ model, ...props }) => {
+  const style = {
+    height: model.id % 100 + 50,
+    padding: "25px",
+    borderBottom: "solid 1px #999",
+  };
+
+  return (
+    <tr style={style} {...props}>
+      <td>ID: {model.id}</td>
+      <td>Title: {model.fullText}</td>
+    </tr>
+  );
+};
+
+const TableContentPlaceHolder = ({ height }) => {
+  const style = {
+    height,
+  };
+
+  return (
+    <tr style={style} />
   );
 };
 
@@ -84,4 +118,14 @@ storiesOf("InfiniteScroll", module)
       modelName="fakeModel"
       query={{ page: 1 }}
     />
-  ));
+  ))
+  .add("Virtual Scrolling Table", () => (
+    <InfiniteScroll
+      containerComponent={Table}
+      modelComponent={TableRow}
+      contentPlaceHolderComponent={TableContentPlaceHolder}
+      modelName="fakeModel"
+      query={{ page: 1 }}
+    />
+  ))
+;
