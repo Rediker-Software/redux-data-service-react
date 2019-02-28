@@ -27,7 +27,7 @@
 
 **● modelComponent**: *`React.ComponentType`<`object` & `any`>*
 
-*Defined in [Components/InfiniteScroll.tsx:49](https://github.com/Rediker-Software/redux-data-service-react/blob/36ecfc2/src/Components/InfiniteScroll.tsx#L49)*
+*Defined in [Components/InfiniteScroll.tsx:60](https://github.com/Rediker-Software/redux-data-service-react/blob/bc21036/src/Components/InfiniteScroll.tsx#L60)*
 
 ___
 <a id="modelcomponentprops"></a>
@@ -36,7 +36,7 @@ ___
 
 **● modelComponentProps**: *`any`*
 
-*Defined in [Components/InfiniteScroll.tsx:50](https://github.com/Rediker-Software/redux-data-service-react/blob/36ecfc2/src/Components/InfiniteScroll.tsx#L50)*
+*Defined in [Components/InfiniteScroll.tsx:61](https://github.com/Rediker-Software/redux-data-service-react/blob/bc21036/src/Components/InfiniteScroll.tsx#L61)*
 
 ___
 <a id="modelname"></a>
@@ -45,7 +45,7 @@ ___
 
 **● modelName**: *`string`*
 
-*Defined in [Components/InfiniteScroll.tsx:47](https://github.com/Rediker-Software/redux-data-service-react/blob/36ecfc2/src/Components/InfiniteScroll.tsx#L47)*
+*Defined in [Components/InfiniteScroll.tsx:58](https://github.com/Rediker-Software/redux-data-service-react/blob/bc21036/src/Components/InfiniteScroll.tsx#L58)*
 
 ___
 <a id="querymanager"></a>
@@ -54,7 +54,7 @@ ___
 
 **● queryManager**: *`IQueryManager`<`T`>*
 
-*Defined in [Components/InfiniteScroll.tsx:48](https://github.com/Rediker-Software/redux-data-service-react/blob/36ecfc2/src/Components/InfiniteScroll.tsx#L48)*
+*Defined in [Components/InfiniteScroll.tsx:59](https://github.com/Rediker-Software/redux-data-service-react/blob/bc21036/src/Components/InfiniteScroll.tsx#L59)*
 
 ___
 

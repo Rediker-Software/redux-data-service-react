@@ -317,6 +317,7 @@ describe("Student", () => {
 * [DefaultContentPlaceHolder](#defaultcontentplaceholder)
 * [DefaultLoadingComponent](#defaultloadingcomponent)
 * [average](#average)
+* [calculateGroupHeight](#calculategroupheight)
 * [configure](#configure)
 * [defaultShowLoadingIndicator](#defaultshowloadingindicator)
 * [getConfiguration](#getconfiguration)
@@ -362,7 +363,7 @@ describe("Student", () => {
   }),
 )
 
-*Defined in [Components/InfiniteScroll.tsx:53](https://github.com/Rediker-Software/redux-data-service-react/blob/36ecfc2/src/Components/InfiniteScroll.tsx#L53)*
+*Defined in [Components/InfiniteScroll.tsx:64](https://github.com/Rediker-Software/redux-data-service-react/blob/bc21036/src/Components/InfiniteScroll.tsx#L64)*
 
 ___
 <a id="infinitescroll"></a>
@@ -378,9 +379,12 @@ ___
   }),
   withProps(
     {
-      currentPageHeightRef: React.createRef(),
-      previousPageHeightRef: React.createRef(),
-      nextPageHeightRef: React.createRef(),
+      previousPageStartMarkerRef: React.createRef(),
+      previousPageEndMarkerRef: React.createRef(),
+      currentPageStartMarkerRef: React.createRef(),
+      currentPageEndMarkerRef: React.createRef(),
+      nextPageStartMarkerRef: React.createRef(),
+      nextPageEndMarkerRef: React.createRef(),
     }),
   withStateHandlers<IInfiniteScrollHeightMapProps, { recordPageHeight }, IInfiniteScrollInternalProps<any>>(
     { pageHeightMap: {}, estimatedPageHeight: 0 },
@@ -421,15 +425,20 @@ ___
   }),
   withHandlers({
     updatePageHeightMap: ({
-      currentPageHeightRef,
-      nextPageHeightRef,
+      previousPageStartMarkerRef,
+      previousPageEndMarkerRef,
+      currentPageStartMarkerRef,
+      currentPageEndMarkerRef,
+      nextPageStartMarkerRef,
+      nextPageEndMarkerRef,
       pageHeightMap,
-      previousPageHeightRef,
       recordPageHeight,
     }) => (query) => {
-      const currentPageHeight = currentPageHeightRef.current.getBoundingClientRect().height;
-      let previousPageHeight;
-      let nextPageHeight;
+
+      const currentPageHeight = calculateGroupHeight(
+        currentPageStartMarkerRef.current.nextSibling,
+        currentPageEndMarkerRef.current.previousSibling,
+      );
 
       const updatedPageHeightMap = {
         ...pageHeightMap,
@@ -437,16 +446,21 @@ ___
       };
 
       if (query.hasPreviousPage()) {
-        previousPageHeight = previousPageHeightRef.current.getBoundingClientRect().height;
-        updatedPageHeightMap[query.response.previousPage] = previousPageHeight;
+        updatedPageHeightMap[query.response.previousPage] = calculateGroupHeight(
+          previousPageStartMarkerRef.current.nextSibling,
+          previousPageEndMarkerRef.current.previousSibling,
+        );
       }
 
       if (query.hasNextPage()) {
-        nextPageHeight = nextPageHeightRef.current.getBoundingClientRect().height;
-        updatedPageHeightMap[query.response.nextPage] = nextPageHeight;
+        updatedPageHeightMap[query.response.nextPage] = calculateGroupHeight(
+          nextPageStartMarkerRef.current.nextSibling,
+          nextPageEndMarkerRef.current.previousSibling,
+        );
       }
 
       recordPageHeight(updatedPageHeightMap);
+
       return updatedPageHeightMap;
     },
   }),
@@ -522,7 +536,6 @@ ___
 )(({
   containerComponent: ContainerComponent,
   contentPlaceHolderComponent: ContentPlaceHolder,
-  currentPageHeightRef,
   disableVirtualScrolling,
   estimatedPageHeight,
   handleScrollPersistingEvent,
@@ -532,68 +545,79 @@ ___
   nextPageHeightRef,
   nextPlaceHolderHeight,
   pageHeightMap,
-  previousPageHeightRef,
   previousPlaceHolderHeight,
+  previousPageStartMarkerRef,
+  previousPageEndMarkerRef,
+  currentPageStartMarkerRef,
+  currentPageEndMarkerRef,
+  nextPageStartMarkerRef,
+  nextPageEndMarkerRef,
   query: queryManager,
-  ...containerProps }) => (
-    <ContainerComponent {...containerProps} onScroll={handleScrollPersistingEvent}>
-      {disableVirtualScrolling &&
-        <DisplayPreviousPage queryManager={queryManager} modelComponent={ModelComponent} modelComponentProps={modelComponentProps} modelName={modelName} />
-      }
-      {queryManager.hasPreviousPage() && !disableVirtualScrolling &&
-        <>
-          <ContentPlaceHolder height={previousPlaceHolderHeight} />
+  ...containerProps
+}) => (
+  <ContainerComponent {...containerProps} onScroll={handleScrollPersistingEvent}>
+    {disableVirtualScrolling && (
+      <DisplayPreviousPage queryManager={queryManager} modelComponent={ModelComponent} modelComponentProps={modelComponentProps} modelName={modelName} />
+    )}
+    {queryManager.hasPreviousPage() && !disableVirtualScrolling &&
+    <>
+      <ContentPlaceHolder height={previousPlaceHolderHeight} />
 
-          <span ref={previousPageHeightRef}>
-            <Query
-              modelName={modelName}
-              query={queryManager.getPreviousPage()}
-              loadingComponent={ContentPlaceHolder}
-              loadingComponentProps={{ height: pageHeightMap[queryManager.response.previousPage] || estimatedPageHeight }}
-            >
-              {({ query }) => (
-                query.items.map(model => (
-                  <ModelComponent key={model.id} model={model} {...modelComponentProps} />
-                ))
-              )}
-            </Query>
-          </span>
-        </>
-      }
+      <script ref={previousPageStartMarkerRef} />
 
-      <span ref={currentPageHeightRef}>
-        {queryManager.items.map(model => (
-          <ModelComponent key={model.id} model={model} {...modelComponentProps} />
-        ))}
-      </span>
+      <Query
+        modelName={modelName}
+        query={queryManager.getPreviousPage()}
+        loadingComponent={ContentPlaceHolder}
+        loadingComponentProps={{ height: pageHeightMap[queryManager.response.previousPage] || estimatedPageHeight }}
+      >
+        {({ query }) => (
+          query.items.map(model => (
+            <ModelComponent key={model.id} model={model} {...modelComponentProps} />
+          ))
+        )}
+      </Query>
 
-      {queryManager.hasNextPage() && (
-        <>
-          <span ref={nextPageHeightRef}>
-            <Query
-              modelName={modelName}
-              query={queryManager.getNextPage()}
-              loadingComponent={ContentPlaceHolder}
-              loadingComponentProps={{ height: pageHeightMap[queryManager.response.nextPage] || estimatedPageHeight }}
-            >
-              {({ query }) => (
-                query.items.map(model => (
-                  <ModelComponent key={model.id} model={model} {...modelComponentProps} />
-                ))
-              )}
-            </Query>
-          </span>
+      <script ref={previousPageEndMarkerRef} />
+    </>
+    }
 
-          {!disableVirtualScrolling &&
-            <ContentPlaceHolder height={nextPlaceHolderHeight} />
-          }
-        </>
-      )
-      }
-    </ContainerComponent>
-  ))
+    <script ref={currentPageStartMarkerRef} />
 
-*Defined in [Components/InfiniteScroll.tsx:92](https://github.com/Rediker-Software/redux-data-service-react/blob/36ecfc2/src/Components/InfiniteScroll.tsx#L92)*
+    {queryManager.items.map(model => (
+      <ModelComponent key={model.id} model={model} {...modelComponentProps} />
+    ))}
+
+    <script ref={currentPageEndMarkerRef} />
+
+    {queryManager.hasNextPage() && (
+      <>
+        <script ref={nextPageStartMarkerRef} />
+
+        <Query
+          modelName={modelName}
+          query={queryManager.getNextPage()}
+          loadingComponent={ContentPlaceHolder}
+          loadingComponentProps={{ height: pageHeightMap[queryManager.response.nextPage] || estimatedPageHeight }}
+        >
+          {({ query }) => (
+            query.items.map(model => (
+              <ModelComponent key={model.id} model={model} {...modelComponentProps} />
+            ))
+          )}
+        </Query>
+
+        <script ref={nextPageEndMarkerRef} />
+
+        {!disableVirtualScrolling && (
+          <ContentPlaceHolder height={nextPlaceHolderHeight} />
+        )}
+      </>
+    )}
+  </ContainerComponent>
+))
+
+*Defined in [Components/InfiniteScroll.tsx:103](https://github.com/Rediker-Software/redux-data-service-react/blob/bc21036/src/Components/InfiniteScroll.tsx#L103)*
 
 Adds infinite and virtual scroll capability to a container and model component, querying for the next page of results when scrolling down (or up if virtual scrolling). The container component must be scrollable.
 
@@ -604,7 +628,7 @@ ___
 
 **● Model**: *`ComponentClass`<[IModelProps](interfaces/imodelprops.md)> \| `StatelessComponent`<[IModelProps](interfaces/imodelprops.md)>* =  withRenderProps<IModelProps>(withModel())
 
-*Defined in [Model.tsx:10](https://github.com/Rediker-Software/redux-data-service-react/blob/36ecfc2/src/Model.tsx#L10)*
+*Defined in [Model.tsx:10](https://github.com/Rediker-Software/redux-data-service-react/blob/bc21036/src/Model.tsx#L10)*
 
 ___
 <a id="newmodel"></a>
@@ -613,7 +637,7 @@ ___
 
 **● NewModel**: *`ComponentClass`<[INewModelProps](interfaces/inewmodelprops.md)> \| `StatelessComponent`<[INewModelProps](interfaces/inewmodelprops.md)>* =  withRenderProps<INewModelProps>(withNewModel())
 
-*Defined in [NewModel.tsx:11](https://github.com/Rediker-Software/redux-data-service-react/blob/36ecfc2/src/NewModel.tsx#L11)*
+*Defined in [NewModel.tsx:11](https://github.com/Rediker-Software/redux-data-service-react/blob/bc21036/src/NewModel.tsx#L11)*
 
 ___
 <a id="query"></a>
@@ -622,7 +646,7 @@ ___
 
 **● Query**: *`ComponentClass`<[IQueryProps](interfaces/iqueryprops.md)> \| `StatelessComponent`<[IQueryProps](interfaces/iqueryprops.md)>* =  withRenderProps<IQueryProps>(withModelQuery())
 
-*Defined in [Query.tsx:12](https://github.com/Rediker-Software/redux-data-service-react/blob/36ecfc2/src/Query.tsx#L12)*
+*Defined in [Query.tsx:12](https://github.com/Rediker-Software/redux-data-service-react/blob/bc21036/src/Query.tsx#L12)*
 
 ___
 
@@ -634,7 +658,7 @@ ___
 
 ▸ **DefaultContentPlaceHolder**(__namedParameters: *`object`*): `Element`
 
-*Defined in [Components/InfiniteScroll.tsx:77](https://github.com/Rediker-Software/redux-data-service-react/blob/36ecfc2/src/Components/InfiniteScroll.tsx#L77)*
+*Defined in [Components/InfiniteScroll.tsx:88](https://github.com/Rediker-Software/redux-data-service-react/blob/bc21036/src/Components/InfiniteScroll.tsx#L88)*
 
 **Parameters:**
 
@@ -653,7 +677,7 @@ ___
 
 ▸ **DefaultLoadingComponent**(): `Element`
 
-*Defined in [DefaultLoadingComponent.tsx:3](https://github.com/Rediker-Software/redux-data-service-react/blob/36ecfc2/src/DefaultLoadingComponent.tsx#L3)*
+*Defined in [DefaultLoadingComponent.tsx:3](https://github.com/Rediker-Software/redux-data-service-react/blob/bc21036/src/DefaultLoadingComponent.tsx#L3)*
 
 **Returns:** `Element`
 
@@ -664,7 +688,7 @@ ___
 
 ▸ **average**(items: *`number`[]*): `number`
 
-*Defined in [Helpers/Average.ts:4](https://github.com/Rediker-Software/redux-data-service-react/blob/36ecfc2/src/Helpers/Average.ts#L4)*
+*Defined in [Helpers/Average.ts:4](https://github.com/Rediker-Software/redux-data-service-react/blob/bc21036/src/Helpers/Average.ts#L4)*
 
 Computes the average of the given array of numbers
 
@@ -677,13 +701,33 @@ Computes the average of the given array of numbers
 **Returns:** `number`
 
 ___
+<a id="calculategroupheight"></a>
+
+###  calculateGroupHeight
+
+▸ **calculateGroupHeight**(firstElement: *`any`*, lastElement: *`any`*): `number`
+
+*Defined in [Helpers/CalculateGroupHeight.ts:5](https://github.com/Rediker-Software/redux-data-service-react/blob/bc21036/src/Helpers/CalculateGroupHeight.ts#L5)*
+
+Calculate the total height of a group of elements stacked vertically on a page, given the first and last elements within the group.
+
+**Parameters:**
+
+| Name | Type |
+| ------ | ------ |
+| firstElement | `any` |
+| lastElement | `any` |
+
+**Returns:** `number`
+
+___
 <a id="configure"></a>
 
 ###  configure
 
 ▸ **configure**(config: *[IConfiguration](interfaces/iconfiguration.md)*): `void`
 
-*Defined in [Configure.ts:15](https://github.com/Rediker-Software/redux-data-service-react/blob/36ecfc2/src/Configure.ts#L15)*
+*Defined in [Configure.ts:15](https://github.com/Rediker-Software/redux-data-service-react/blob/bc21036/src/Configure.ts#L15)*
 
 **Parameters:**
 
@@ -700,7 +744,7 @@ ___
 
 ▸ **defaultShowLoadingIndicator**(__namedParameters: *`object`*): `boolean`
 
-*Defined in [WithLoadingIndicator.tsx:16](https://github.com/Rediker-Software/redux-data-service-react/blob/36ecfc2/src/WithLoadingIndicator.tsx#L16)*
+*Defined in [WithLoadingIndicator.tsx:16](https://github.com/Rediker-Software/redux-data-service-react/blob/bc21036/src/WithLoadingIndicator.tsx#L16)*
 
 **Parameters:**
 
@@ -719,7 +763,7 @@ ___
 
 ▸ **getConfiguration**(): [IConfiguration](interfaces/iconfiguration.md)
 
-*Defined in [Configure.ts:11](https://github.com/Rediker-Software/redux-data-service-react/blob/36ecfc2/src/Configure.ts#L11)*
+*Defined in [Configure.ts:11](https://github.com/Rediker-Software/redux-data-service-react/blob/bc21036/src/Configure.ts#L11)*
 
 **Returns:** [IConfiguration](interfaces/iconfiguration.md)
 
@@ -730,7 +774,7 @@ ___
 
 ▸ **omitProps**<`P`>(keys: *`keyof P`[]*): `InferableComponentEnhancerWithProps`<`object`, `object`>
 
-*Defined in [Helpers/OmitProps.ts:4](https://github.com/Rediker-Software/redux-data-service-react/blob/36ecfc2/src/Helpers/OmitProps.ts#L4)*
+*Defined in [Helpers/OmitProps.ts:4](https://github.com/Rediker-Software/redux-data-service-react/blob/bc21036/src/Helpers/OmitProps.ts#L4)*
 
 **Type parameters:**
 
@@ -750,7 +794,7 @@ ___
 
 ▸ **seedServiceListWithPagingOptions**(serviceName: *`string`*, pageSize: *`number`*, totalPages: *`number`*): `void`
 
-*Defined in [TestUtils/SeedHelper.ts:10](https://github.com/Rediker-Software/redux-data-service-react/blob/36ecfc2/src/TestUtils/SeedHelper.ts#L10)*
+*Defined in [TestUtils/SeedHelper.ts:10](https://github.com/Rediker-Software/redux-data-service-react/blob/bc21036/src/TestUtils/SeedHelper.ts#L10)*
 
 Seeds a given service with a specified number of paged data
 
@@ -771,7 +815,7 @@ ___
 
 ▸ **simulateScrollEvent**(wrapper: *`any`*, selector: *`any`*, mock?: *`any`*): `void`
 
-*Defined in [TestUtils/UIEventSimulation.ts:8](https://github.com/Rediker-Software/redux-data-service-react/blob/36ecfc2/src/TestUtils/UIEventSimulation.ts#L8)*
+*Defined in [TestUtils/UIEventSimulation.ts:8](https://github.com/Rediker-Software/redux-data-service-react/blob/bc21036/src/TestUtils/UIEventSimulation.ts#L8)*
 
 Simulates an onScroll event.
 
@@ -792,7 +836,7 @@ ___
 
 ▸ **usingMount**(component: *`React.ComponentType`<`any`> \| `Element`*, whileMounted: *`function`*, mountOptions?: *`object`*): `Promise`<`any`> \| `void`
 
-*Defined in [TestUtils/EnzymeHelper.tsx:11](https://github.com/Rediker-Software/redux-data-service-react/blob/36ecfc2/src/TestUtils/EnzymeHelper.tsx#L11)*
+*Defined in [TestUtils/EnzymeHelper.tsx:11](https://github.com/Rediker-Software/redux-data-service-react/blob/bc21036/src/TestUtils/EnzymeHelper.tsx#L11)*
 
 Helper function to handle mounting and unmounting a component using enzyme to ensure resources are cleaned up.
 
@@ -813,7 +857,7 @@ ___
 
 ▸ **withLoadingIndicator**<`P`>(test?: *[IShowLoadingIndicator](interfaces/ishowloadingindicator.md)<`P` \| `any`>*, loadingComponent?: *`React.ComponentType`<`any`>*): `ComponentEnhancer`<`P`, `P`>
 
-*Defined in [WithLoadingIndicator.tsx:26](https://github.com/Rediker-Software/redux-data-service-react/blob/36ecfc2/src/WithLoadingIndicator.tsx#L26)*
+*Defined in [WithLoadingIndicator.tsx:26](https://github.com/Rediker-Software/redux-data-service-react/blob/bc21036/src/WithLoadingIndicator.tsx#L26)*
 
 Displays a loading component if the given test function returns true.
 
@@ -840,7 +884,7 @@ ___
 
 ▸ **withModel**<`P`>(options?: *[IWithModelProps](interfaces/iwithmodelprops.md)*): `ComponentEnhancer`<`P`, `P` & [IWithModelProps](interfaces/iwithmodelprops.md)>
 
-*Defined in [WithModel.ts:31](https://github.com/Rediker-Software/redux-data-service-react/blob/36ecfc2/src/WithModel.ts#L31)*
+*Defined in [WithModel.ts:31](https://github.com/Rediker-Software/redux-data-service-react/blob/bc21036/src/WithModel.ts#L31)*
 
 An HOC to inject a model into a component given the name of the DataService for that model.
 
@@ -864,7 +908,7 @@ ___
 
 ▸ **withModelArray**<`P`>(dataServiceName: *`string`*, idPropKey?: *`string`*, modelPropKey?: *`string`*): `ComponentEnhancer`<`P`, `P`>
 
-*Defined in [WithModelArray.ts:16](https://github.com/Rediker-Software/redux-data-service-react/blob/36ecfc2/src/WithModelArray.ts#L16)*
+*Defined in [WithModelArray.ts:16](https://github.com/Rediker-Software/redux-data-service-react/blob/bc21036/src/WithModelArray.ts#L16)*
 
 An HOC to inject a model array into a component given the name of the DataService for that model and a list of ids.
 
@@ -890,7 +934,7 @@ ___
 
 ▸ **withModelQuery**<`P`>(options?: *[IWithModelQueryOptions](interfaces/iwithmodelqueryoptions.md) & `P`*): `ComponentEnhancer`<`P`, `P`>
 
-*Defined in [WithModelQuery.ts:32](https://github.com/Rediker-Software/redux-data-service-react/blob/36ecfc2/src/WithModelQuery.ts#L32)*
+*Defined in [WithModelQuery.ts:32](https://github.com/Rediker-Software/redux-data-service-react/blob/bc21036/src/WithModelQuery.ts#L32)*
 
 An HOC to inject a model array into a component given the name of the DataService for that model and some query params which will be passed to the API to load those items.
 
@@ -914,7 +958,7 @@ ___
 
 ▸ **withNewModel**<`P`>(options?: *[IWithModelProps](interfaces/iwithmodelprops.md)*): `ComponentEnhancer`<`P`, `P`>
 
-*Defined in [WithNewModel.tsx:15](https://github.com/Rediker-Software/redux-data-service-react/blob/36ecfc2/src/WithNewModel.tsx#L15)*
+*Defined in [WithNewModel.tsx:15](https://github.com/Rediker-Software/redux-data-service-react/blob/bc21036/src/WithNewModel.tsx#L15)*
 
 An HOC which returns a new unsaved model if one is not provided.
 
@@ -939,7 +983,7 @@ ___
 
 **configuration**: *`object`*
 
-*Defined in [Configure.ts:7](https://github.com/Rediker-Software/redux-data-service-react/blob/36ecfc2/src/Configure.ts#L7)*
+*Defined in [Configure.ts:7](https://github.com/Rediker-Software/redux-data-service-react/blob/bc21036/src/Configure.ts#L7)*
 
 <a id="configuration.loadingcomponent"></a>
 
@@ -947,7 +991,7 @@ ___
 
 **● loadingComponent**: *[DefaultLoadingComponent]()* =  DefaultLoadingComponent
 
-*Defined in [Configure.ts:8](https://github.com/Rediker-Software/redux-data-service-react/blob/36ecfc2/src/Configure.ts#L8)*
+*Defined in [Configure.ts:8](https://github.com/Rediker-Software/redux-data-service-react/blob/bc21036/src/Configure.ts#L8)*
 
 ___
 

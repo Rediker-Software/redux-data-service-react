@@ -25,7 +25,7 @@
 
 **● estimatedPageHeight**: *`number`*
 
-*Defined in [Components/InfiniteScroll.tsx:28](https://github.com/Rediker-Software/redux-data-service-react/blob/36ecfc2/src/Components/InfiniteScroll.tsx#L28)*
+*Defined in [Components/InfiniteScroll.tsx:41](https://github.com/Rediker-Software/redux-data-service-react/blob/bc21036/src/Components/InfiniteScroll.tsx#L41)*
 
 ___
 <a id="pageheightmap"></a>
@@ -34,7 +34,7 @@ ___
 
 **● pageHeightMap**: *`object`*
 
-*Defined in [Components/InfiniteScroll.tsx:27](https://github.com/Rediker-Software/redux-data-service-react/blob/36ecfc2/src/Components/InfiniteScroll.tsx#L27)*
+*Defined in [Components/InfiniteScroll.tsx:40](https://github.com/Rediker-Software/redux-data-service-react/blob/bc21036/src/Components/InfiniteScroll.tsx#L40)*
 
 #### Type declaration
 
