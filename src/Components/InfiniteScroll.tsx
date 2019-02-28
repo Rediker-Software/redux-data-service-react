@@ -70,7 +70,7 @@ const DisplayPreviousPage = compose<IDisplayPreviousPageProps<any>, IDisplayPrev
       <Query key={`page-${queryManager.response.previousPage}`} modelName={modelName} query={queryManager.getPreviousPage()}>
         {({ query }) => (
           <>
-            <DisplayPreviousPage queryManager={query} modelComponent={ModelComponent} modelComponentProps={modelComponentProps} modelName={modelName}/>
+            <DisplayPreviousPage queryManager={query} modelComponent={ModelComponent} modelComponentProps={modelComponentProps} modelName={modelName} />
             {query.items.map(model => (
               <ModelComponent key={model.id} model={model} {...modelComponentProps} />
             ))}
@@ -91,7 +91,7 @@ const DefaultContentPlaceHolder = ({ height }: IContentPlaceHolderProps) => {
   };
 
   return (
-    <div style={style}/>
+    <div style={style} />
   );
 };
 
@@ -287,13 +287,13 @@ export const InfiniteScroll = compose<IInfiniteScrollInternalProps<any>, IInfini
 }) => (
   <ContainerComponent {...containerProps} onScroll={handleScrollPersistingEvent}>
     {disableVirtualScrolling && (
-      <DisplayPreviousPage queryManager={queryManager} modelComponent={ModelComponent} modelComponentProps={modelComponentProps} modelName={modelName}/>
+      <DisplayPreviousPage queryManager={queryManager} modelComponent={ModelComponent} modelComponentProps={modelComponentProps} modelName={modelName} />
     )}
     {queryManager.hasPreviousPage() && !disableVirtualScrolling &&
     <>
-      <ContentPlaceHolder height={previousPlaceHolderHeight}/>
+      <ContentPlaceHolder height={previousPlaceHolderHeight} />
 
-      <script ref={previousPageStartMarkerRef}/>
+      <script ref={previousPageStartMarkerRef} />
 
       <Query
         modelName={modelName}
@@ -308,21 +308,21 @@ export const InfiniteScroll = compose<IInfiniteScrollInternalProps<any>, IInfini
         )}
       </Query>
 
-      <script ref={previousPageEndMarkerRef}/>
+      <script ref={previousPageEndMarkerRef} />
     </>
     }
 
-    <script ref={currentPageStartMarkerRef}/>
+    <script ref={currentPageStartMarkerRef} />
 
     {queryManager.items.map(model => (
       <ModelComponent key={model.id} model={model} {...modelComponentProps} />
     ))}
 
-    <script ref={currentPageEndMarkerRef}/>
+    <script ref={currentPageEndMarkerRef} />
 
     {queryManager.hasNextPage() && (
       <>
-        <script ref={nextPageStartMarkerRef}/>
+        <script ref={nextPageStartMarkerRef} />
 
         <Query
           modelName={modelName}
@@ -337,10 +337,10 @@ export const InfiniteScroll = compose<IInfiniteScrollInternalProps<any>, IInfini
           )}
         </Query>
 
-        <script ref={nextPageEndMarkerRef}/>
+        <script ref={nextPageEndMarkerRef} />
 
         {!disableVirtualScrolling && (
-          <ContentPlaceHolder height={nextPlaceHolderHeight}/>
+          <ContentPlaceHolder height={nextPlaceHolderHeight} />
         )}
       </>
     )}

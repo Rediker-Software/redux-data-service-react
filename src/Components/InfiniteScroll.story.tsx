@@ -73,7 +73,7 @@ const TableContentPlaceHolder = ({ height }) => {
   };
 
   return (
-    <tr style={style}/>
+    <tr style={style} />
   );
 };
 
