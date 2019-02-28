@@ -1,11 +1,11 @@
 import * as React from "react";
-import {fakeModelModule, initializeTestServices} from "redux-data-service";
+import { fakeModelModule, initializeTestServices } from "redux-data-service";
 
-import {storiesOf} from "@storybook/react";
+import { storiesOf } from "@storybook/react";
 
-import {InfiniteScroll} from "./InfiniteScroll";
+import { InfiniteScroll } from "./InfiniteScroll";
 
-import {seedServiceListWithPagingOptions} from "../TestUtils";
+import { seedServiceListWithPagingOptions } from "../TestUtils";
 
 const containerStyle = {
   height: 500,
@@ -29,7 +29,7 @@ interface IContainerModelProps {
   uniformHeights?: boolean;
 }
 
-const ContainerModel = ({model, uniformHeights}: IContainerModelProps) => {
+const ContainerModel = ({ model, uniformHeights }: IContainerModelProps) => {
   const style = {
     height: uniformHeights ? 50 : model.id % 100 + 50,
     padding: "25px",
@@ -44,7 +44,7 @@ const ContainerModel = ({model, uniformHeights}: IContainerModelProps) => {
   );
 };
 
-const Table = ({children, items, ...props}) => {
+const Table = ({ children, items, ...props }) => {
   return (
     <table style={containerStyle} {...props}>
       <tbody>{children}</tbody>
@@ -52,7 +52,7 @@ const Table = ({children, items, ...props}) => {
   );
 };
 
-const TableRow = ({model, ...props}) => {
+const TableRow = ({ model, ...props }) => {
   const style = {
     height: model.id % 100 + 50,
     padding: "25px",
@@ -67,7 +67,7 @@ const TableRow = ({model, ...props}) => {
   );
 };
 
-const TableContentPlaceHolder = ({height}) => {
+const TableContentPlaceHolder = ({ height }) => {
   const style = {
     height,
   };
@@ -88,9 +88,9 @@ storiesOf("InfiniteScroll", module)
       containerComponent={Container}
       disableVirtualScrolling
       modelComponent={ContainerModel}
-      modelComponentProps={{uniformHeights: true}}
+      modelComponentProps={{ uniformHeights: true }}
       modelName="fakeModel"
-      query={{page: 1}}
+      query={{ page: 1 }}
     />
   ))
   .add("Infinite Scrolling Variable Heights", () => (
@@ -99,16 +99,16 @@ storiesOf("InfiniteScroll", module)
       disableVirtualScrolling
       modelComponent={ContainerModel}
       modelName="fakeModel"
-      query={{page: 1}}
+      query={{ page: 1 }}
     />
   ))
   .add("Virtual Scrolling Uniform Heights", () => (
     <InfiniteScroll
       containerComponent={Container}
       modelComponent={ContainerModel}
-      modelComponentProps={{uniformHeights: true}}
+      modelComponentProps={{ uniformHeights: true }}
       modelName="fakeModel"
-      query={{page: 1}}
+      query={{ page: 1 }}
     />
   ))
   .add("Virtual Scrolling Variable Heights", () => (
@@ -116,7 +116,7 @@ storiesOf("InfiniteScroll", module)
       containerComponent={Container}
       modelComponent={ContainerModel}
       modelName="fakeModel"
-      query={{page: 1}}
+      query={{ page: 1 }}
     />
   ))
   .add("Virtual Scrolling Table", () => (
@@ -125,7 +125,7 @@ storiesOf("InfiniteScroll", module)
       modelComponent={TableRow}
       contentPlaceHolderComponent={TableContentPlaceHolder}
       modelName="fakeModel"
-      query={{page: 1}}
+      query={{ page: 1 }}
     />
   ))
 ;
