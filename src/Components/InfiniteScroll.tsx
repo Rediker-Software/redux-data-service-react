@@ -39,6 +39,7 @@ export interface IInfiniteScrollProps<T extends IModelData> {
 export interface IInfiniteScrollHeightMapProps {
   pageHeightMap: { [key: string]: number };
   estimatedPageHeight: number;
+  totalPages: number;
 }
 
 export interface IInfiniteScrollInternalProps<T extends IModel<IModelData>> extends Omit<IInfiniteScrollProps<any>, "query">, IInfiniteScrollHeightMapProps {
@@ -107,17 +108,16 @@ export const InfiniteScroll = compose<IInfiniteScrollInternalProps<any>, IInfini
     disableVirtualScrolling: false,
     contentPlaceHolderComponent: DefaultContentPlaceHolder,
   }),
-  withProps(
-    {
-      previousPageStartMarkerRef: React.createRef(),
-      previousPageEndMarkerRef: React.createRef(),
-      currentPageStartMarkerRef: React.createRef(),
-      currentPageEndMarkerRef: React.createRef(),
-      nextPageStartMarkerRef: React.createRef(),
-      nextPageEndMarkerRef: React.createRef(),
-    }),
+  withProps({
+    previousPageStartMarkerRef: React.createRef(),
+    previousPageEndMarkerRef: React.createRef(),
+    currentPageStartMarkerRef: React.createRef(),
+    currentPageEndMarkerRef: React.createRef(),
+    nextPageStartMarkerRef: React.createRef(),
+    nextPageEndMarkerRef: React.createRef(),
+  }),
   withStateHandlers<IInfiniteScrollHeightMapProps, { recordPageHeight }, IInfiniteScrollInternalProps<any>>(
-    { pageHeightMap: {}, estimatedPageHeight: 0 },
+    { pageHeightMap: {}, estimatedPageHeight: 0, totalPages: 0 },
     {
       recordPageHeight: () =>
         (pageHeightMap: { [key: string]: number }) => ({
@@ -132,20 +132,23 @@ export const InfiniteScroll = compose<IInfiniteScrollInternalProps<any>, IInfini
       : new QueryBuilder(modelName, query as IQueryParams);
   }),
   withModelQuery(),
-  withPropsOnChange(["query", "estimatedPageHeight"], ({ query, pageHeightMap, estimatedPageHeight }) => {
+  withPropsOnChange(["query", "pageHeightMap", "estimatedPageHeight"], ({ query, pageHeightMap, estimatedPageHeight }) => {
+    const currentPage = query.query.queryParams.page || 1;
     let previousPlaceHolderHeight = 0;
     let nextPlaceHolderHeight = 0;
 
-    for (let x = query.response.currentPage - 2; x > 0; x--) {
+    for (let x = currentPage - 2; x > 0; x--) {
       previousPlaceHolderHeight += x in pageHeightMap
         ? pageHeightMap[x]
         : estimatedPageHeight;
     }
 
-    for (let x = query.response.currentPage + 2; x <= query.response.totalPages; x++) {
-      nextPlaceHolderHeight += x in pageHeightMap
-        ? pageHeightMap[x]
-        : estimatedPageHeight;
+    if (query.response) {
+      for (let x = currentPage + 2; x <= query.response.totalPages; x++) {
+        nextPlaceHolderHeight += x in pageHeightMap
+          ? pageHeightMap[x]
+          : estimatedPageHeight;
+      }
     }
 
     return {
@@ -242,8 +245,13 @@ export const InfiniteScroll = compose<IInfiniteScrollInternalProps<any>, IInfini
   }),
   lifecycle<{ disableVirtualScrolling, handleScrollDebounced, handleScrollThrottled, query: IQueryManager<any>, updatePageHeightMap }, {}>({
     componentDidMount() {
-      if (!this.props.disableVirtualScrolling) {
+      if (!this.props.disableVirtualScrolling && this.props.query.response) {
         // Initialize page height map and estimated page height
+        this.props.updatePageHeightMap(this.props.query);
+      }
+    },
+    componentDidUpdate(prevProps) {
+      if (prevProps.query.isLoading && !this.props.query.isLoading) {
         this.props.updatePageHeightMap(this.props.query);
       }
     },
