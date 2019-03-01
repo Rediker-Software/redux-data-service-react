@@ -1,10 +1,18 @@
 import * as React from "react";
-import { fakeModelModule, initializeTestServices } from "redux-data-service";
+import {
+  fakeModelModule,
+  getDataService,
+  initializeTestServices,
+  QueryBuilder,
+  QueryManager
+} from "redux-data-service";
+import { of as of$ } from "rxjs/observable/of";
 
-import { InfiniteScroll } from "./InfiniteScroll";
-
+import { stub } from "sinon";
 import { seedServiceListWithPagingOptions, simulateScrollEvent, usingMount } from "../TestUtils";
 import "../TestUtils/TestSetup";
+
+import { InfiniteScroll } from "./InfiniteScroll";
 
 declare var intern;
 const { beforeEach, describe, it } = intern.getPlugin("interface.bdd");
@@ -464,6 +472,45 @@ describe("<InfiniteScroll />", () => {
             }, { attachTo: div },
           );
         });
+
+        it("should not throw errors when query.response is null", async () => {
+          const service = getDataService(fakeService);
+          const queryParams = { page: 1 };
+          const queryBuilder = new QueryBuilder(fakeService, queryParams);
+
+          const fakeQueryManager = new QueryManager(queryBuilder, []);
+
+          stub(service, "getByQuery").returns(of$(fakeQueryManager));
+
+          await usingMount(
+            <InfiniteScroll
+              containerComponent={TestContainer}
+              modelComponent={TestContainerModel}
+              modelComponentProps={{ testModelProp: "testing model prop" }}
+              query={queryParams}
+              modelName={fakeService}
+              debounceTime={debounceTime}
+            />, wrapper => {
+              return new Promise((resolve, reject) => {
+                const amountToScrollToPage6 = 2600;
+                simulateScrollEvent(wrapper, "TestContainer", {
+                  target: { scrollTop: amountToScrollToPage6, clientHeight: 250, scrollHeight: 0 },
+                });
+
+                setTimeout(() => {
+                  try {
+                    wrapper.update();
+                    debugger;
+                    expect(wrapper.find(".page5")).to.have.lengthOf(10);
+                    resolve();
+                  } catch (e) {
+                    reject(e);
+                  }
+                }, debounceTime + 100);
+              });
+            }, { attachTo: div },
+          );
+        })
       });
     });
   });
