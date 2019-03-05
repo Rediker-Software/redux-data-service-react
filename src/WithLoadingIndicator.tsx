@@ -36,6 +36,5 @@ export function withLoadingIndicator<P = IWithLoadingIndicatorProps>(
       test,
       renderComponent<IWithLoadingIndicatorProps>(({ loadingComponent: Loading, loadingComponentProps }) => <Loading {...loadingComponentProps}/>),
     ),
-    mapProps(({ isLoading, loadingComponent: Loading, loadingComponentProps, ...props }) => props),
   );
 }

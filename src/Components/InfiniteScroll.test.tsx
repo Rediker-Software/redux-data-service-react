@@ -1,4 +1,6 @@
+// tslint:disable no-unused-expression
 import * as React from "react";
+
 import {
   fakeModelModule,
   getDataService,
@@ -49,7 +51,7 @@ describe("<InfiniteScroll />", () => {
   const fakeService = "fakeModel";
   const pageSize = 10;
   const totalPages = 10;
-  const debounceTime = 200;
+  const delayTimeout = 200;
 
   initializeTestServices(fakeModelModule);
   seedServiceListWithPagingOptions(fakeService, pageSize, totalPages);
@@ -133,7 +135,7 @@ describe("<InfiniteScroll />", () => {
             } catch (e) {
               reject(e);
             }
-          }, debounceTime + 100);
+          }, delayTimeout + 100);
         }),
       );
     });
@@ -154,7 +156,7 @@ describe("<InfiniteScroll />", () => {
             } catch (e) {
               reject(e);
             }
-          }, debounceTime + 100);
+          }, delayTimeout + 100);
         }),
       );
     });
@@ -175,7 +177,7 @@ describe("<InfiniteScroll />", () => {
             } catch (e) {
               reject(e);
             }
-          }, debounceTime + 100);
+          }, delayTimeout + 100);
         }),
       );
     });
@@ -210,7 +212,7 @@ describe("<InfiniteScroll />", () => {
               query={{ page: 3 }}
               modelName={fakeService}
               disableVirtualScrolling
-              debounceTime={debounceTime}
+              delayTimeout={delayTimeout}
             />, wrapper => {
               return new Promise((resolve, reject) => {
                 simulateScrollEvent(wrapper, "TestContainer", { target: { scrollTop: 200, clientHeight: 50, scrollHeight: 200 } });
@@ -223,7 +225,7 @@ describe("<InfiniteScroll />", () => {
                   } catch (e) {
                     reject(e);
                   }
-                }, debounceTime + 100);
+                }, delayTimeout + 100);
               });
             },
           );
@@ -238,7 +240,7 @@ describe("<InfiniteScroll />", () => {
               query={{ page: 10 }}
               modelName={fakeService}
               disableVirtualScrolling
-              debounceTime={debounceTime}
+              delayTimeout={delayTimeout}
             />, wrapper => {
               return new Promise((resolve, reject) => {
                 expect(wrapper.find("TestContainerModel")).to.have.lengthOf(100); // verify page load before scrolling
@@ -252,7 +254,7 @@ describe("<InfiniteScroll />", () => {
                   } catch (e) {
                     reject(e);
                   }
-                }, debounceTime + 100);
+                }, delayTimeout + 100);
               });
             },
           );
@@ -267,7 +269,7 @@ describe("<InfiniteScroll />", () => {
               query={{ page: 2 }}
               modelName={fakeService}
               disableVirtualScrolling
-              debounceTime={debounceTime}
+              delayTimeout={delayTimeout}
             />, wrapper => {
               return new Promise((resolve, reject) => {
                 expect(wrapper.find("TestContainerModel")).to.have.lengthOf(30); // verify page load before scrolling
@@ -281,7 +283,7 @@ describe("<InfiniteScroll />", () => {
                   } catch (e) {
                     reject(e);
                   }
-                }, debounceTime + 100);
+                }, delayTimeout + 100);
               });
             },
           );
@@ -296,7 +298,7 @@ describe("<InfiniteScroll />", () => {
               query={{ page: 2 }}
               modelName={fakeService}
               disableVirtualScrolling
-              debounceTime={debounceTime}
+              delayTimeout={delayTimeout}
             />, wrapper => {
               return new Promise((resolve, reject) => {
                 expect(wrapper.find("TestContainerModel")).to.have.lengthOf(30); // verify page load before scrolling
@@ -310,7 +312,7 @@ describe("<InfiniteScroll />", () => {
                   } catch (e) {
                     reject(e);
                   }
-                }, debounceTime + 100);
+                }, delayTimeout + 100);
               });
             },
           );
@@ -350,7 +352,7 @@ describe("<InfiniteScroll />", () => {
               modelComponentProps={{ testModelProp: "testing model prop" }}
               query={{ page: 1 }}
               modelName={fakeService}
-              debounceTime={debounceTime}
+              delayTimeout={delayTimeout}
             />, wrapper => {
               return new Promise((resolve, reject) => {
                 const amountToScrollToPage6 = 2600;
@@ -366,7 +368,7 @@ describe("<InfiniteScroll />", () => {
                   } catch (e) {
                     reject(e);
                   }
-                }, debounceTime + 100);
+                }, delayTimeout + 100);
               });
             }, { attachTo: div },
           );
@@ -380,7 +382,7 @@ describe("<InfiniteScroll />", () => {
               modelComponentProps={{ testModelProp: "testing model prop" }}
               query={{ page: 1 }}
               modelName={fakeService}
-              debounceTime={debounceTime}
+              delayTimeout={delayTimeout}
             />, wrapper => {
               return new Promise((resolve, reject) => {
                 const amountToScrollToPage6 = 2600;
@@ -396,7 +398,7 @@ describe("<InfiniteScroll />", () => {
                   } catch (e) {
                     reject(e);
                   }
-                }, debounceTime + 100);
+                }, delayTimeout + 100);
               });
             }, { attachTo: div },
           );
@@ -410,7 +412,7 @@ describe("<InfiniteScroll />", () => {
               modelComponentProps={{ testModelProp: "testing model prop" }}
               query={{ page: 1 }}
               modelName={fakeService}
-              debounceTime={debounceTime}
+              delayTimeout={delayTimeout}
             />, wrapper => {
               return new Promise((resolve, reject) => {
                 const amountToScrollToPage6 = 2600;
@@ -426,7 +428,7 @@ describe("<InfiniteScroll />", () => {
                   } catch (e) {
                     reject(e);
                   }
-                }, debounceTime + 100);
+                }, delayTimeout + 100);
               });
             }, { attachTo: div },
           );
@@ -440,7 +442,7 @@ describe("<InfiniteScroll />", () => {
               modelComponentProps={{ testModelProp: "testing model prop" }}
               query={{ page: 1 }}
               modelName={fakeService}
-              debounceTime={debounceTime}
+              delayTimeout={delayTimeout}
             />, wrapper => {
               return new Promise((resolve, reject) => {
 
@@ -467,13 +469,13 @@ describe("<InfiniteScroll />", () => {
                   } catch (e) {
                     reject(e);
                   }
-                }, debounceTime + 100);
+                }, delayTimeout + 100);
               });
             }, { attachTo: div },
           );
         });
 
-        it("should not throw errors when query.response is null", async () => {
+        it("should render the given loadingComponent if the initial query does not yet have a response", async () => {
           const service = getDataService(fakeService);
           const queryParams = { page: 1 };
           const queryBuilder = new QueryBuilder(fakeService, queryParams);
@@ -482,35 +484,33 @@ describe("<InfiniteScroll />", () => {
 
           stub(service, "getByQuery").returns(of$(fakeQueryManager));
 
+          const FakeComponent = () => <span />;
+
           await usingMount(
             <InfiniteScroll
+              loadingComponent={FakeComponent}
               containerComponent={TestContainer}
               modelComponent={TestContainerModel}
               modelComponentProps={{ testModelProp: "testing model prop" }}
               query={queryParams}
               modelName={fakeService}
-              debounceTime={debounceTime}
+              delayTimeout={delayTimeout}
             />, wrapper => {
               return new Promise((resolve, reject) => {
-                const amountToScrollToPage6 = 2600;
-                simulateScrollEvent(wrapper, "TestContainer", {
-                  target: { scrollTop: amountToScrollToPage6, clientHeight: 250, scrollHeight: 0 },
-                });
-
                 setTimeout(() => {
                   try {
-                    wrapper.update();
-                    debugger;
-                    expect(wrapper.find(".page5")).to.have.lengthOf(10);
+                    expect(
+                      wrapper.find(FakeComponent).exists()
+                    ).to.be.true;
                     resolve();
                   } catch (e) {
                     reject(e);
                   }
-                }, debounceTime + 100);
+                }, delayTimeout + 100);
               });
             }, { attachTo: div },
           );
-        })
+        });
       });
     });
   });

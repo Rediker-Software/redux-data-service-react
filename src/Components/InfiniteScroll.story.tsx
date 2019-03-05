@@ -109,6 +109,7 @@ storiesOf("InfiniteScroll", module)
       modelComponentProps={{ uniformHeights: true }}
       modelName="fakeModel"
       query={{ page: 1 }}
+      delayTimeout={5000}
     />
   ))
   .add("Virtual Scrolling Variable Heights", () => (

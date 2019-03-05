@@ -63,7 +63,7 @@ describe("withModel", () => {
       usingMount(<Component {...additionalProps} id={fakeModelId}/>, (wrapper) => {
         expect(
           wrapper.find(FakeComponent).props(),
-        ).to.deep.equal({
+        ).to.deep.include({
           model: fakeModel,
           id: fakeModelId,
           ...additionalProps,
