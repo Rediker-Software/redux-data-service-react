@@ -31,12 +31,19 @@ export interface IWithModelQueryOptions extends IWithModelQueryProps, IWithLoadi
  */
 export function withModelQuery<P = {}>(options?: IWithModelQueryOptions & P): ComponentEnhancer<P, P> {
   return compose<P & { items: any[], query: IQueryManager<any> }, P & IWithModelQueryOptions>(
-    defaultProps(options || {}),
+    defaultProps({
+      isLoading: ({ items }) => items == null,
+      ...options
+    }),
     branch(
-      ({ items, modelName }) => modelName && items == null,
+      ({ items, modelName, query }) => items == null && (modelName != null || query instanceof QueryBuilder),
       mapPropsStreamWithConfig(rxjsConfig)<any, P>((props$: Observable<any>) =>
         props$.combineLatest(
           props$.switchMap(({ modelName, query }: IWithModelQueryOptions) => {
+            if (!modelName && query instanceof QueryBuilder) {
+              modelName = query.serviceName;
+            }
+
             const service = getDataService(modelName);
 
             const observable = (query instanceof QueryBuilder)
@@ -55,6 +62,6 @@ export function withModelQuery<P = {}>(options?: IWithModelQueryOptions & P): Co
         ),
       ),
     ),
-    withLoadingIndicator<IWithModelQueryOptions>(({ items }) => items == null),
+    withLoadingIndicator<IWithModelQueryOptions>(),
   );
 }

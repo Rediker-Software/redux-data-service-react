@@ -1,6 +1,13 @@
-import { compose, defaultProps, lifecycle, withHandlers, withPropsOnChange } from "recompose";
-import { debounce, throttle } from "lodash";
+import { branch, compose, defaultProps, lifecycle, withHandlers, withPropsOnChange } from "recompose";
+import { debounce, mapValues, pick, pipe, throttle } from "lodash/fp";
 import { omitProps } from "./Helpers";
+import { mapValuesWithKeys } from "redux-data-service";
+
+export type DelayedHandler = (...args: any) => () => void;
+
+export interface IDelayedHandlers<TOutterProps> {
+  [key: string]: (props: TOutterProps) => DelayedHandler;
+}
 
 export interface IWithDelayedHandlers {
   delayTimeout?: number;
@@ -12,10 +19,10 @@ export interface IWithDelayedHandlers {
  * An HOC which wraps recompose's `withHandlers` HOC, then wraps each of the given callback handlers
  * with `debounce` and `throttle` from `lodash` for the given `delayTimeout`.
  */
-export const withDelayedHandlers = <P = any>(
-  handlers,
+export const withDelayedHandlers = <TOutterProps = any>(
+  handlers: IDelayedHandlers<TOutterProps>,
   options: IWithDelayedHandlers = {}
-) => compose<P & IWithDelayedHandlers, P>(
+) => compose<TOutterProps & IWithDelayedHandlers, TOutterProps>(
   defaultProps({
     delayTimeout: 200,
     enableDebounce: true,
@@ -25,44 +32,41 @@ export const withDelayedHandlers = <P = any>(
   withHandlers(handlers),
   withPropsOnChange(
     ["delayTimeout", "enableDebounce", "enableThrottle"].concat(Object.keys(handlers)),
-    ({ delayTimeout, enableDebounce, enableThrottle, ...props }) => {
-      const result = {};
+    ({ delayTimeout, enableDebounce, enableThrottle, ...props }: IWithDelayedHandlers & TOutterProps) => {
+      if (enableDebounce || enableThrottle) {
+        return pipe(
+          pick(Object.keys(handlers)),
+          mapValues((handler: DelayedHandler) => {
+            const handlerDebounced = enableDebounce && debounce(delayTimeout)(callback => callback());
+            const handlerThrottled = enableThrottle && throttle(delayTimeout)(callback => callback());
 
-      Object.keys(handlers).forEach(key => {
-        console.log("handler", key);
-        console.log(delayTimeout, enableDebounce, enableThrottle);
-        const handler = props[key];
-        const handlerDebounced = enableDebounce && debounce(handler, delayTimeout);
-        const handlerThrottled = enableThrottle && throttle(handler, delayTimeout);
+            const delayedHandler = (...args) => {
+              const callback = handler(...args);
 
-        const wrapper = (...args) => {
-          console.log("handler called", key, args);
-          if (handlerDebounced) {
-            handlerDebounced(...args);
-          }
+              if (handlerDebounced) {
+                handlerDebounced(callback);
+              }
 
-          if (handlerThrottled) {
-            handlerThrottled(...args);
-          }
-        };
+              if (handlerThrottled) {
+                handlerThrottled(callback);
+              }
+            };
 
-        // wrapper.cancel = () => {
-        //   if (handlerDebounced) {
-        //     handlerDebounced.cancel();
-        //   }
-        //
-        //   if (handlerThrottled) {
-        //     handlerThrottled.cancel();
-        //   }
-        // };
+            delayedHandler.cancel = () => {
+              if (handlerDebounced) {
+                handlerDebounced.cancel();
+              }
 
-        result[key] = enableDebounce || enableThrottle ? wrapper : handler;
-      });
+              if (handlerThrottled) {
+                handlerThrottled.cancel();
+              }
 
-      console.log(result);
-      // debugger;
+            };
 
-      return result;
+            return delayedHandler;
+          })
+        )(props);
+      }
     }
   ),
   lifecycle({
