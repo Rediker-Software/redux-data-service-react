@@ -6,7 +6,7 @@ import "rxjs/add/operator/switchMap";
 import { Observable } from "rxjs/Observable";
 
 import { branch, compose, ComponentEnhancer, defaultProps, mapPropsStreamWithConfig } from "recompose";
-import { getDataService, IQueryBuilder, IQueryManager, IQueryParams, QueryBuilder } from "redux-data-service";
+import { getDataService, IModel, IQueryBuilder, IQueryManager, IQueryParams, QueryBuilder } from "redux-data-service";
 
 import { defaultsDeep } from "lodash";
 
@@ -16,6 +16,11 @@ import rxjsConfig from "recompose/rxjsObservableConfig";
 export interface IWithModelQueryProps {
   query?: IQueryParams | IQueryBuilder;
   items?: any[];
+}
+
+export interface IWithModelQueryMappedProps<T extends IModel<any> = any> {
+  query: IQueryManager<any>;
+  items: T[];
 }
 
 export interface IWithModelQueryOptions extends IWithModelQueryProps, IWithLoadingIndicatorProps {
