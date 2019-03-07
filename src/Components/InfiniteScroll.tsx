@@ -81,9 +81,14 @@ const DefaultContentPlaceHolder = ({ height }: IContentPlaceHolderProps) => {
 
 const LoadingComponent = ({
   contentPlaceHolderComponent: Component,
-  contentPlaceHolderComponentProps = {}
+  contentPlaceHolderComponentProps = {},
+  ...props
 }) => (
-  Component && <Component height="100%" {...contentPlaceHolderComponentProps} />
+  <Component
+    height="100%"
+    {...props}
+    {...contentPlaceHolderComponentProps}
+  />
 );
 
 /**
@@ -239,8 +244,6 @@ export const InfiniteScroll = compose<IInfiniteScrollInternalProps<any>, IInfini
       totalPages,
       updateState,
     }) => ({ target: { clientHeight, scrollHeight, scrollTop } }) => () => {
-      console.log("handleScroll executed");
-
       const updatedState = {
         lastScrollTop: scrollTop
       } as Partial<IInfiniteScrollStateProps<any>>;

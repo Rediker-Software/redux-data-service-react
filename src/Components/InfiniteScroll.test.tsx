@@ -8,6 +8,7 @@ import {
   QueryBuilder,
   QueryManager
 } from "redux-data-service";
+
 import { of as of$ } from "rxjs/observable/of";
 
 import { stub } from "sinon";
@@ -48,13 +49,20 @@ describe("<InfiniteScroll />", () => {
     </div>
   );
 
-  const fakeService = "fakeModel";
-  const pageSize = 10;
-  const totalPages = 10;
-  const delayTimeout = 200;
+  let fakeService;
+  let pageSize;
+  let totalPages;
+  let delayTimeout;
 
-  initializeTestServices(fakeModelModule);
-  seedServiceListWithPagingOptions(fakeService, pageSize, totalPages);
+  beforeEach(() => {
+    fakeService = "fakeModel";
+    pageSize = 10;
+    totalPages = 10;
+    delayTimeout = 200;
+
+    initializeTestServices(fakeModelModule);
+    seedServiceListWithPagingOptions(fakeService, pageSize, totalPages);
+  });
 
   it("renders an <InfiniteScroll/>", () => {
     usingMount(
@@ -475,7 +483,7 @@ describe("<InfiniteScroll />", () => {
           );
         });
 
-        it("should render the given loadingComponent if the initial query does not yet have a response", async () => {
+        it("should render the given contentPlaceHolderComponent if the initial query does not yet have a response", async () => {
           const service = getDataService(fakeService);
           const queryParams = { page: 1 };
           const queryBuilder = new QueryBuilder(fakeService, queryParams);
@@ -488,7 +496,7 @@ describe("<InfiniteScroll />", () => {
 
           await usingMount(
             <InfiniteScroll
-              loadingComponent={FakeComponent}
+              contentPlaceHolderComponent={FakeComponent}
               containerComponent={TestContainer}
               modelComponent={TestContainerModel}
               modelComponentProps={{ testModelProp: "testing model prop" }}

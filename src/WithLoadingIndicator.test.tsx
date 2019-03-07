@@ -6,7 +6,7 @@ import { shallow } from "enzyme";
 import { spy, stub } from "sinon";
 
 import "./TestUtils/TestSetup";
-import { defaultShowLoadingIndicator, withLoadingIndicator } from "./WithLoadingIndicator";
+import { withLoadingIndicator } from "./WithLoadingIndicator";
 import { DefaultLoadingComponent } from "./DefaultLoadingComponent";
 import { FakeComponent, usingMount } from "./TestUtils";
 
@@ -38,7 +38,7 @@ describe("withLoadingIndicator", () => {
 
   it("uses an optional test function to determine if it should show the loading indicator", () => {
     const test = () => true;
-    const Component = withLoadingIndicator(test)(exampleComponent);
+    const Component = withLoadingIndicator({ isLoading: test })(exampleComponent);
     usingMount(<Component/>, (wrapper) => {
       expect(wrapper.find(DefaultLoadingComponent).exists()).to.be.true;
     });
@@ -52,7 +52,7 @@ describe("withLoadingIndicator", () => {
   });
 
   it("renders the given loading component", () => {
-    const Component = withLoadingIndicator(defaultShowLoadingIndicator, FakeComponent)(exampleComponent);
+    const Component = withLoadingIndicator({ loadingComponent: FakeComponent })(exampleComponent);
     usingMount(<Component isLoading/>, (wrapper) => {
       expect(wrapper.find(FakeComponent).exists()).to.be.true;
     });
