@@ -79,7 +79,7 @@ describe("withDelayedHandlers() HOC", () => {
     );
   });
 
-  it("only throttles the callback when enableDebunce is false", async () => {
+  it("only throttles the callback when enableDebounce is false", async () => {
     await usingMount(
       <Component enableDebounce={false} />,
       async wrapper => {
