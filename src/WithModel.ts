@@ -47,7 +47,7 @@ export function withModel<P>(options?: IWithModelProps): ComponentEnhancer<P, P 
         }),
       )),
     ),
-    withLoadingIndicator(props => props[props.modelPropKey] == null),
+    withLoadingIndicator({ isLoading: props => props[props.modelPropKey] == null }),
     mapProps(({ idPropKey, modelPropKey, modelName, ...props }) => props),
   );
 }

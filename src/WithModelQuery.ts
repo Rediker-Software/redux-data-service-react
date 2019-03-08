@@ -6,7 +6,7 @@ import "rxjs/add/operator/switchMap";
 import { Observable } from "rxjs/Observable";
 
 import { branch, compose, ComponentEnhancer, defaultProps, mapPropsStreamWithConfig } from "recompose";
-import { getDataService, IQueryBuilder, IQueryManager, IQueryParams, QueryBuilder } from "redux-data-service";
+import { getDataService, IModel, IQueryBuilder, IQueryManager, IQueryParams, QueryBuilder } from "redux-data-service";
 
 import { defaultsDeep } from "lodash";
 
@@ -16,6 +16,11 @@ import rxjsConfig from "recompose/rxjsObservableConfig";
 export interface IWithModelQueryProps {
   query?: IQueryParams | IQueryBuilder;
   items?: any[];
+}
+
+export interface IWithModelQueryMappedProps<T extends IModel<any> = any> {
+  query: IQueryManager<any>;
+  items: T[];
 }
 
 export interface IWithModelQueryOptions extends IWithModelQueryProps, IWithLoadingIndicatorProps {
@@ -29,14 +34,21 @@ export interface IWithModelQueryOptions extends IWithModelQueryProps, IWithLoadi
  * Automatically updates (rerenders) the component when the observable updates and
  * automatically unsubscribes on unmount
  */
-export function withModelQuery<P = {}>(options?: IWithModelQueryOptions & P): ComponentEnhancer<P, P> {
+export function withModelQuery<P = {}>(options?: IWithModelQueryOptions & P): ComponentEnhancer<P & IWithModelQueryMappedProps, P & IWithModelQueryProps> {
   return compose<P & { items: any[], query: IQueryManager<any> }, P & IWithModelQueryOptions>(
-    defaultProps(options || {}),
+    defaultProps({
+      isLoading: ({ items }) => items == null,
+      ...options
+    }),
     branch(
-      ({ items, modelName }) => modelName && items == null,
+      ({ items, modelName, query }) => items == null && (modelName != null || query instanceof QueryBuilder),
       mapPropsStreamWithConfig(rxjsConfig)<any, P>((props$: Observable<any>) =>
         props$.combineLatest(
           props$.switchMap(({ modelName, query }: IWithModelQueryOptions) => {
+            if (!modelName && query instanceof QueryBuilder) {
+              modelName = query.serviceName;
+            }
+
             const service = getDataService(modelName);
 
             const observable = (query instanceof QueryBuilder)
@@ -55,6 +67,6 @@ export function withModelQuery<P = {}>(options?: IWithModelQueryOptions & P): Co
         ),
       ),
     ),
-    withLoadingIndicator<IWithModelQueryOptions>(({ items }) => items == null),
+    withLoadingIndicator<IWithModelQueryOptions>(),
   );
 }
