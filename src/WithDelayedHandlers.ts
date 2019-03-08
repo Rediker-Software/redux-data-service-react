@@ -14,6 +14,8 @@ export interface IWithDelayedHandlers {
   enableThrottle?: boolean;
 }
 
+export const DELAY_TIMEOUT = 200;
+
 /**
  * An HOC which wraps recompose's `withHandlers` HOC, then wraps each of the given callback handlers
  * with `debounce` and `throttle` from `lodash` for the given `delayTimeout`.
@@ -23,7 +25,7 @@ export const withDelayedHandlers = <TOuterProps = any>(
   options: IWithDelayedHandlers = {}
 ) => compose<TOuterProps & IWithDelayedHandlers, TOuterProps>(
   defaultProps({
-    delayTimeout: 200,
+    delayTimeout: DELAY_TIMEOUT,
     enableDebounce: true,
     enableThrottle: true,
     ...options,
@@ -32,14 +34,15 @@ export const withDelayedHandlers = <TOuterProps = any>(
   withPropsOnChange(
     ["delayTimeout", "enableDebounce", "enableThrottle"].concat(Object.keys(handlers)),
     ({ delayTimeout, enableDebounce, enableThrottle, ...props }: IWithDelayedHandlers & TOuterProps) => {
-      if (enableDebounce || enableThrottle) {
-        return pipe(
-          pick(Object.keys(handlers)),
-          mapValues((handler: DelayedHandler) => {
+      return pipe(
+        pick(Object.keys(handlers)),
+        mapValues((handler: DelayedHandler) => {
+          if (enableDebounce || enableThrottle) {
+
             const handlerDebounced = enableDebounce && debounce(delayTimeout)(callback => callback());
             const handlerThrottled = enableThrottle && throttle(delayTimeout)(callback => callback());
 
-            const delayedHandler = (...args) => {
+            const delayedHandler: any = (...args) => {
               const callback = handler(...args);
 
               if (handlerDebounced) {
@@ -63,9 +66,12 @@ export const withDelayedHandlers = <TOuterProps = any>(
             };
 
             return delayedHandler;
-          })
-        )(props);
-      }
+          } else {
+            return (...args) => handler(...args)();
+          }
+
+        })
+      )(props);
     }
   ),
   lifecycle({
