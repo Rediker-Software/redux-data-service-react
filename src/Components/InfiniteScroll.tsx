@@ -45,14 +45,14 @@ export interface IInfiniteScrollStateProps<T extends IModelData> {
   hasPreviousPage: boolean;
   lastScrollTop: number;
   nextPage: number;
-  nextPageQuery: IQueryBuilder;
   nextPageEndMarkerRef: React.RefObject<any>;
+  nextPageQuery: IQueryBuilder;
   nextPageStartMarkerRef: React.RefObject<any>;
   nextPlaceHolderHeight: number;
   pageHeightMap: { [key: string]: number };
   previousPage: number;
-  previousPageQuery: IQueryBuilder;
   previousPageEndMarkerRef: React.RefObject<any>;
+  previousPageQuery: IQueryBuilder;
   previousPageStartMarkerRef: React.RefObject<any>;
   previousPlaceHolderHeight: number;
   query: IQueryBuilder;
@@ -111,14 +111,14 @@ export const InfiniteScroll = compose<IInfiniteScrollInternalProps<any>, IInfini
       hasPreviousPage: false,
       lastScrollTop: 0,
       nextPage: null,
-      nextPageQuery: null,
       nextPageEndMarkerRef: React.createRef(),
+      nextPageQuery: null,
       nextPageStartMarkerRef: React.createRef(),
       nextPlaceHolderHeight: 0,
       pageHeightMap: {},
       previousPage: null,
-      previousPageQuery: null,
       previousPageEndMarkerRef: React.createRef(),
+      previousPageQuery: null,
       previousPageStartMarkerRef: React.createRef(),
       previousPlaceHolderHeight: 0,
       query: query instanceof QueryBuilder
@@ -312,22 +312,22 @@ export const InfiniteScroll = compose<IInfiniteScrollInternalProps<any>, IInfini
   disableVirtualScrolling,
   estimatedPageHeight,
   handleScroll,
-  hasPreviousPage,
   hasNextPage,
+  hasPreviousPage,
   modelComponent: ModelComponent,
   modelComponentProps,
   modelName,
   nextPage,
+  nextPageEndMarkerRef,
   nextPageQuery,
+  nextPageStartMarkerRef,
   nextPlaceHolderHeight,
   pageHeightMap,
   previousPage,
-  previousPageQuery,
   previousPageEndMarkerRef,
-  previousPageStartMarkerRef,
+  previousPageQuery,
   previousPlaceHolderHeight,
-  nextPageStartMarkerRef,
-  nextPageEndMarkerRef,
+  previousPageStartMarkerRef,
   ...containerProps
 }) => (
   <ContainerComponent {...containerProps} onScroll={handleScroll}>
