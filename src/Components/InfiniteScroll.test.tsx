@@ -6,7 +6,8 @@ import {
   getDataService,
   initializeTestServices,
   QueryBuilder,
-  QueryManager, setTimeoutPromise
+  QueryManager,
+  setTimeoutPromise
 } from "redux-data-service";
 
 import { of as of$ } from "rxjs/observable/of";
