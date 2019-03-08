@@ -6,7 +6,7 @@ import {
   getDataService,
   initializeTestServices,
   QueryBuilder,
-  QueryManager
+  QueryManager, setTimeoutPromise
 } from "redux-data-service";
 
 import { of as of$ } from "rxjs/observable/of";
@@ -201,12 +201,12 @@ describe("<InfiniteScroll />", () => {
             query={{ page: 5 }}
             modelName={fakeService}
             disableVirtualScrolling
-          />, wrapper => {
+          />, wrapper => setTimeoutPromise(() => {
             expect(wrapper.find(".page1")).to.have.lengthOf(pageSize);
             expect(wrapper.find(".page2")).to.have.lengthOf(pageSize);
             expect(wrapper.find(".page3")).to.have.lengthOf(pageSize);
             expect(wrapper.find(".page4")).to.have.lengthOf(pageSize);
-          },
+          }),
         );
       });
 

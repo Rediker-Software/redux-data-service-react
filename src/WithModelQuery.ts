@@ -34,7 +34,7 @@ export interface IWithModelQueryOptions extends IWithModelQueryProps, IWithLoadi
  * Automatically updates (rerenders) the component when the observable updates and
  * automatically unsubscribes on unmount
  */
-export function withModelQuery<P = {}>(options?: IWithModelQueryOptions & P): ComponentEnhancer<P, P> {
+export function withModelQuery<P = {}>(options?: IWithModelQueryOptions & P): ComponentEnhancer<P & IWithModelQueryMappedProps, P & IWithModelQueryProps> {
   return compose<P & { items: any[], query: IQueryManager<any> }, P & IWithModelQueryOptions>(
     defaultProps({
       isLoading: ({ items }) => items == null,
