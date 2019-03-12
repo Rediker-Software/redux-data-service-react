@@ -19,7 +19,7 @@ import { Query } from "../Query";
 import { withModelQuery } from "../WithModelQuery";
 import { average, calculateGroupHeight, omitProps } from "../Helpers";
 import { IWithDelayedHandlers, withDelayedHandlers } from "../WithDelayedHandlers";
-import { withLoadingIndicator } from "../WithLoadingIndicator";
+
 import { InfiniteScrollPreviousPage } from "./InfiniteScrollPreviousPage";
 
 export interface IInfiniteScrollProps<T extends IModelData> extends IWithDelayedHandlers {
@@ -79,18 +79,6 @@ const DefaultContentPlaceHolder = ({ height }: IContentPlaceHolderProps) => {
   );
 };
 
-const LoadingComponent = ({
-  contentPlaceHolderComponent: Component,
-  contentPlaceHolderComponentProps = {},
-  ...props
-}) => (
-  <Component
-    height="100%"
-    {...props}
-    {...contentPlaceHolderComponentProps}
-  />
-);
-
 /**
  * Adds infinite and virtual scroll capability to a container and model component,
  * querying for the next page of results when scrolling down (or up if virtual scrolling).
@@ -141,7 +129,7 @@ export const InfiniteScroll = compose<IInfiniteScrollInternalProps<any>, IInfini
       }),
     },
   ),
-  withModelQuery({ loadingComponent: LoadingComponent }),
+  withModelQuery(),
   withPropsOnChange(["currentPage", "pageHeightMap", "totalPages"], ({
     currentPage,
     pageHeightMap,
@@ -287,10 +275,6 @@ export const InfiniteScroll = compose<IInfiniteScrollInternalProps<any>, IInfini
       }
     },
   }),
-  withLoadingIndicator({
-    isLoading: ({ currentItems }) => currentItems == null,
-    loadingComponent: LoadingComponent
-  }),
   omitProps([
     "currentPage",
     "items",
@@ -368,9 +352,13 @@ export const InfiniteScroll = compose<IInfiniteScrollInternalProps<any>, IInfini
 
     <script ref={currentPageStartMarkerRef} />
 
-    {currentItems.map(model => (
-      <ModelComponent key={model.id} model={model} {...modelComponentProps} />
-    ))}
+    {(
+      currentItems == null
+        ? <ContentPlaceHolder height="100%" {...contentPlaceHolderComponentProps} />
+        : currentItems.map(model => (
+          <ModelComponent key={model.id} model={model} {...modelComponentProps} />
+        ))
+    )}
 
     <script ref={currentPageEndMarkerRef} />
 
