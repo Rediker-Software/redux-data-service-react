@@ -1,5 +1,4 @@
 const TsConfigPathsPlugin = require("awesome-typescript-loader").TsConfigPathsPlugin;
-const DotenvPlugin = require("dotenv-webpack");
 const { join } = require("path");
 
 module.exports = function (config, env, defaultConfig) {
@@ -33,7 +32,6 @@ module.exports = function (config, env, defaultConfig) {
     new TsConfigPathsPlugin({ configFileName: "./tsconfig.json" }),
   ];
 
-  defaultConfig.plugins.push(new DotenvPlugin({ path: join(__dirname, "./.env"), systemvars: true }));
   defaultConfig.watch = true;
 
   return defaultConfig;
