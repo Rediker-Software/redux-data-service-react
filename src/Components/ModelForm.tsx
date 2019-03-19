@@ -10,6 +10,7 @@ export interface IModelFormProps {
   onSave?: (model: IModel<any>) => void;
   onError?: (errors: any) => void;
   onCancel?: () => void;
+  readOnly?: boolean;
 }
 
 interface IModelFormInternalProps extends React.FormHTMLAttributes<any> {
@@ -35,7 +36,8 @@ const Form = ({ children, ...props }: React.FormHTMLAttributes<any>) => (
 export const ModelForm = compose<IModelFormInternalProps, IModelFormProps>(
   setDisplayName("ModelForm"),
   defaultProps({
-    formComponent: Form
+    formComponent: Form,
+    readOnly: false
   }),
   withHandlers<IModelFormProps, { onSubmit }>({
     onSubmit: (props) => (e) => {

@@ -1,5 +1,4 @@
 // tslint:disable no-unused-expression
-
 import * as React from "react";
 import * as PropTypes from "prop-types";
 
@@ -11,7 +10,7 @@ import {
   seedService
 } from "redux-data-service";
 
-import { compose, getContext, mapProps } from "recompose";
+import { compose, getContext } from "recompose";
 
 import { spy, stub } from "sinon";
 import { lorem } from "faker";
@@ -135,16 +134,17 @@ describe("<ModelField />", () => {
 
     it("renders the passed readOnlyComponent when in read only mode", () => {
       const model = seedService<IFakeModel>("fakeModel");
+      const component = <div></div>;
 
       usingMount(
         <ModelForm model={model} readOnly>
           <ModelField
             name="fullText"
             component={Input}
-            readOnlyComponent={Card}
+            readOnlyComponent={component}
           />
         </ModelForm>, (wrapper) => {
-          expect(wrapper.find(Card).exists()).to.be.true;
+          expect(wrapper.find(component).exists()).to.be.true;
         }, { context: { model }}
       );
     });

@@ -3,7 +3,15 @@ import * as PropTypes from "prop-types";
 import { IModel, Omit } from "redux-data-service";
 
 import { get, isEmpty, set } from "lodash";
-import { compose, defaultProps, getContext, mapProps, setDisplayName, withStateHandlers, withPropsOnChange, withContext } from "recompose";
+import {
+  compose,
+  defaultProps,
+  getContext,
+  setDisplayName,
+  withStateHandlers,
+  withPropsOnChange,
+  withContext
+} from "recompose";
 
 import { omitProps } from "../Helpers";
 
@@ -16,7 +24,7 @@ export interface IFieldInputProps {
   value?: any;
 }
 
-export interface IModelFieldProps<T = any> extends Omit<IFieldInputProps, "value"> {
+export interface IModelFieldProps<T = any> extends Omit<Partial<IFieldInputProps>, "value"> {
   readOnlyFieldName?: string;
   validateField?: (model: IModel<any>, name: string) => void;
   defaultValue?: any;
