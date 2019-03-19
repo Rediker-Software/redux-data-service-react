@@ -1,4 +1,5 @@
 // tslint:disable no-unused-expression
+
 import * as React from "react";
 import * as PropTypes from "prop-types";
 
@@ -10,9 +11,7 @@ import {
   seedService
 } from "redux-data-service";
 
-import { compose, getContext } from "recompose";
-
-import { Card } from "@material-ui/core";
+import { compose, getContext, mapProps } from "recompose";
 
 import { spy, stub } from "sinon";
 import { lorem } from "faker";
