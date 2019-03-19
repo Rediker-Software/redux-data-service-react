@@ -1,25 +1,30 @@
 // tslint:disable no-unused-expression
-
 import * as React from "react";
 import * as PropTypes from "prop-types";
 
-import { IFakeModel, getDataService, initializeTestServices, seedService } from "redux-data-service";
-import { compose, getContext, mapProps } from "recompose";
+import {
+  fakeModelModule,
+  IFakeModel,
+  getDataService,
+  initializeTestServices,
+  seedService
+} from "redux-data-service";
+
+import { compose, getContext } from "recompose";
 
 import { Card } from "@material-ui/core";
 
 import { spy, stub } from "sinon";
 import { lorem } from "faker";
-import "TestUtils/TestSetup";
+import "../TestUtils/TestSetup";
 
 import {
   usingMount,
   simulateBlurEvent,
   simulateFocusEvent,
   simulateFormInput,
-} from "TestUtils";
+} from "../TestUtils";
 
-import modules from "Modules";
 import { ModelForm } from "./ModelForm";
 import { ModelField } from "./ModelField";
 import { Input } from "./Input";
@@ -32,7 +37,7 @@ const { expect } = intern.getPlugin("chai");
 describe("<ModelField />", () => {
 
   beforeEach(() => {
-    initializeTestServices(modules);
+    initializeTestServices(fakeModelModule);
   });
 
   describe("sets the default value", () => {
@@ -314,7 +319,7 @@ describe("<ModelField />", () => {
     });
 
     it("does not trigger an optional onFocus callback when no onFocus event occurs", () => {
-      initializeTestServices(modules);
+      initializeTestServices(fakeModelModule);
 
       const onFocusSpy = spy();
       const model = seedService<IFakeModel>("fakeModel");
