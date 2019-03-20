@@ -56,7 +56,7 @@ let Input;
 let FormCheckbox;
 
 Input = <input />;
-FormCheckbox = <input type="checkbox" />
+FormCheckbox = <input type="checkbox" />;
 
 storiesOf("ModelForm", module)
   .addDecorator(story => {
