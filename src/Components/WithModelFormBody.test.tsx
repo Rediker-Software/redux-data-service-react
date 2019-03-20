@@ -3,7 +3,7 @@ import * as React from "react";
 import { fakeModelModule, IFakeModel, initializeTestServices, seedService } from "redux-data-service";
 
 import { usingMount } from "../TestUtils";
-import "TestUtils/TestSetup";
+import "../TestUtils/TestSetup";
 
 import { withModelFormBody } from "./WithModelFormBody";
 

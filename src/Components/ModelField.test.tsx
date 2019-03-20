@@ -25,8 +25,6 @@ import {
 
 import { ModelForm } from "./ModelForm";
 import { ModelField } from "./ModelField";
-import { Input } from "./Input";
-import { Typography } from "../Layout";
 
 declare var intern;
 const { describe, it, beforeEach } = intern.getPlugin("interface.bdd");
@@ -34,8 +32,11 @@ const { expect } = intern.getPlugin("chai");
 
 describe("<ModelField />", () => {
 
+  let Input;
+
   beforeEach(() => {
     initializeTestServices(fakeModelModule);
+    Input = <input />;
   });
 
   describe("sets the default value", () => {
@@ -134,7 +135,11 @@ describe("<ModelField />", () => {
 
     it("renders the passed readOnlyComponent when in read only mode", () => {
       const model = seedService<IFakeModel>("fakeModel");
-      const component = <div></div>;
+      const component = () => {
+        return (
+          <div>Read Only Text</div>
+        );
+      };
 
       usingMount(
         <ModelForm model={model} readOnly>
@@ -159,7 +164,7 @@ describe("<ModelField />", () => {
             component={Input}
           />
         </ModelForm>, (wrapper) => {
-          expect(wrapper.find(Typography).exists()).to.be.false;
+          expect(wrapper.find(Input).exists()).to.be.false;   // used to be Typography component it was looking for
         }, { context: { model }}
       );
     });

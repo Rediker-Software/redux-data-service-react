@@ -23,6 +23,7 @@
   },
   "devDependencies": {
     "@dump247/storybook-state": "^1.5.0",
+    "@storybook/addon-actions": "^3.4.10",
     "@storybook/addon-backgrounds": "^3.4.10",
     "@storybook/addon-centered": "^3.4.10",
     "@storybook/addon-info": "^3.4.10",

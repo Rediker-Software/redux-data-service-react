@@ -9,18 +9,15 @@ import {
   initializeTestServices,
   Model as RDSModel,
   seedService,
-  StringField } from "redux-data-service";
-import { Model } from "redux-data-service-react";
+  StringField
+} from "redux-data-service";
+
+import { Model } from "../Model";
 import { lorem, random } from "faker";
 
-import { Grid, Paper } from "@material-ui/core";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
-import { withInfo } from "@storybook/addon-info";
 
-import { Card, Typography } from "Common/Layout";
-import { FormCheckbox } from "./FormCheckbox";
-import { Input } from "./Input";
 import { ModelForm } from "./ModelForm";
 import { ModelField } from "./ModelField";
 
@@ -55,6 +52,11 @@ function createMockModelFormFakeModel(id?: string): IModelFormFakeModelData {
 }
 
 let fakeModel;
+let Input;
+let FormCheckbox;
+
+Input = <input />;
+FormCheckbox = <input type="checkbox" />
 
 storiesOf("ModelForm", module)
   .addDecorator(story => {
@@ -86,35 +88,27 @@ storiesOf("ModelForm", module)
       )}
     </Model>
   ))
-  .add("With checkbox", withInfo({ inline: true })(() => (
-    <Model modelName="modelFormFakeModel" id={fakeModel.id}>
-      {({ model }) => (
-        <div style={{ padding: "20px" }}>
-          <Paper>
+  .add("With checkbox", () => (
+      <Model modelName="modelFormFakeModel" id={fakeModel.id}>
+        {({ model }) => (
+          <div style={{ padding: "20px" }}>
             <ModelForm model={model}>
-              <Grid container alignItems="center" spacing={8}>
-                <Grid item>
-                  <ModelField
-                    name="id"
-                    component={Input}
-                    label="ID"
-                  />
-                </Grid>
-                <Grid item>
-                  <ModelField
-                    name="checkbox"
-                    component={FormCheckbox}
-                    checkboxLabel="Checkbox"
-                  />
-                </Grid>
-              </Grid>
+              <ModelField
+                name="id"
+                component={Input}
+                label="ID"
+              />
+              <ModelField
+                name="checkbox"
+                component={FormCheckbox}
+                checkboxLabel="Checkbox"
+              />
             </ModelForm>
-          </Paper>
-        </div>
-      )}
-    </Model>
-  )))
-  .add("Disabled - default", withInfo({ inline: true })(() => (
+          </div>
+        )}
+      </Model>
+  ))
+  .add("Disabled - default", () => (
     <Model modelName="modelFormFakeModel" id={fakeModel.id}>
       {({ model }) => (
         <ModelForm model={model} readOnly>
@@ -125,15 +119,15 @@ storiesOf("ModelForm", module)
         </ModelForm>
       )}
     </Model>
-  )))
-  .add("Disabled - optional", withInfo({ inline: true })(() => {
+  ))
+  .add("Disabled - optional", () => {
 
     const Component = ({ value }) => (
-      <Card>
-        <Typography>
+      <span>
+        <div>
           {value}
-        </Typography>
-      </Card>
+        </div>
+      </span>
     );
 
     return (
@@ -149,5 +143,4 @@ storiesOf("ModelForm", module)
         )}
       </Model>
     );
-  }))
-;
+  });
