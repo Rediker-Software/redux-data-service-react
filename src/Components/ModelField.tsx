@@ -47,10 +47,19 @@ export interface IFieldContext {
 
 export const defaultValidateField = (model: IModel<any>, name: string) => model.validateField(name);
 
+export const Field = ({ component: Component, componentProps, readOnly, readOnlyComponent: ReadOnlyComponent, readOnlyComponentProps, ...props }) => (
+  readOnly
+    ? <ReadOnlyComponent {...props} {...readOnlyComponentProps} />
+    : <Component {...props} {...componentProps} />
+);
+
 export const ModelField = compose<IModelFieldProps, IModelFieldProps>(
   setDisplayName("ModelField"),
   defaultProps({
     validateField: defaultValidateField,
+    fieldComponent: Field,
+    readOnlyComponent: ({ value }) => <span>{value}</span>,
+    component: (props) => <input {...props} />
   }),
   getContext({
     model: PropTypes.object,
@@ -130,4 +139,4 @@ export const ModelField = compose<IModelFieldProps, IModelFieldProps>(
       : get(model, name)
   })),
   omitProps(["model", "active", "internalErrorMessage", "onFieldError", "defaultValue", "validateField", "readOnlyFieldName"])
-)(({ fieldComponent: Field, ...props }) => <Field {...props} />);
+)(({ fieldComponent: FieldComponent, ...props }) => <FieldComponent {...props} />);

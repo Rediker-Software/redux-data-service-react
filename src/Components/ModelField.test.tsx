@@ -4,6 +4,7 @@ import * as PropTypes from "prop-types";
 
 import {
   fakeModelModule,
+  IFakeModelData,
   IFakeModel,
   getDataService,
   initializeTestServices,
@@ -36,7 +37,7 @@ describe("<ModelField />", () => {
 
   beforeEach(() => {
     initializeTestServices(fakeModelModule);
-    Input = <input />;
+    Input = () => <input />;
   });
 
   describe("sets the default value", () => {
@@ -88,7 +89,7 @@ describe("<ModelField />", () => {
   });
 
   describe("handles the read only state", () => {
-    it("renders a ReadOnlyTextField by default when in read only mode", () => {
+    it("renders a span by default when in read only mode", () => {
       const model = seedService<IFakeModel>("fakeModel");
 
       usingMount(
@@ -98,12 +99,12 @@ describe("<ModelField />", () => {
             component={Input}
           />
         </ModelForm>, (wrapper) => {
-          expect(wrapper.find("ReadOnlyTextField").exists()).to.be.true;
+          expect(wrapper.find("span").exists()).to.be.true;
         }, { context: { model }}
       );
     });
 
-    it("renders a ReadOnlyEmptyField by default when in read only mode and value is null", () => {
+    it("renders a span by default when in read only mode and value is null", () => {
       const model = seedService<IFakeModel>("fakeModel", { fullText: null });
 
       usingMount(
@@ -113,12 +114,12 @@ describe("<ModelField />", () => {
             component={Input}
           />
         </ModelForm>, (wrapper) => {
-          expect(wrapper.find("ReadOnlyEmptyField").exists()).to.be.true;
+          expect(wrapper.find("span").exists()).to.be.true;
         }, { context: { model }}
       );
     });
 
-    it("renders a ReadOnlyEmptyField by default when in read only mode and value length is 0", () => {
+    it("renders a span by default when in read only mode and value length is 0", () => {
       const model = seedService<IFakeModel>("fakeModel", { fullText: "" });
 
       usingMount(
@@ -128,7 +129,7 @@ describe("<ModelField />", () => {
             component={Input}
           />
         </ModelForm>, (wrapper) => {
-          expect(wrapper.find("ReadOnlyEmptyField").exists()).to.be.true;
+          expect(wrapper.find("span").exists()).to.be.true;
         }, { context: { model }}
       );
     });
@@ -164,7 +165,7 @@ describe("<ModelField />", () => {
             component={Input}
           />
         </ModelForm>, (wrapper) => {
-          expect(wrapper.find(Input).exists()).to.be.false;   // used to be Typography component it was looking for
+          expect(wrapper.find("span").exists()).to.be.false;
         }, { context: { model }}
       );
     });
@@ -183,7 +184,6 @@ describe("<ModelField />", () => {
           <ModelField
             name="fullText"
             label="First Name *"
-            component={Input}
           />
         </ModelForm>, (wrapper) => {
           simulateFormInput(wrapper, { fullText: expectedValue });
@@ -206,7 +206,6 @@ describe("<ModelField />", () => {
           <ModelField
             name="fullText"
             label="First Name *"
-            component={Input}
             onChange={onChangeSpy}
           />
         </ModelForm>, (wrapper) => {
@@ -230,7 +229,6 @@ describe("<ModelField />", () => {
           <ModelField
             name="fullText"
             label="First Name *"
-            component={Input}
             onChange={onChangeSpy}
           />
         </ModelForm>, () => {
@@ -251,7 +249,6 @@ describe("<ModelField />", () => {
           <ModelField
             name="fullText"
             label="First Name *"
-            component={Input}
           />
         </ModelForm>, (wrapper) => {
           simulateBlurEvent(wrapper, "fullText");
@@ -270,7 +267,6 @@ describe("<ModelField />", () => {
           <ModelField
             name="fullText"
             label="First Name *"
-            component={Input}
             onBlur={onBlurSpy}
           />
         </ModelForm>, (wrapper) => {
@@ -290,7 +286,6 @@ describe("<ModelField />", () => {
           <ModelField
             name="fullText"
             label="First Name *"
-            component={Input}
             onBlur={onBlurSpy}
           />
         </ModelForm>, () => {
@@ -311,7 +306,6 @@ describe("<ModelField />", () => {
           <ModelField
             name="fullText"
             label="First Name *"
-            component={Input}
             onFocus={onFocusSpy}
           />
         </ModelForm>, (wrapper) => {
@@ -333,7 +327,6 @@ describe("<ModelField />", () => {
           <ModelField
             name="fullText"
             label="First Name *"
-            component={Input}
             onFocus={onFocusSpy}
           />
         </ModelForm>, () => {
@@ -374,7 +367,7 @@ describe("<ModelField />", () => {
         getContext({ field: PropTypes.object }),
       )(({ field }) => {
         field.onFieldError(expectedValue);
-        return <span/>;
+        return <span>{field.errorMessage}</span>;
       });
 
       usingMount(
@@ -384,7 +377,7 @@ describe("<ModelField />", () => {
         (wrapper) => {
           wrapper.update();
           expect(
-            wrapper.find("FormHelperText").first().text()
+            wrapper.find("span").first().text()
           ).to.equal(expectedValue);
         }
       );
@@ -392,59 +385,63 @@ describe("<ModelField />", () => {
 
   });
 
-  describe("sets color prop based on onFocus and onBlur events", () => {
-    let model;
+  describe("provides field state on child context", () => {
+    it("sets child context field.active to true when the input component is focused", () => {
+      const model = seedService("fakeModel");
 
-    beforeEach(() => {
-      model = seedService<IFakeModel>("fakeModel");
-    });
+      const Component = compose<any, any>(
+        getContext({ field: PropTypes.object }),
+      )(({ field, ...props }) => {
+        return (
+        <>
+          <input {...props} />
+          <span>{String(field.active)}</span>
+        </>
+        );
+      });
 
-    it("sets color to undefined prior to triggering an onFocus event", () => {
       usingMount(
         <ModelForm model={model}>
-          <ModelField
-            name="fullText"
-            label="First Name *"
-            component={Input}
-          />
-        </ModelForm>, wrapper => {
-          expect(wrapper.find("Field").prop("color")).to.be.an("undefined");
-        }, { context: { model } }
-      );
-    });
-
-    it("sets the color to be a string when the input component triggers an onFocus event", () => {
-      usingMount(
-        <ModelForm model={model}>
-          <ModelField
-            name="fullText"
-            label="First Name *"
-            component={Input}
-          />
-        </ModelForm>, wrapper => {
+          <ModelField name={"fullText"} component={Component} />
+        </ModelForm>,
+        (wrapper) => {
           simulateFocusEvent(wrapper, "fullText");
-
-          expect(wrapper.find("Field").prop("color")).to.be.a("string");
-        }, { context: { model } }
+          wrapper.update();
+          expect(
+            wrapper.find("span").first().text()
+          ).to.equal("true");
+        }
       );
     });
 
-    it("sets color to undefined when the input component triggers an onFocus event, does not change the input value, then triggers an onBlur event", () => {
+    it("sets child context field.isFieldDirty to true when the model's field has pending changes", () => {
+      let model = seedService<IFakeModelData>("fakeModel");
+      model = model.applyUpdates({ fullText: lorem.word() });
+
+      const Component = compose<any, any>(
+        getContext({ field: PropTypes.object }),
+      )(({ field, ...props }) => {
+        return (
+        <>
+          <input {...props} />
+          <span>{String(field.isFieldDirty)}</span>
+        </>
+        );
+      });
+
       usingMount(
         <ModelForm model={model}>
-          <ModelField
-            name="fullText"
-            label="First Name *"
-            component={Input}
-          />
-        </ModelForm>, wrapper => {
-          simulateFocusEvent(wrapper, "fullText");
-          simulateBlurEvent(wrapper, "fullText");
-
-          expect(wrapper.find("Field").prop("color")).to.be.an("undefined");
-        }, { context: { model } }
+          <ModelField name={"fullText"} component={Component} />
+        </ModelForm>,
+        (wrapper) => {
+          wrapper.update();
+          expect(
+            wrapper.find("span").first().text()
+          ).to.equal("true");
+        }
       );
     });
+
   });
 
 });

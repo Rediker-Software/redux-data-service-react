@@ -2,8 +2,9 @@ import * as React from "react";
 import { compose, defaultProps, setDisplayName, withHandlers } from "recompose";
 import { IModel } from "redux-data-service";
 
-import { withLoadingIndicator } from "../WithLoadingIndicator";
 import { omitProps } from "../Helpers";
+import { withLoadingIndicator } from "../WithLoadingIndicator";
+import { withModelFormBody } from "./WithModelFormBody";
 
 export interface IModelFormProps {
   model: IModel<any>;
@@ -65,5 +66,6 @@ export const ModelForm = compose<IModelFormInternalProps, IModelFormProps>(
     },
   }),
   withLoadingIndicator({ isLoading: ({ model }) => model == null }),
+  withModelFormBody(),
   omitProps([ "model", "onCancel", "onError", "onSave" ])
 )(({ formComponent: FormComponent, ...props }) => <FormComponent {...props} />);
