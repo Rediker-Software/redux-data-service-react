@@ -37,7 +37,6 @@ describe("<ModelField />", () => {
 
   beforeEach(() => {
     initializeTestServices(fakeModelModule);
-    Input = () => <input />;
   });
 
   describe("sets the default value", () => {
@@ -55,7 +54,6 @@ describe("<ModelField />", () => {
             name="fullText"
             label="First Name *"
             defaultValue={defaultValue}
-            component={Input}
           />
         </ModelForm>, () => {
           expect(setFieldStub.firstCall.args[0]).to.deep.equal({
@@ -78,7 +76,6 @@ describe("<ModelField />", () => {
             name="fullText"
             label="First Name *"
             value={lorem.word()}
-            component={Input}
           />
         </ModelForm>, () => {
           expect(setFieldStub.callCount).to.equal(0);
@@ -96,7 +93,6 @@ describe("<ModelField />", () => {
         <ModelForm model={model} readOnly>
           <ModelField
             name="fullText"
-            component={Input}
           />
         </ModelForm>, (wrapper) => {
           expect(wrapper.find("span").exists()).to.be.true;
@@ -111,7 +107,6 @@ describe("<ModelField />", () => {
         <ModelForm model={model} readOnly>
           <ModelField
             name="fullText"
-            component={Input}
           />
         </ModelForm>, (wrapper) => {
           expect(wrapper.find("span").exists()).to.be.true;
@@ -126,7 +121,6 @@ describe("<ModelField />", () => {
         <ModelForm model={model} readOnly>
           <ModelField
             name="fullText"
-            component={Input}
           />
         </ModelForm>, (wrapper) => {
           expect(wrapper.find("span").exists()).to.be.true;
@@ -146,7 +140,6 @@ describe("<ModelField />", () => {
         <ModelForm model={model} readOnly>
           <ModelField
             name="fullText"
-            component={Input}
             readOnlyComponent={component}
           />
         </ModelForm>, (wrapper) => {
@@ -162,7 +155,6 @@ describe("<ModelField />", () => {
         <ModelForm model={model}>
           <ModelField
             name="fullText"
-            component={Input}
           />
         </ModelForm>, (wrapper) => {
           expect(wrapper.find("span").exists()).to.be.false;
