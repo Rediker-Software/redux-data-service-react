@@ -184,6 +184,11 @@ You can also provide a `students` prop which will fall through to the wrapped co
   - `studentIds` is used as the prop to specify the ids for the `student` model
   - `students` is used as the prop to specify the model instances for the `student` model
 
+## `withModelFormBody(model: T, readOnly: boolean)`
+
+A higher-order component to wrap the inputs of the body of a ModelForm.
+
+- The given `model` and `readOnly` props will be passed along as child context, where they will be used by the `ModelField`.
 
 
 ## `withModelQuery(options)`
