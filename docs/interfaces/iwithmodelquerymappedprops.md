@@ -25,7 +25,7 @@
 
 **● items**: *`T`[]*
 
-*Defined in [WithModelQuery.ts:23](https://github.com/Rediker-Software/redux-data-service-react/blob/fea63e6/src/WithModelQuery.ts#L23)*
+*Defined in [WithModelQuery.ts:23](https://github.com/Rediker-Software/redux-data-service-react/blob/8909226/src/WithModelQuery.ts#L23)*
 
 ___
 <a id="query"></a>
@@ -34,7 +34,7 @@ ___
 
 **● query**: *`IQueryManager`<`any`>*
 
-*Defined in [WithModelQuery.ts:22](https://github.com/Rediker-Software/redux-data-service-react/blob/fea63e6/src/WithModelQuery.ts#L22)*
+*Defined in [WithModelQuery.ts:22](https://github.com/Rediker-Software/redux-data-service-react/blob/8909226/src/WithModelQuery.ts#L22)*
 
 ___
 

@@ -187,6 +187,13 @@ You can also provide a `students` prop which will fall through to the wrapped co
 > *   `studentIds` is used as the prop to specify the ids for the `student` model
 > *   `students` is used as the prop to specify the model instances for the `student` model
 
+`withModelFormBody(model: T, readOnly: boolean)`
+------------------------------------------------
+
+A higher-order component to wrap the inputs of the body of a ModelForm.
+
+*   The given `model` and `readOnly` props will be passed along as child context, where they will be used by the `ModelField`.
+
 `withModelQuery(options)`
 -------------------------
 
@@ -292,11 +299,17 @@ describe("Student", () => {
 * [IContentPlaceHolderProps](interfaces/icontentplaceholderprops.md)
 * [IDelayedHandlers](interfaces/idelayedhandlers.md)
 * [IFakeComponentProps](interfaces/ifakecomponentprops.md)
+* [IFieldContext](interfaces/ifieldcontext.md)
+* [IFieldInputProps](interfaces/ifieldinputprops.md)
 * [IInfiniteScrollInternalProps](interfaces/iinfinitescrollinternalprops.md)
 * [IInfiniteScrollPreviousPageInternalProps](interfaces/iinfinitescrollpreviouspageinternalprops.md)
 * [IInfiniteScrollPreviousPageProps](interfaces/iinfinitescrollpreviouspageprops.md)
 * [IInfiniteScrollProps](interfaces/iinfinitescrollprops.md)
 * [IInfiniteScrollStateProps](interfaces/iinfinitescrollstateprops.md)
+* [IModelFieldProps](interfaces/imodelfieldprops.md)
+* [IModelFormBodyProps](interfaces/imodelformbodyprops.md)
+* [IModelFormInternalProps](interfaces/imodelforminternalprops.md)
+* [IModelFormProps](interfaces/imodelformprops.md)
 * [IModelProps](interfaces/imodelprops.md)
 * [INewModelProps](interfaces/inewmodelprops.md)
 * [IQueryProps](interfaces/iqueryprops.md)
@@ -317,6 +330,8 @@ describe("Student", () => {
 * [InfiniteScroll](#infinitescroll)
 * [InfiniteScrollPreviousPage](#infinitescrollpreviouspage)
 * [Model](#model)
+* [ModelField](#modelfield)
+* [ModelForm](#modelform)
 * [NewModel](#newmodel)
 * [Query](#query)
 
@@ -324,19 +339,29 @@ describe("Student", () => {
 
 * [DefaultContentPlaceHolder](#defaultcontentplaceholder)
 * [DefaultLoadingComponent](#defaultloadingcomponent)
-* [LoadingComponent](#loadingcomponent)
+* [Field](#field)
+* [Form](#form)
 * [average](#average)
 * [calculateGroupHeight](#calculategroupheight)
 * [configure](#configure)
+* [defaultValidateField](#defaultvalidatefield)
 * [getConfiguration](#getconfiguration)
 * [omitProps](#omitprops)
 * [seedServiceListWithPagingOptions](#seedservicelistwithpagingoptions)
+* [simulateBlurEvent](#simulateblurevent)
+* [simulateCheckboxInput](#simulatecheckboxinput)
+* [simulateFocusEvent](#simulatefocusevent)
+* [simulateFormInput](#simulateforminput)
+* [simulateRadioInput](#simulateradioinput)
 * [simulateScrollEvent](#simulatescrollevent)
+* [simulateSelection](#simulateselection)
+* [simulateTextInput](#simulatetextinput)
 * [usingMount](#usingmount)
 * [withDelayedHandlers](#withdelayedhandlers)
 * [withLoadingIndicator](#withloadingindicator)
 * [withModel](#withmodel)
 * [withModelArray](#withmodelarray)
+* [withModelFormBody](#withmodelformbody)
 * [withModelQuery](#withmodelquery)
 * [withNewModel](#withnewmodel)
 
@@ -354,7 +379,7 @@ describe("Student", () => {
 
 **Ƭ DelayedHandler**: *`function`*
 
-*Defined in [WithDelayedHandlers.ts:5](https://github.com/Rediker-Software/redux-data-service-react/blob/fea63e6/src/WithDelayedHandlers.ts#L5)*
+*Defined in [WithDelayedHandlers.ts:5](https://github.com/Rediker-Software/redux-data-service-react/blob/8909226/src/WithDelayedHandlers.ts#L5)*
 
 #### Type declaration
 ▸(...args: *`any`*): `function`
@@ -377,7 +402,7 @@ ___
 
 **● DELAY_TIMEOUT**: *`200`* = 200
 
-*Defined in [WithDelayedHandlers.ts:17](https://github.com/Rediker-Software/redux-data-service-react/blob/fea63e6/src/WithDelayedHandlers.ts#L17)*
+*Defined in [WithDelayedHandlers.ts:17](https://github.com/Rediker-Software/redux-data-service-react/blob/8909226/src/WithDelayedHandlers.ts#L17)*
 
 ___
 <a id="infinitescroll"></a>
@@ -429,7 +454,7 @@ ___
       }),
     },
   ),
-  withModelQuery({ loadingComponent: LoadingComponent }),
+  withModelQuery(),
   withPropsOnChange(["currentPage", "pageHeightMap", "totalPages"], ({
     currentPage,
     pageHeightMap,
@@ -575,10 +600,6 @@ ___
       }
     },
   }),
-  withLoadingIndicator({
-    isLoading: ({ currentItems }) => currentItems == null,
-    loadingComponent: LoadingComponent
-  }),
   omitProps([
     "currentPage",
     "items",
@@ -656,9 +677,13 @@ ___
 
     <script ref={currentPageStartMarkerRef} />
 
-    {currentItems.map(model => (
-      <ModelComponent key={model.id} model={model} {...modelComponentProps} />
-    ))}
+    {(
+      currentItems == null
+        ? <ContentPlaceHolder height="100%" {...contentPlaceHolderComponentProps} />
+        : currentItems.map(model => (
+          <ModelComponent key={model.id} model={model} {...modelComponentProps} />
+        ))
+    )}
 
     <script ref={currentPageEndMarkerRef} />
 
@@ -692,7 +717,7 @@ ___
   </ContainerComponent>
 ))
 
-*Defined in [Components/InfiniteScroll.tsx:99](https://github.com/Rediker-Software/redux-data-service-react/blob/fea63e6/src/Components/InfiniteScroll.tsx#L99)*
+*Defined in [Components/InfiniteScroll.tsx:87](https://github.com/Rediker-Software/redux-data-service-react/blob/8909226/src/Components/InfiniteScroll.tsx#L87)*
 
 Adds infinite and virtual scroll capability to a container and model component, querying for the next page of results when scrolling down (or up if virtual scrolling). The container component must be scrollable.
 
@@ -724,7 +749,7 @@ ___
   </React.Fragment>
 ))
 
-*Defined in [Components/InfiniteScrollPreviousPage.tsx:19](https://github.com/Rediker-Software/redux-data-service-react/blob/fea63e6/src/Components/InfiniteScrollPreviousPage.tsx#L19)*
+*Defined in [Components/InfiniteScrollPreviousPage.tsx:19](https://github.com/Rediker-Software/redux-data-service-react/blob/8909226/src/Components/InfiniteScrollPreviousPage.tsx#L19)*
 
 ___
 <a id="model"></a>
@@ -733,7 +758,149 @@ ___
 
 **● Model**: *`ComponentClass`<[IModelProps](interfaces/imodelprops.md)> \| `StatelessComponent`<[IModelProps](interfaces/imodelprops.md)>* =  withRenderProps<IModelProps>(withModel())
 
-*Defined in [Model.tsx:10](https://github.com/Rediker-Software/redux-data-service-react/blob/fea63e6/src/Model.tsx#L10)*
+*Defined in [Model.tsx:10](https://github.com/Rediker-Software/redux-data-service-react/blob/8909226/src/Model.tsx#L10)*
+
+___
+<a id="modelfield"></a>
+
+### `<Const>` ModelField
+
+**● ModelField**: *`ComponentClass`<[IModelFieldProps](interfaces/imodelfieldprops.md)<`any`>>* =  compose<IModelFieldProps, IModelFieldProps>(
+  setDisplayName("ModelField"),
+  defaultProps({
+    validateField: defaultValidateField,
+    fieldComponent: Field,
+    readOnlyComponent: ({ value }) => <span>{value}</span>,
+    component: (props) => <input {...props} />
+  }),
+  getContext({
+    model: PropTypes.object,
+    readOnly: PropTypes.bool
+  }),
+  withPropsOnChange(
+    ["defaultValue", "model", "name", "readOnly"], ({ model, name, defaultValue, readOnly }) => {
+      if (!readOnly && model != null && defaultValue != null && isEmpty(get(model, name))) {
+        set(model, name, defaultValue);
+      }
+    }),
+  withStateHandlers<{ active: boolean, internalErrorMessage: string }, { onChange, onFieldError, onBlur, onFocus }, IModelFieldProps>(
+    { active: false, internalErrorMessage: undefined },
+    {
+      onChange: (state, { model, name, onChange, validateField }) => event => {
+
+        const value = (typeof event === "object" && "target" in event)
+          ? (event.target.value == null && event.target.checked) || event.target.value || null
+          : event;
+
+        set(model, name, value);
+
+        if (onChange) {
+          onChange(event);
+        }
+
+        validateField(model, name);
+
+        return state;
+      },
+      onFieldError: () => (errorMessage) => ({
+        internalErrorMessage: errorMessage,
+      }),
+      onBlur: (state, { onBlur, model, name, validateField }) => event => {
+        if (onBlur) {
+          onBlur(event);
+        }
+
+        validateField(model, name);
+
+        return { active: false };
+      },
+      onFocus: (state, { onFocus }) => event => {
+        if (onFocus) {
+          onFocus(event);
+        }
+
+        return { active: true };
+      },
+    },
+  ),
+  withContext({ field: PropTypes.object }, ({ active, onFieldError, model, name, internalErrorMessage }) => {
+    const fieldErrors = model.getFieldError(name);
+    const errorMessage = !isEmpty(fieldErrors)
+      ? fieldErrors
+      : internalErrorMessage;
+
+    const isFieldDirty = model.isFieldDirty(name);
+
+    return {
+      field: {
+        active,
+        errorMessage,
+        isFieldDirty,
+        onFieldError,
+      }
+    };
+  }),
+  withPropsOnChange(["model", "readOnlyFieldName", "name", "readOnly"], ({
+    model,
+    readOnlyFieldName,
+    name,
+    readOnly,
+  }: IModelFieldProps) => ({
+    value: readOnly && readOnlyFieldName
+      ? get(model, readOnlyFieldName)
+      : get(model, name)
+  })),
+  omitProps(["model", "active", "internalErrorMessage", "onFieldError", "defaultValue", "validateField", "readOnlyFieldName"])
+)(({ fieldComponent: FieldComponent, ...props }) => <FieldComponent {...props} />)
+
+*Defined in [Components/ModelField.tsx:56](https://github.com/Rediker-Software/redux-data-service-react/blob/8909226/src/Components/ModelField.tsx#L56)*
+
+___
+<a id="modelform"></a>
+
+### `<Const>` ModelForm
+
+**● ModelForm**: *`ComponentClass`<[IModelFormProps](interfaces/imodelformprops.md)>* =  compose<IModelFormInternalProps, IModelFormProps>(
+  setDisplayName("ModelForm"),
+  defaultProps({
+    formComponent: Form,
+    readOnly: false
+  }),
+  withHandlers<IModelFormProps, { onSubmit }>({
+    onSubmit: (props) => (e) => {
+      e.preventDefault();
+
+      const {
+        model,
+        onSave,
+        onError
+      } = props;
+
+      model
+        .save()
+        .then(onSave, onError);
+    },
+    onReset: (props) => (e) => {
+      e.preventDefault();
+
+      const { model, onCancel } = props;
+      model.reset();
+
+      if (onCancel) {
+        onCancel();
+      }
+    },
+  }),
+  withLoadingIndicator({ isLoading: ({ model }) => model == null }),
+  withModelFormBody(),
+  omitProps([ "model", "onCancel", "onError", "onSave" ])
+)(({ formComponent: FormComponent, ...props }) => <FormComponent {...props} />)
+
+*Defined in [Components/ModelForm.tsx:37](https://github.com/Rediker-Software/redux-data-service-react/blob/8909226/src/Components/ModelForm.tsx#L37)*
+
+Creates a form whose values are lifted from and modify the given model. When the form is saved, the model is saved. The form supports read only mode which is passed to it's children via context.
+
+*__returns__*: 
 
 ___
 <a id="newmodel"></a>
@@ -742,7 +909,7 @@ ___
 
 **● NewModel**: *`ComponentClass`<[INewModelProps](interfaces/inewmodelprops.md)> \| `StatelessComponent`<[INewModelProps](interfaces/inewmodelprops.md)>* =  withRenderProps<INewModelProps>(withNewModel())
 
-*Defined in [NewModel.tsx:11](https://github.com/Rediker-Software/redux-data-service-react/blob/fea63e6/src/NewModel.tsx#L11)*
+*Defined in [NewModel.tsx:11](https://github.com/Rediker-Software/redux-data-service-react/blob/8909226/src/NewModel.tsx#L11)*
 
 ___
 <a id="query"></a>
@@ -751,7 +918,7 @@ ___
 
 **● Query**: *`ComponentClass`<[IQueryProps](interfaces/iqueryprops.md)> \| `StatelessComponent`<[IQueryProps](interfaces/iqueryprops.md)>* =  withRenderProps<IQueryProps>(withModelQuery())
 
-*Defined in [Query.tsx:12](https://github.com/Rediker-Software/redux-data-service-react/blob/fea63e6/src/Query.tsx#L12)*
+*Defined in [Query.tsx:12](https://github.com/Rediker-Software/redux-data-service-react/blob/8909226/src/Query.tsx#L12)*
 
 ___
 
@@ -763,7 +930,7 @@ ___
 
 ▸ **DefaultContentPlaceHolder**(__namedParameters: *`object`*): `Element`
 
-*Defined in [Components/InfiniteScroll.tsx:72](https://github.com/Rediker-Software/redux-data-service-react/blob/fea63e6/src/Components/InfiniteScroll.tsx#L72)*
+*Defined in [Components/InfiniteScroll.tsx:72](https://github.com/Rediker-Software/redux-data-service-react/blob/8909226/src/Components/InfiniteScroll.tsx#L72)*
 
 **Parameters:**
 
@@ -782,18 +949,18 @@ ___
 
 ▸ **DefaultLoadingComponent**(): `Element`
 
-*Defined in [DefaultLoadingComponent.tsx:3](https://github.com/Rediker-Software/redux-data-service-react/blob/fea63e6/src/DefaultLoadingComponent.tsx#L3)*
+*Defined in [DefaultLoadingComponent.tsx:3](https://github.com/Rediker-Software/redux-data-service-react/blob/8909226/src/DefaultLoadingComponent.tsx#L3)*
 
 **Returns:** `Element`
 
 ___
-<a id="loadingcomponent"></a>
+<a id="field"></a>
 
-### `<Const>` LoadingComponent
+### `<Const>` Field
 
-▸ **LoadingComponent**(__namedParameters: *`object`*): `Element`
+▸ **Field**(__namedParameters: *`object`*): `Element`
 
-*Defined in [Components/InfiniteScroll.tsx:82](https://github.com/Rediker-Software/redux-data-service-react/blob/fea63e6/src/Components/InfiniteScroll.tsx#L82)*
+*Defined in [Components/ModelField.tsx:50](https://github.com/Rediker-Software/redux-data-service-react/blob/8909226/src/Components/ModelField.tsx#L50)*
 
 **Parameters:**
 
@@ -802,7 +969,30 @@ ___
 | Name | Type |
 | ------ | ------ |
 | Component | `any` |
-| contentPlaceHolderComponentProps | `object` |
+| ReadOnlyComponent | `any` |
+| componentProps | `any` |
+| props | [props]() |
+| readOnly | `any` |
+| readOnlyComponentProps | `any` |
+
+**Returns:** `Element`
+
+___
+<a id="form"></a>
+
+### `<Const>` Form
+
+▸ **Form**(__namedParameters: *`object`*): `Element`
+
+*Defined in [Components/ModelForm.tsx:21](https://github.com/Rediker-Software/redux-data-service-react/blob/8909226/src/Components/ModelForm.tsx#L21)*
+
+**Parameters:**
+
+**__namedParameters: `object`**
+
+| Name | Type |
+| ------ | ------ |
+| children | `string` \| `number` \| `false` \| `true` \| `__type` \| `ReactElement`<`any`> \| `ReactNodeArray` \| `ReactPortal` |
 | props | [props]() |
 
 **Returns:** `Element`
@@ -814,7 +1004,7 @@ ___
 
 ▸ **average**(items: *`number`[]*): `number`
 
-*Defined in [Helpers/Average.ts:4](https://github.com/Rediker-Software/redux-data-service-react/blob/fea63e6/src/Helpers/Average.ts#L4)*
+*Defined in [Helpers/Average.ts:4](https://github.com/Rediker-Software/redux-data-service-react/blob/8909226/src/Helpers/Average.ts#L4)*
 
 Computes the average of the given array of numbers
 
@@ -833,7 +1023,7 @@ ___
 
 ▸ **calculateGroupHeight**(firstElement: *`any`*, lastElement: *`any`*): `number`
 
-*Defined in [Helpers/CalculateGroupHeight.ts:5](https://github.com/Rediker-Software/redux-data-service-react/blob/fea63e6/src/Helpers/CalculateGroupHeight.ts#L5)*
+*Defined in [Helpers/CalculateGroupHeight.ts:5](https://github.com/Rediker-Software/redux-data-service-react/blob/8909226/src/Helpers/CalculateGroupHeight.ts#L5)*
 
 Calculate the total height of a group of elements stacked vertically on a page, given the first and last elements within the group.
 
@@ -853,7 +1043,7 @@ ___
 
 ▸ **configure**(config: *[IConfiguration](interfaces/iconfiguration.md)*): `void`
 
-*Defined in [Configure.ts:15](https://github.com/Rediker-Software/redux-data-service-react/blob/fea63e6/src/Configure.ts#L15)*
+*Defined in [Configure.ts:15](https://github.com/Rediker-Software/redux-data-service-react/blob/8909226/src/Configure.ts#L15)*
 
 **Parameters:**
 
@@ -864,13 +1054,31 @@ ___
 **Returns:** `void`
 
 ___
+<a id="defaultvalidatefield"></a>
+
+### `<Const>` defaultValidateField
+
+▸ **defaultValidateField**(model: *`IModel`<`any`>*, name: *`string`*): `object`
+
+*Defined in [Components/ModelField.tsx:48](https://github.com/Rediker-Software/redux-data-service-react/blob/8909226/src/Components/ModelField.tsx#L48)*
+
+**Parameters:**
+
+| Name | Type |
+| ------ | ------ |
+| model | `IModel`<`any`> |
+| name | `string` |
+
+**Returns:** `object`
+
+___
 <a id="getconfiguration"></a>
 
 ###  getConfiguration
 
 ▸ **getConfiguration**(): [IConfiguration](interfaces/iconfiguration.md)
 
-*Defined in [Configure.ts:11](https://github.com/Rediker-Software/redux-data-service-react/blob/fea63e6/src/Configure.ts#L11)*
+*Defined in [Configure.ts:11](https://github.com/Rediker-Software/redux-data-service-react/blob/8909226/src/Configure.ts#L11)*
 
 **Returns:** [IConfiguration](interfaces/iconfiguration.md)
 
@@ -881,7 +1089,7 @@ ___
 
 ▸ **omitProps**<`P`>(keys: *`keyof P`[]*): `InferableComponentEnhancerWithProps`<`object`, `object`>
 
-*Defined in [Helpers/OmitProps.ts:4](https://github.com/Rediker-Software/redux-data-service-react/blob/fea63e6/src/Helpers/OmitProps.ts#L4)*
+*Defined in [Helpers/OmitProps.ts:4](https://github.com/Rediker-Software/redux-data-service-react/blob/8909226/src/Helpers/OmitProps.ts#L4)*
 
 **Type parameters:**
 
@@ -901,7 +1109,7 @@ ___
 
 ▸ **seedServiceListWithPagingOptions**(serviceName: *`string`*, pageSize: *`number`*, totalPages: *`number`*): `void`
 
-*Defined in [TestUtils/SeedHelper.ts:10](https://github.com/Rediker-Software/redux-data-service-react/blob/fea63e6/src/TestUtils/SeedHelper.ts#L10)*
+*Defined in [TestUtils/SeedHelper.ts:10](https://github.com/Rediker-Software/redux-data-service-react/blob/8909226/src/TestUtils/SeedHelper.ts#L10)*
 
 Seeds a given service with a specified number of paged data
 
@@ -916,13 +1124,116 @@ Seeds a given service with a specified number of paged data
 **Returns:** `void`
 
 ___
+<a id="simulateblurevent"></a>
+
+###  simulateBlurEvent
+
+▸ **simulateBlurEvent**(wrapper: *`any`*, fieldName: *`any`*): `void`
+
+*Defined in [TestUtils/SimulateOnBlur.ts:7](https://github.com/Rediker-Software/redux-data-service-react/blob/8909226/src/TestUtils/SimulateOnBlur.ts#L7)*
+
+Simulates an onBlur event
+
+**Parameters:**
+
+| Name | Type | Description |
+| ------ | ------ | ------ |
+| wrapper | `any` |  the enzyme wrapper |
+| fieldName | `any` |  the name attribute of the raw input field to update |
+
+**Returns:** `void`
+
+___
+<a id="simulatecheckboxinput"></a>
+
+###  simulateCheckboxInput
+
+▸ **simulateCheckboxInput**(wrapper: *`any`*, name: *`string`*, checked: *`boolean`*, value?: *`string`*): `void`
+
+*Defined in [TestUtils/SimulateCheckboxInput.ts:9](https://github.com/Rediker-Software/redux-data-service-react/blob/8909226/src/TestUtils/SimulateCheckboxInput.ts#L9)*
+
+Simulates clicking on a checkbox.
+
+**Parameters:**
+
+| Name | Type | Description |
+| ------ | ------ | ------ |
+| wrapper | `any` |  the enzyme wrapper |
+| name | `string` |  the name of the field |
+| checked | `boolean` |  whether the checkbox is checked |
+| `Optional` value | `string` |  the value of the checkbox |
+
+**Returns:** `void`
+
+___
+<a id="simulatefocusevent"></a>
+
+###  simulateFocusEvent
+
+▸ **simulateFocusEvent**(wrapper: *`any`*, fieldName: *`any`*): `void`
+
+*Defined in [TestUtils/SimulateOnFocus.ts:7](https://github.com/Rediker-Software/redux-data-service-react/blob/8909226/src/TestUtils/SimulateOnFocus.ts#L7)*
+
+Simulates an onFocus event
+
+**Parameters:**
+
+| Name | Type | Description |
+| ------ | ------ | ------ |
+| wrapper | `any` |  the enzyme wrapper |
+| fieldName | `any` |  the name attribute of the raw input field to update |
+
+**Returns:** `void`
+
+___
+<a id="simulateforminput"></a>
+
+###  simulateFormInput
+
+▸ **simulateFormInput**(wrapper: *`any`*, newValues: *`any`*): `void`
+
+*Defined in [TestUtils/SimulateFormInput.ts:10](https://github.com/Rediker-Software/redux-data-service-react/blob/8909226/src/TestUtils/SimulateFormInput.ts#L10)*
+
+Simulates entering text into the fields within a form. It will simulate entering text into each of the input fields whose name attribute matches the key on the `newValues` object.
+
+**Parameters:**
+
+| Name | Type | Description |
+| ------ | ------ | ------ |
+| wrapper | `any` |  the enzyme wrapper |
+| newValues | `any` |  an object mapping input field name to new value |
+
+**Returns:** `void`
+
+___
+<a id="simulateradioinput"></a>
+
+###  simulateRadioInput
+
+▸ **simulateRadioInput**(wrapper: *`any`*, id: *`number`*, name: *`string`*): `void`
+
+*Defined in [TestUtils/SimulateRadioInput.ts:7](https://github.com/Rediker-Software/redux-data-service-react/blob/8909226/src/TestUtils/SimulateRadioInput.ts#L7)*
+
+Simulates clicking on a radio button
+
+**Parameters:**
+
+| Name | Type | Description |
+| ------ | ------ | ------ |
+| wrapper | `any` |  the enzyme wrapper |
+| id | `number` |  the id of the selected object |
+| name | `string` |  the name of the field |
+
+**Returns:** `void`
+
+___
 <a id="simulatescrollevent"></a>
 
 ###  simulateScrollEvent
 
 ▸ **simulateScrollEvent**(wrapper: *`any`*, selector: *`any`*, mock?: *`any`*): `void`
 
-*Defined in [TestUtils/UIEventSimulation.ts:8](https://github.com/Rediker-Software/redux-data-service-react/blob/fea63e6/src/TestUtils/UIEventSimulation.ts#L8)*
+*Defined in [TestUtils/UIEventSimulation.ts:8](https://github.com/Rediker-Software/redux-data-service-react/blob/8909226/src/TestUtils/UIEventSimulation.ts#L8)*
 
 Simulates an onScroll event.
 
@@ -937,13 +1248,55 @@ Simulates an onScroll event.
 **Returns:** `void`
 
 ___
+<a id="simulateselection"></a>
+
+###  simulateSelection
+
+▸ **simulateSelection**(wrapper: *`any`*, selector: *`any`*, index: *`any`*): `void`
+
+*Defined in [TestUtils/SimulateSelection.ts:7](https://github.com/Rediker-Software/redux-data-service-react/blob/8909226/src/TestUtils/SimulateSelection.ts#L7)*
+
+Simulates selecting an option from a Select
+
+**Parameters:**
+
+| Name | Type | Description |
+| ------ | ------ | ------ |
+| wrapper | `any` |  the enzyme wrapper |
+| selector | `any` |  the element containing the Select |
+| index | `any` |  the index of the element |
+
+**Returns:** `void`
+
+___
+<a id="simulatetextinput"></a>
+
+###  simulateTextInput
+
+▸ **simulateTextInput**(wrapper: *`any`*, input: *`any`*, text: *`any`*): `void`
+
+*Defined in [TestUtils/SimulateTextInput.ts:9](https://github.com/Rediker-Software/redux-data-service-react/blob/8909226/src/TestUtils/SimulateTextInput.ts#L9)*
+
+Simulates entering text into a field by passing event values to change and blur events
+
+**Parameters:**
+
+| Name | Type | Description |
+| ------ | ------ | ------ |
+| wrapper | `any` |  the enzyme wrapper |
+| input | `any` |  the field to update |
+| text | `any` |  the new text being entered into the field |
+
+**Returns:** `void`
+
+___
 <a id="usingmount"></a>
 
 ###  usingMount
 
 ▸ **usingMount**(component: *`React.ComponentType`<`any`> \| `Element`*, whileMounted: *`function`*, mountOptions?: *`object`*): `Promise`<`any`> \| `void`
 
-*Defined in [TestUtils/EnzymeHelper.tsx:11](https://github.com/Rediker-Software/redux-data-service-react/blob/fea63e6/src/TestUtils/EnzymeHelper.tsx#L11)*
+*Defined in [TestUtils/EnzymeHelper.tsx:11](https://github.com/Rediker-Software/redux-data-service-react/blob/8909226/src/TestUtils/EnzymeHelper.tsx#L11)*
 
 Helper function to handle mounting and unmounting a component using enzyme to ensure resources are cleaned up.
 
@@ -964,7 +1317,7 @@ ___
 
 ▸ **withDelayedHandlers**<`TOuterProps`>(handlers: *[IDelayedHandlers](interfaces/idelayedhandlers.md)<`TOuterProps`>*, options?: *[IWithDelayedHandlers](interfaces/iwithdelayedhandlers.md)*): `ComponentEnhancer`<`TOuterProps` & [IWithDelayedHandlers](interfaces/iwithdelayedhandlers.md), `TOuterProps`>
 
-*Defined in [WithDelayedHandlers.ts:23](https://github.com/Rediker-Software/redux-data-service-react/blob/fea63e6/src/WithDelayedHandlers.ts#L23)*
+*Defined in [WithDelayedHandlers.ts:23](https://github.com/Rediker-Software/redux-data-service-react/blob/8909226/src/WithDelayedHandlers.ts#L23)*
 
 An HOC which wraps recompose's `withHandlers` HOC, then wraps each of the given callback handlers with `debounce` and `throttle` from `lodash` for the given `delayTimeout`.
 
@@ -987,7 +1340,7 @@ ___
 
 ▸ **withLoadingIndicator**<`P`>(options?: *[IWithLoadingIndicatorProps](interfaces/iwithloadingindicatorprops.md)*): `ComponentEnhancer`<`P`, `P`>
 
-*Defined in [WithLoadingIndicator.tsx:22](https://github.com/Rediker-Software/redux-data-service-react/blob/fea63e6/src/WithLoadingIndicator.tsx#L22)*
+*Defined in [WithLoadingIndicator.tsx:22](https://github.com/Rediker-Software/redux-data-service-react/blob/8909226/src/WithLoadingIndicator.tsx#L22)*
 
 Displays a loading component if the given test function returns true.
 
@@ -1013,7 +1366,7 @@ ___
 
 ▸ **withModel**<`P`>(options?: *[IWithModelProps](interfaces/iwithmodelprops.md)*): `ComponentEnhancer`<`P`, `P` & [IWithModelProps](interfaces/iwithmodelprops.md)>
 
-*Defined in [WithModel.ts:31](https://github.com/Rediker-Software/redux-data-service-react/blob/fea63e6/src/WithModel.ts#L31)*
+*Defined in [WithModel.ts:31](https://github.com/Rediker-Software/redux-data-service-react/blob/8909226/src/WithModel.ts#L31)*
 
 An HOC to inject a model into a component given the name of the DataService for that model.
 
@@ -1037,7 +1390,7 @@ ___
 
 ▸ **withModelArray**<`P`>(dataServiceName: *`string`*, idPropKey?: *`string`*, modelPropKey?: *`string`*): `ComponentEnhancer`<`P`, `P`>
 
-*Defined in [WithModelArray.ts:16](https://github.com/Rediker-Software/redux-data-service-react/blob/fea63e6/src/WithModelArray.ts#L16)*
+*Defined in [WithModelArray.ts:16](https://github.com/Rediker-Software/redux-data-service-react/blob/8909226/src/WithModelArray.ts#L16)*
 
 An HOC to inject a model array into a component given the name of the DataService for that model and a list of ids.
 
@@ -1057,13 +1410,31 @@ Automatically updates (rerenders) the component when the observable updates and 
 **Returns:** `ComponentEnhancer`<`P`, `P`>
 
 ___
+<a id="withmodelformbody"></a>
+
+###  withModelFormBody
+
+▸ **withModelFormBody**<`T`,`P`>(): `ComponentEnhancer`<[IModelFormBodyProps](interfaces/imodelformbodyprops.md)<`T`>, [IModelFormBodyProps](interfaces/imodelformbodyprops.md)<`T`> & `P`>
+
+*Defined in [Components/WithModelFormBody.tsx:16](https://github.com/Rediker-Software/redux-data-service-react/blob/8909226/src/Components/WithModelFormBody.tsx#L16)*
+
+An HOC to wrap the inputs of the body of a ModelForm. The given `model` and `readOnly` props will be passed along as child context, where they will be used by the `ModelField`.
+
+**Type parameters:**
+
+#### T :  `IModel`<`any`>
+#### P 
+
+**Returns:** `ComponentEnhancer`<[IModelFormBodyProps](interfaces/imodelformbodyprops.md)<`T`>, [IModelFormBodyProps](interfaces/imodelformbodyprops.md)<`T`> & `P`>
+
+___
 <a id="withmodelquery"></a>
 
 ###  withModelQuery
 
 ▸ **withModelQuery**<`P`>(options?: *[IWithModelQueryOptions](interfaces/iwithmodelqueryoptions.md) & `P`*): `ComponentEnhancer`<`P` & [IWithModelQueryMappedProps](interfaces/iwithmodelquerymappedprops.md), `P` & [IWithModelQueryProps](interfaces/iwithmodelqueryprops.md)>
 
-*Defined in [WithModelQuery.ts:37](https://github.com/Rediker-Software/redux-data-service-react/blob/fea63e6/src/WithModelQuery.ts#L37)*
+*Defined in [WithModelQuery.ts:37](https://github.com/Rediker-Software/redux-data-service-react/blob/8909226/src/WithModelQuery.ts#L37)*
 
 An HOC to inject a model array into a component given the name of the DataService for that model and some query params which will be passed to the API to load those items.
 
@@ -1087,7 +1458,7 @@ ___
 
 ▸ **withNewModel**<`P`>(options?: *[IWithModelProps](interfaces/iwithmodelprops.md)*): `ComponentEnhancer`<`P`, `P`>
 
-*Defined in [WithNewModel.tsx:15](https://github.com/Rediker-Software/redux-data-service-react/blob/fea63e6/src/WithNewModel.tsx#L15)*
+*Defined in [WithNewModel.tsx:15](https://github.com/Rediker-Software/redux-data-service-react/blob/8909226/src/WithNewModel.tsx#L15)*
 
 An HOC which returns a new unsaved model if one is not provided.
 
@@ -1112,7 +1483,7 @@ ___
 
 **configuration**: *`object`*
 
-*Defined in [Configure.ts:7](https://github.com/Rediker-Software/redux-data-service-react/blob/fea63e6/src/Configure.ts#L7)*
+*Defined in [Configure.ts:7](https://github.com/Rediker-Software/redux-data-service-react/blob/8909226/src/Configure.ts#L7)*
 
 <a id="configuration.loadingcomponent"></a>
 
@@ -1120,7 +1491,7 @@ ___
 
 **● loadingComponent**: *[DefaultLoadingComponent]()* =  DefaultLoadingComponent
 
-*Defined in [Configure.ts:8](https://github.com/Rediker-Software/redux-data-service-react/blob/fea63e6/src/Configure.ts#L8)*
+*Defined in [Configure.ts:8](https://github.com/Rediker-Software/redux-data-service-react/blob/8909226/src/Configure.ts#L8)*
 
 ___
 

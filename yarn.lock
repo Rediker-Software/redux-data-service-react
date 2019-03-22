@@ -8693,10 +8693,10 @@ redbox-react@^1.3.6:
     prop-types "^15.5.4"
     sourcemapped-stacktrace "^1.1.6"
 
-redux-data-service@0.2.8:
-  version "0.2.8"
-  resolved "https://registry.yarnpkg.com/redux-data-service/-/redux-data-service-0.2.8.tgz#2d70aa755ce83361a5d1fe2e759c48888c954ce1"
-  integrity sha512-+3aS+b/yngyPVoQeEwXVKWvuf+CPe5fB7NB9/5nb5pwrklBdl0FsQ9mesDcdNS7X4y7LNt+WHyWmY0d+oAfOBg==
+redux-data-service@0.2.10:
+  version "0.2.10"
+  resolved "https://registry.yarnpkg.com/redux-data-service/-/redux-data-service-0.2.10.tgz#c18dc5986fdb6330aaee5a5cd5dcd61b3c3d1b1e"
+  integrity sha512-eAyyo9zQNmEwhfWdkFVALm6YUKVOAG7/BBZ4FTCVUyTw+tf+5xGKG9avHOSqAPPvNEscuyx5N9QYHHdYA56ERg==
   dependencies:
     date-fns "2.0.0-alpha.7"
     immutable "^4.0.0-rc.9"

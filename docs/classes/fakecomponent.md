@@ -451,7 +451,7 @@ ___
 
 *Overrides Component.render*
 
-*Defined in [TestUtils/FakeComponent.tsx:8](https://github.com/Rediker-Software/redux-data-service-react/blob/fea63e6/src/TestUtils/FakeComponent.tsx#L8)*
+*Defined in [TestUtils/FakeComponent.tsx:8](https://github.com/Rediker-Software/redux-data-service-react/blob/8909226/src/TestUtils/FakeComponent.tsx#L8)*
 
 **Returns:** `Element`
 

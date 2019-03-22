@@ -43,7 +43,7 @@
 
 **● currentItems**: *`T`[]*
 
-*Defined in [Components/InfiniteScroll.tsx:40](https://github.com/Rediker-Software/redux-data-service-react/blob/fea63e6/src/Components/InfiniteScroll.tsx#L40)*
+*Defined in [Components/InfiniteScroll.tsx:40](https://github.com/Rediker-Software/redux-data-service-react/blob/8909226/src/Components/InfiniteScroll.tsx#L40)*
 
 ___
 <a id="currentpage"></a>
@@ -52,7 +52,7 @@ ___
 
 **● currentPage**: *`number`*
 
-*Defined in [Components/InfiniteScroll.tsx:41](https://github.com/Rediker-Software/redux-data-service-react/blob/fea63e6/src/Components/InfiniteScroll.tsx#L41)*
+*Defined in [Components/InfiniteScroll.tsx:41](https://github.com/Rediker-Software/redux-data-service-react/blob/8909226/src/Components/InfiniteScroll.tsx#L41)*
 
 ___
 <a id="currentpageendmarkerref"></a>
@@ -61,7 +61,7 @@ ___
 
 **● currentPageEndMarkerRef**: *`RefObject`<`any`>*
 
-*Defined in [Components/InfiniteScroll.tsx:43](https://github.com/Rediker-Software/redux-data-service-react/blob/fea63e6/src/Components/InfiniteScroll.tsx#L43)*
+*Defined in [Components/InfiniteScroll.tsx:43](https://github.com/Rediker-Software/redux-data-service-react/blob/8909226/src/Components/InfiniteScroll.tsx#L43)*
 
 ___
 <a id="currentpagestartmarkerref"></a>
@@ -70,7 +70,7 @@ ___
 
 **● currentPageStartMarkerRef**: *`RefObject`<`any`>*
 
-*Defined in [Components/InfiniteScroll.tsx:42](https://github.com/Rediker-Software/redux-data-service-react/blob/fea63e6/src/Components/InfiniteScroll.tsx#L42)*
+*Defined in [Components/InfiniteScroll.tsx:42](https://github.com/Rediker-Software/redux-data-service-react/blob/8909226/src/Components/InfiniteScroll.tsx#L42)*
 
 ___
 <a id="hasnextpage"></a>
@@ -79,7 +79,7 @@ ___
 
 **● hasNextPage**: *`boolean`*
 
-*Defined in [Components/InfiniteScroll.tsx:44](https://github.com/Rediker-Software/redux-data-service-react/blob/fea63e6/src/Components/InfiniteScroll.tsx#L44)*
+*Defined in [Components/InfiniteScroll.tsx:44](https://github.com/Rediker-Software/redux-data-service-react/blob/8909226/src/Components/InfiniteScroll.tsx#L44)*
 
 ___
 <a id="haspreviouspage"></a>
@@ -88,7 +88,7 @@ ___
 
 **● hasPreviousPage**: *`boolean`*
 
-*Defined in [Components/InfiniteScroll.tsx:45](https://github.com/Rediker-Software/redux-data-service-react/blob/fea63e6/src/Components/InfiniteScroll.tsx#L45)*
+*Defined in [Components/InfiniteScroll.tsx:45](https://github.com/Rediker-Software/redux-data-service-react/blob/8909226/src/Components/InfiniteScroll.tsx#L45)*
 
 ___
 <a id="lastscrolltop"></a>
@@ -97,7 +97,7 @@ ___
 
 **● lastScrollTop**: *`number`*
 
-*Defined in [Components/InfiniteScroll.tsx:46](https://github.com/Rediker-Software/redux-data-service-react/blob/fea63e6/src/Components/InfiniteScroll.tsx#L46)*
+*Defined in [Components/InfiniteScroll.tsx:46](https://github.com/Rediker-Software/redux-data-service-react/blob/8909226/src/Components/InfiniteScroll.tsx#L46)*
 
 ___
 <a id="nextpage"></a>
@@ -106,7 +106,7 @@ ___
 
 **● nextPage**: *`number`*
 
-*Defined in [Components/InfiniteScroll.tsx:47](https://github.com/Rediker-Software/redux-data-service-react/blob/fea63e6/src/Components/InfiniteScroll.tsx#L47)*
+*Defined in [Components/InfiniteScroll.tsx:47](https://github.com/Rediker-Software/redux-data-service-react/blob/8909226/src/Components/InfiniteScroll.tsx#L47)*
 
 ___
 <a id="nextpageendmarkerref"></a>
@@ -115,7 +115,7 @@ ___
 
 **● nextPageEndMarkerRef**: *`RefObject`<`any`>*
 
-*Defined in [Components/InfiniteScroll.tsx:48](https://github.com/Rediker-Software/redux-data-service-react/blob/fea63e6/src/Components/InfiniteScroll.tsx#L48)*
+*Defined in [Components/InfiniteScroll.tsx:48](https://github.com/Rediker-Software/redux-data-service-react/blob/8909226/src/Components/InfiniteScroll.tsx#L48)*
 
 ___
 <a id="nextpagequery"></a>
@@ -124,7 +124,7 @@ ___
 
 **● nextPageQuery**: *`IQueryBuilder`*
 
-*Defined in [Components/InfiniteScroll.tsx:49](https://github.com/Rediker-Software/redux-data-service-react/blob/fea63e6/src/Components/InfiniteScroll.tsx#L49)*
+*Defined in [Components/InfiniteScroll.tsx:49](https://github.com/Rediker-Software/redux-data-service-react/blob/8909226/src/Components/InfiniteScroll.tsx#L49)*
 
 ___
 <a id="nextpagestartmarkerref"></a>
@@ -133,7 +133,7 @@ ___
 
 **● nextPageStartMarkerRef**: *`RefObject`<`any`>*
 
-*Defined in [Components/InfiniteScroll.tsx:50](https://github.com/Rediker-Software/redux-data-service-react/blob/fea63e6/src/Components/InfiniteScroll.tsx#L50)*
+*Defined in [Components/InfiniteScroll.tsx:50](https://github.com/Rediker-Software/redux-data-service-react/blob/8909226/src/Components/InfiniteScroll.tsx#L50)*
 
 ___
 <a id="nextplaceholderheight"></a>
@@ -142,7 +142,7 @@ ___
 
 **● nextPlaceHolderHeight**: *`number`*
 
-*Defined in [Components/InfiniteScroll.tsx:51](https://github.com/Rediker-Software/redux-data-service-react/blob/fea63e6/src/Components/InfiniteScroll.tsx#L51)*
+*Defined in [Components/InfiniteScroll.tsx:51](https://github.com/Rediker-Software/redux-data-service-react/blob/8909226/src/Components/InfiniteScroll.tsx#L51)*
 
 ___
 <a id="pageheightmap"></a>
@@ -151,7 +151,7 @@ ___
 
 **● pageHeightMap**: *`object`*
 
-*Defined in [Components/InfiniteScroll.tsx:52](https://github.com/Rediker-Software/redux-data-service-react/blob/fea63e6/src/Components/InfiniteScroll.tsx#L52)*
+*Defined in [Components/InfiniteScroll.tsx:52](https://github.com/Rediker-Software/redux-data-service-react/blob/8909226/src/Components/InfiniteScroll.tsx#L52)*
 
 #### Type declaration
 
@@ -164,7 +164,7 @@ ___
 
 **● previousPage**: *`number`*
 
-*Defined in [Components/InfiniteScroll.tsx:53](https://github.com/Rediker-Software/redux-data-service-react/blob/fea63e6/src/Components/InfiniteScroll.tsx#L53)*
+*Defined in [Components/InfiniteScroll.tsx:53](https://github.com/Rediker-Software/redux-data-service-react/blob/8909226/src/Components/InfiniteScroll.tsx#L53)*
 
 ___
 <a id="previouspageendmarkerref"></a>
@@ -173,7 +173,7 @@ ___
 
 **● previousPageEndMarkerRef**: *`RefObject`<`any`>*
 
-*Defined in [Components/InfiniteScroll.tsx:54](https://github.com/Rediker-Software/redux-data-service-react/blob/fea63e6/src/Components/InfiniteScroll.tsx#L54)*
+*Defined in [Components/InfiniteScroll.tsx:54](https://github.com/Rediker-Software/redux-data-service-react/blob/8909226/src/Components/InfiniteScroll.tsx#L54)*
 
 ___
 <a id="previouspagequery"></a>
@@ -182,7 +182,7 @@ ___
 
 **● previousPageQuery**: *`IQueryBuilder`*
 
-*Defined in [Components/InfiniteScroll.tsx:55](https://github.com/Rediker-Software/redux-data-service-react/blob/fea63e6/src/Components/InfiniteScroll.tsx#L55)*
+*Defined in [Components/InfiniteScroll.tsx:55](https://github.com/Rediker-Software/redux-data-service-react/blob/8909226/src/Components/InfiniteScroll.tsx#L55)*
 
 ___
 <a id="previouspagestartmarkerref"></a>
@@ -191,7 +191,7 @@ ___
 
 **● previousPageStartMarkerRef**: *`RefObject`<`any`>*
 
-*Defined in [Components/InfiniteScroll.tsx:56](https://github.com/Rediker-Software/redux-data-service-react/blob/fea63e6/src/Components/InfiniteScroll.tsx#L56)*
+*Defined in [Components/InfiniteScroll.tsx:56](https://github.com/Rediker-Software/redux-data-service-react/blob/8909226/src/Components/InfiniteScroll.tsx#L56)*
 
 ___
 <a id="previousplaceholderheight"></a>
@@ -200,7 +200,7 @@ ___
 
 **● previousPlaceHolderHeight**: *`number`*
 
-*Defined in [Components/InfiniteScroll.tsx:57](https://github.com/Rediker-Software/redux-data-service-react/blob/fea63e6/src/Components/InfiniteScroll.tsx#L57)*
+*Defined in [Components/InfiniteScroll.tsx:57](https://github.com/Rediker-Software/redux-data-service-react/blob/8909226/src/Components/InfiniteScroll.tsx#L57)*
 
 ___
 <a id="query"></a>
@@ -209,7 +209,7 @@ ___
 
 **● query**: *`IQueryBuilder`*
 
-*Defined in [Components/InfiniteScroll.tsx:58](https://github.com/Rediker-Software/redux-data-service-react/blob/fea63e6/src/Components/InfiniteScroll.tsx#L58)*
+*Defined in [Components/InfiniteScroll.tsx:58](https://github.com/Rediker-Software/redux-data-service-react/blob/8909226/src/Components/InfiniteScroll.tsx#L58)*
 
 ___
 <a id="totalpages"></a>
@@ -218,7 +218,7 @@ ___
 
 **● totalPages**: *`number`*
 
-*Defined in [Components/InfiniteScroll.tsx:59](https://github.com/Rediker-Software/redux-data-service-react/blob/fea63e6/src/Components/InfiniteScroll.tsx#L59)*
+*Defined in [Components/InfiniteScroll.tsx:59](https://github.com/Rediker-Software/redux-data-service-react/blob/8909226/src/Components/InfiniteScroll.tsx#L59)*
 
 ___
 
