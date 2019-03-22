@@ -89,24 +89,24 @@ storiesOf("ModelForm", module)
     </Model>
   ))
   .add("With checkbox", () => (
-      <Model modelName="modelFormFakeModel" id={fakeModel.id}>
-        {({ model }) => (
-          <div style={{ padding: "20px" }}>
-            <ModelForm model={model}>
-              <ModelField
-                name="id"
-                component={Input}
-                label="ID"
-              />
-              <ModelField
-                name="checkbox"
-                component={FormCheckbox}
-                checkboxLabel="Checkbox"
-              />
-            </ModelForm>
-          </div>
-        )}
-      </Model>
+    <Model modelName="modelFormFakeModel" id={fakeModel.id}>
+      {({ model }) => (
+        <div style={{ padding: "20px" }}>
+          <ModelForm model={model}>
+            <ModelField
+              name="id"
+              component={Input}
+              label="ID"
+            />
+            <ModelField
+              name="checkbox"
+              component={FormCheckbox}
+              checkboxLabel="Checkbox"
+            />
+          </ModelForm>
+        </div>
+      )}
+    </Model>
   ))
   .add("Disabled - default", () => (
     <Model modelName="modelFormFakeModel" id={fakeModel.id}>
@@ -123,11 +123,9 @@ storiesOf("ModelForm", module)
   .add("Disabled - optional", () => {
 
     const Component = ({ value }) => (
-      <span>
-        <div>
-          {value}
-        </div>
-      </span>
+      <div>
+        {value}
+      </div>
     );
 
     return (

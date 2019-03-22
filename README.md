@@ -191,17 +191,6 @@ A higher-order component to wrap the inputs of the body of a ModelForm.
 - The given `model` and `readOnly` props will be passed along as child context, where they will be used by the `ModelField`.
 
 
-### Example
-
-```typescript
-import { withModelFormBody } from "./WithModelFormBody";
-
-withLoadingIndicator({ isLoading: ({ model }) => model == null }),
-  withModelFormBody(),
-  omitProps([ "model", "onCancel", "onError", "onSave" ])
-)(({ formComponent: FormComponent, ...props }) => <FormComponent {...props} />);
-```
-
 ## `withModelQuery(options)`
 
 A higher-order component which will automatically query the API and subscribe to the models it returns when the component mounts.
