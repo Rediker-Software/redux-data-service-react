@@ -42,6 +42,9 @@ export interface IModelFieldProps<T = any> extends Omit<Partial<IFieldInputProps
 export interface IFieldContext {
   field: {
     onFieldError: (errorMessage: string) => void;
+    active: boolean;
+    errorMessage: string;
+    isFieldDirty: boolean;
   };
 }
 
