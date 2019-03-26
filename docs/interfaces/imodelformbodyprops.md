@@ -25,7 +25,7 @@
 
 **● model**: *`T`*
 
-*Defined in [Components/WithModelFormBody.tsx:8](https://github.com/Rediker-Software/redux-data-service-react/blob/67b6bcb/src/Components/WithModelFormBody.tsx#L8)*
+*Defined in [Components/WithModelFormBody.tsx:8](https://github.com/Rediker-Software/redux-data-service-react/blob/819a83f/src/Components/WithModelFormBody.tsx#L8)*
 
 ___
 <a id="readonly"></a>
@@ -34,7 +34,7 @@ ___
 
 **● readOnly**: *`boolean`*
 
-*Defined in [Components/WithModelFormBody.tsx:9](https://github.com/Rediker-Software/redux-data-service-react/blob/67b6bcb/src/Components/WithModelFormBody.tsx#L9)*
+*Defined in [Components/WithModelFormBody.tsx:9](https://github.com/Rediker-Software/redux-data-service-react/blob/819a83f/src/Components/WithModelFormBody.tsx#L9)*
 
 ___
 

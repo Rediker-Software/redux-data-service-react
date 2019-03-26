@@ -26,7 +26,7 @@
 
 **● model**: *`IModel`<`any`>*
 
-*Defined in [Components/ModelForm.tsx:10](https://github.com/Rediker-Software/redux-data-service-react/blob/67b6bcb/src/Components/ModelForm.tsx#L10)*
+*Defined in [Components/ModelForm.tsx:10](https://github.com/Rediker-Software/redux-data-service-react/blob/819a83f/src/Components/ModelForm.tsx#L10)*
 
 ___
 <a id="oncancel"></a>
@@ -35,7 +35,7 @@ ___
 
 **● onCancel**: *`function`*
 
-*Defined in [Components/ModelForm.tsx:13](https://github.com/Rediker-Software/redux-data-service-react/blob/67b6bcb/src/Components/ModelForm.tsx#L13)*
+*Defined in [Components/ModelForm.tsx:13](https://github.com/Rediker-Software/redux-data-service-react/blob/819a83f/src/Components/ModelForm.tsx#L13)*
 
 #### Type declaration
 ▸(): `void`
@@ -49,7 +49,7 @@ ___
 
 **● onError**: *`function`*
 
-*Defined in [Components/ModelForm.tsx:12](https://github.com/Rediker-Software/redux-data-service-react/blob/67b6bcb/src/Components/ModelForm.tsx#L12)*
+*Defined in [Components/ModelForm.tsx:12](https://github.com/Rediker-Software/redux-data-service-react/blob/819a83f/src/Components/ModelForm.tsx#L12)*
 
 #### Type declaration
 ▸(errors: *`any`*): `void`
@@ -69,7 +69,7 @@ ___
 
 **● onSave**: *`function`*
 
-*Defined in [Components/ModelForm.tsx:11](https://github.com/Rediker-Software/redux-data-service-react/blob/67b6bcb/src/Components/ModelForm.tsx#L11)*
+*Defined in [Components/ModelForm.tsx:11](https://github.com/Rediker-Software/redux-data-service-react/blob/819a83f/src/Components/ModelForm.tsx#L11)*
 
 #### Type declaration
 ▸(model: *`IModel`<`any`>*): `void`
@@ -89,7 +89,7 @@ ___
 
 **● readOnly**: *`boolean`*
 
-*Defined in [Components/ModelForm.tsx:14](https://github.com/Rediker-Software/redux-data-service-react/blob/67b6bcb/src/Components/ModelForm.tsx#L14)*
+*Defined in [Components/ModelForm.tsx:14](https://github.com/Rediker-Software/redux-data-service-react/blob/819a83f/src/Components/ModelForm.tsx#L14)*
 
 ___
 

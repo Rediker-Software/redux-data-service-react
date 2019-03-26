@@ -22,9 +22,15 @@
 
 **● field**: *`object`*
 
-*Defined in [Components/ModelField.tsx:43](https://github.com/Rediker-Software/redux-data-service-react/blob/67b6bcb/src/Components/ModelField.tsx#L43)*
+*Defined in [Components/ModelField.tsx:43](https://github.com/Rediker-Software/redux-data-service-react/blob/819a83f/src/Components/ModelField.tsx#L43)*
 
 #### Type declaration
+
+ active: `boolean`
+
+ errorMessage: `string`
+
+ isFieldDirty: `boolean`
 
  onFieldError: `function`
 
