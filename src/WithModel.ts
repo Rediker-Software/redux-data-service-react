@@ -14,9 +14,9 @@ import {
 } from "recompose";
 
 import { getDataService } from "redux-data-service";
-import { withLoadingIndicator } from "./WithLoadingIndicator";
+import { IWithLoadingIndicatorProps, withLoadingIndicator } from "./WithLoadingIndicator";
 
-export interface IWithModelProps {
+export interface IWithModelProps extends IWithLoadingIndicatorProps {
   modelName?: string;
   idPropKey?: string;
   modelPropKey?: string;

@@ -4,7 +4,7 @@
 
 ## Hierarchy
 
- [IWithModelProps](iwithmodelprops.md)
+↳  [IWithModelProps](iwithmodelprops.md)
 
 **↳ IModelProps**
 
@@ -16,6 +16,9 @@
 ### Properties
 
 * [idPropKey](imodelprops.md#idpropkey)
+* [isLoading](imodelprops.md#isloading)
+* [loadingComponent](imodelprops.md#loadingcomponent)
+* [loadingComponentProps](imodelprops.md#loadingcomponentprops)
 * [modelName](imodelprops.md#modelname)
 * [modelPropKey](imodelprops.md#modelpropkey)
 
@@ -31,7 +34,40 @@
 
 *Inherited from [IWithModelProps](iwithmodelprops.md).[idPropKey](iwithmodelprops.md#idpropkey)*
 
-*Defined in [WithModel.ts:21](https://github.com/Rediker-Software/redux-data-service-react/blob/8909226/src/WithModel.ts#L21)*
+*Defined in [WithModel.ts:21](https://github.com/Rediker-Software/redux-data-service-react/blob/67b6bcb/src/WithModel.ts#L21)*
+
+___
+<a id="isloading"></a>
+
+### `<Optional>` isLoading
+
+**● isLoading**: *`boolean` \| `function`*
+
+*Inherited from [IWithLoadingIndicatorProps](iwithloadingindicatorprops.md).[isLoading](iwithloadingindicatorprops.md#isloading)*
+
+*Defined in [WithLoadingIndicator.tsx:8](https://github.com/Rediker-Software/redux-data-service-react/blob/67b6bcb/src/WithLoadingIndicator.tsx#L8)*
+
+___
+<a id="loadingcomponent"></a>
+
+### `<Optional>` loadingComponent
+
+**● loadingComponent**: *`React.ComponentType`<`any`>*
+
+*Inherited from [IWithLoadingIndicatorProps](iwithloadingindicatorprops.md).[loadingComponent](iwithloadingindicatorprops.md#loadingcomponent)*
+
+*Defined in [WithLoadingIndicator.tsx:9](https://github.com/Rediker-Software/redux-data-service-react/blob/67b6bcb/src/WithLoadingIndicator.tsx#L9)*
+
+___
+<a id="loadingcomponentprops"></a>
+
+### `<Optional>` loadingComponentProps
+
+**● loadingComponentProps**: *`any`*
+
+*Inherited from [IWithLoadingIndicatorProps](iwithloadingindicatorprops.md).[loadingComponentProps](iwithloadingindicatorprops.md#loadingcomponentprops)*
+
+*Defined in [WithLoadingIndicator.tsx:10](https://github.com/Rediker-Software/redux-data-service-react/blob/67b6bcb/src/WithLoadingIndicator.tsx#L10)*
 
 ___
 <a id="modelname"></a>
@@ -42,7 +78,7 @@ ___
 
 *Inherited from [IWithModelProps](iwithmodelprops.md).[modelName](iwithmodelprops.md#modelname)*
 
-*Defined in [WithModel.ts:20](https://github.com/Rediker-Software/redux-data-service-react/blob/8909226/src/WithModel.ts#L20)*
+*Defined in [WithModel.ts:20](https://github.com/Rediker-Software/redux-data-service-react/blob/67b6bcb/src/WithModel.ts#L20)*
 
 ___
 <a id="modelpropkey"></a>
@@ -53,7 +89,7 @@ ___
 
 *Inherited from [IWithModelProps](iwithmodelprops.md).[modelPropKey](iwithmodelprops.md#modelpropkey)*
 
-*Defined in [WithModel.ts:22](https://github.com/Rediker-Software/redux-data-service-react/blob/8909226/src/WithModel.ts#L22)*
+*Defined in [WithModel.ts:22](https://github.com/Rediker-Software/redux-data-service-react/blob/67b6bcb/src/WithModel.ts#L22)*
 
 ___
 
