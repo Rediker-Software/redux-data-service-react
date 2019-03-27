@@ -33,8 +33,6 @@ const { expect } = intern.getPlugin("chai");
 
 describe("<ModelField />", () => {
 
-  let Input;
-
   beforeEach(() => {
     initializeTestServices(fakeModelModule);
   });
