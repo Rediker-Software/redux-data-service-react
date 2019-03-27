@@ -24,7 +24,7 @@
 
 **● modelComponent**: *`React.ComponentType`<`object` & `any`>*
 
-*Defined in [Components/InfiniteScrollPreviousPage.tsx:11](https://github.com/Rediker-Software/redux-data-service-react/blob/9905634/src/Components/InfiniteScrollPreviousPage.tsx#L11)*
+*Defined in [Components/InfiniteScrollPreviousPage.tsx:11](https://github.com/Rediker-Software/redux-data-service-react/blob/ee57350/src/Components/InfiniteScrollPreviousPage.tsx#L11)*
 
 ___
 <a id="modelcomponentprops"></a>
@@ -33,7 +33,7 @@ ___
 
 **● modelComponentProps**: *`any`*
 
-*Defined in [Components/InfiniteScrollPreviousPage.tsx:12](https://github.com/Rediker-Software/redux-data-service-react/blob/9905634/src/Components/InfiniteScrollPreviousPage.tsx#L12)*
+*Defined in [Components/InfiniteScrollPreviousPage.tsx:12](https://github.com/Rediker-Software/redux-data-service-react/blob/ee57350/src/Components/InfiniteScrollPreviousPage.tsx#L12)*
 
 ___
 <a id="query"></a>
@@ -42,7 +42,7 @@ ___
 
 **● query**: *`IQueryBuilder`*
 
-*Defined in [Components/InfiniteScrollPreviousPage.tsx:10](https://github.com/Rediker-Software/redux-data-service-react/blob/9905634/src/Components/InfiniteScrollPreviousPage.tsx#L10)*
+*Defined in [Components/InfiniteScrollPreviousPage.tsx:10](https://github.com/Rediker-Software/redux-data-service-react/blob/ee57350/src/Components/InfiniteScrollPreviousPage.tsx#L10)*
 
 ___
 

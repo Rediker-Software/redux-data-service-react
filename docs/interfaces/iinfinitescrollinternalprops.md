@@ -29,7 +29,7 @@
 
 **● estimatedPageHeight**: *`number`*
 
-*Defined in [Components/InfiniteScroll.tsx:65](https://github.com/Rediker-Software/redux-data-service-react/blob/9905634/src/Components/InfiniteScroll.tsx#L65)*
+*Defined in [Components/InfiniteScroll.tsx:65](https://github.com/Rediker-Software/redux-data-service-react/blob/ee57350/src/Components/InfiniteScroll.tsx#L65)*
 
 ___
 <a id="query"></a>
@@ -38,7 +38,7 @@ ___
 
 **● query**: *`IQueryManager`<`T`>*
 
-*Defined in [Components/InfiniteScroll.tsx:64](https://github.com/Rediker-Software/redux-data-service-react/blob/9905634/src/Components/InfiniteScroll.tsx#L64)*
+*Defined in [Components/InfiniteScroll.tsx:64](https://github.com/Rediker-Software/redux-data-service-react/blob/ee57350/src/Components/InfiniteScroll.tsx#L64)*
 
 ___
 
