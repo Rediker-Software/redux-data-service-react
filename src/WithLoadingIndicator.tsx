@@ -1,5 +1,5 @@
 import * as React from "react";
-import { branch, ComponentEnhancer, compose, defaultProps, renderComponent } from "recompose";
+import { branch, ComponentEnhancer, compose, defaultProps, renderComponent, withPropsOnChange } from "recompose";
 
 import { getConfiguration } from "./Configure";
 import { omitProps } from "./Helpers";
@@ -21,11 +21,11 @@ export interface IWithLoadingIndicatorProps {
  */
 export function withLoadingIndicator<P = IWithLoadingIndicatorProps>(options: IWithLoadingIndicatorProps = {}): ComponentEnhancer<P, P> {
   return compose<P, P>(
-    defaultProps({
-      loadingComponent: getConfiguration().loadingComponent,
-      loadingComponentProps: {},
-      ...options,
-    }),
+    defaultProps(options),
+    withPropsOnChange([ "loadingComponent", "loadingComponentProps" ], ({ loadingComponent, loadingComponentProps }) => ({
+      loadingComponent: loadingComponent || getConfiguration().loadingComponent,
+      loadingComponentProps: loadingComponentProps || {}
+    })),
     branch<P & IWithLoadingIndicatorProps>(
       ({ isLoading, ...props }) => (
         typeof isLoading === "function"
