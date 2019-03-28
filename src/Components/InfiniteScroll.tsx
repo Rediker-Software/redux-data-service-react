@@ -314,58 +314,63 @@ export const InfiniteScroll = compose<IInfiniteScrollInternalProps<any>, IInfini
   previousPageStartMarkerRef,
   ...containerProps
 }) => (
-  <ContainerComponent {...containerProps} onScroll={handleScroll}>
-    {hasPreviousPage && (
-      disableVirtualScrolling
-        ? (
-          <InfiniteScrollPreviousPage
-            modelComponent={ModelComponent}
-            modelComponentProps={modelComponentProps}
-            query={previousPageQuery}
-          />
-        ) : (
-          <>
-            <ContentPlaceHolder
-              height={previousPlaceHolderHeight}
-              {...contentPlaceHolderComponentProps}
-            />
+    <ContainerComponent {...containerProps} onScroll={handleScroll}>
 
-            <script ref={previousPageStartMarkerRef} />
+      {hasPreviousPage && disableVirtualScrolling && (
+        <InfiniteScrollPreviousPage
+          modelComponent={ModelComponent}
+          modelComponentProps={modelComponentProps}
+          query={previousPageQuery}
+        />
+      )}
 
-            <Query
-              modelName={modelName}
-              query={previousPageQuery}
-              loadingComponent={ContentPlaceHolder}
-              loadingComponentProps={{ height: pageHeightMap[previousPage] || estimatedPageHeight }}
-            >
-              {({ query }) => (
-                query.items.map(model => (
-                  <ModelComponent key={model.id} model={model} {...modelComponentProps} />
-                ))
-              )}
-            </Query>
+      {hasPreviousPage && !disableVirtualScrolling && (
+        <ContentPlaceHolder
+          height={previousPlaceHolderHeight}
+          {...contentPlaceHolderComponentProps}
+        />
+      )}
 
-            <script ref={previousPageEndMarkerRef} />
-          </>
-        )
-    )}
+      {hasPreviousPage && !disableVirtualScrolling && (
+        <script ref={previousPageStartMarkerRef} />
+      )}
 
-    <script ref={currentPageStartMarkerRef} />
+      {hasPreviousPage && !disableVirtualScrolling && (
+        <Query
+          modelName={modelName}
+          query={previousPageQuery}
+          loadingComponent={ContentPlaceHolder}
+          loadingComponentProps={{ height: pageHeightMap[previousPage] || estimatedPageHeight }}
+        >
+          {({ query }) => (
+            query.items.map(model => (
+              <ModelComponent key={model.id} model={model} {...modelComponentProps} />
+            ))
+          )}
+        </Query>
+      )}
 
-    {(
-      currentItems == null
-        ? <ContentPlaceHolder height="100%" {...contentPlaceHolderComponentProps} />
-        : currentItems.map(model => (
-          <ModelComponent key={model.id} model={model} {...modelComponentProps} />
-        ))
-    )}
+      {hasPreviousPage && !disableVirtualScrolling && (
+        <script ref={previousPageEndMarkerRef} />
+      )}
 
-    <script ref={currentPageEndMarkerRef} />
+      <script ref={currentPageStartMarkerRef} />
 
-    {hasNextPage && (
-      <>
+      {(
+        currentItems == null
+          ? <ContentPlaceHolder height="100%" {...contentPlaceHolderComponentProps} />
+          : currentItems.map(model => (
+            <ModelComponent key={model.id} model={model} {...modelComponentProps} />
+          ))
+      )}
+
+      <script ref={currentPageEndMarkerRef} />
+
+      {hasNextPage && (
         <script ref={nextPageStartMarkerRef} />
+      )}
 
+      {hasNextPage && (
         <Query
           modelName={modelName}
           query={nextPageQuery}
@@ -378,16 +383,18 @@ export const InfiniteScroll = compose<IInfiniteScrollInternalProps<any>, IInfini
             ))
           )}
         </Query>
+      )}
 
+      {hasNextPage && (
         <script ref={nextPageEndMarkerRef} />
+      )}
 
-        {!disableVirtualScrolling && (
-          <ContentPlaceHolder
-            height={nextPlaceHolderHeight}
-            {...contentPlaceHolderComponentProps}
-          />
-        )}
-      </>
-    )}
-  </ContainerComponent>
-));
+      {hasNextPage && !disableVirtualScrolling && (
+        <ContentPlaceHolder
+          height={nextPlaceHolderHeight}
+          {...contentPlaceHolderComponentProps}
+        />
+      )}
+
+    </ContainerComponent>
+  ));
