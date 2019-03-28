@@ -27,7 +27,7 @@
 
 **● name**: *`string`*
 
-*Defined in [Components/ModelField.tsx:19](https://github.com/Rediker-Software/redux-data-service-react/blob/ee57350/src/Components/ModelField.tsx#L19)*
+*Defined in [Components/ModelField.tsx:19](https://github.com/Rediker-Software/redux-data-service-react/blob/18e2d42/src/Components/ModelField.tsx#L19)*
 
 ___
 <a id="onblur"></a>
@@ -36,7 +36,7 @@ ___
 
 **● onBlur**: *`function`*
 
-*Defined in [Components/ModelField.tsx:21](https://github.com/Rediker-Software/redux-data-service-react/blob/ee57350/src/Components/ModelField.tsx#L21)*
+*Defined in [Components/ModelField.tsx:21](https://github.com/Rediker-Software/redux-data-service-react/blob/18e2d42/src/Components/ModelField.tsx#L21)*
 
 #### Type declaration
 ▸<`T`>(event?: *`FocusEvent`<`T`>*): `void`
@@ -59,7 +59,7 @@ ___
 
 **● onChange**: *`function`*
 
-*Defined in [Components/ModelField.tsx:20](https://github.com/Rediker-Software/redux-data-service-react/blob/ee57350/src/Components/ModelField.tsx#L20)*
+*Defined in [Components/ModelField.tsx:20](https://github.com/Rediker-Software/redux-data-service-react/blob/18e2d42/src/Components/ModelField.tsx#L20)*
 
 #### Type declaration
 ▸<`T`>(event: *`ChangeEvent`<`T`> \| `any`*): `void`
@@ -82,7 +82,7 @@ ___
 
 **● onFieldError**: *`function`*
 
-*Defined in [Components/ModelField.tsx:23](https://github.com/Rediker-Software/redux-data-service-react/blob/ee57350/src/Components/ModelField.tsx#L23)*
+*Defined in [Components/ModelField.tsx:23](https://github.com/Rediker-Software/redux-data-service-react/blob/18e2d42/src/Components/ModelField.tsx#L23)*
 
 #### Type declaration
 ▸(error: *`string`*): `void`
@@ -102,7 +102,7 @@ ___
 
 **● onFocus**: *`function`*
 
-*Defined in [Components/ModelField.tsx:22](https://github.com/Rediker-Software/redux-data-service-react/blob/ee57350/src/Components/ModelField.tsx#L22)*
+*Defined in [Components/ModelField.tsx:22](https://github.com/Rediker-Software/redux-data-service-react/blob/18e2d42/src/Components/ModelField.tsx#L22)*
 
 #### Type declaration
 ▸<`T`>(event?: *`FocusEvent`<`T`>*): `void`
@@ -125,7 +125,7 @@ ___
 
 **● value**: *`any`*
 
-*Defined in [Components/ModelField.tsx:24](https://github.com/Rediker-Software/redux-data-service-react/blob/ee57350/src/Components/ModelField.tsx#L24)*
+*Defined in [Components/ModelField.tsx:24](https://github.com/Rediker-Software/redux-data-service-react/blob/18e2d42/src/Components/ModelField.tsx#L24)*
 
 ___
 
