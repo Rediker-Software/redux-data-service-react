@@ -1,27 +1,31 @@
-const TsConfigPathsPlugin = require("awesome-typescript-loader").TsConfigPathsPlugin;
+const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
+const TsConfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 const { join } = require("path");
 
+const tslint = join(__dirname, "../../tslint.json");
+const tsconfig = join(__dirname, "../../tsconfig.json");
+
 module.exports = function (config, env, defaultConfig) {
+  defaultConfig.mode = "development";
+
   defaultConfig.module.rules.push(
     // ts & tsx files
     {
       test: /\.tsx?$/,
-      exclude: /node_modules/,
-      include: [/src/],
-      loader: "awesome-typescript-loader",
-    },
-
-    // fonts
-    {
-      test: /\.(woff(2)?|otf|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
-      use: [{
-        loader: "file-loader",
-        options: {
-          name: "[name].[ext]",
-          outputPath: "fonts/"
+      use: [
+        "thread-loader",
+        "cache-loader",
+        {
+          loader : "ts-loader",
+          options: {
+            // disable type checker - we will use it in fork plugin
+            transpileOnly: true,
+            happyPackMode: true,
+            experimentalFileCaching: true,
+          }
         }
-      }]
-    }
+      ]
+    },
   );
 
   defaultConfig.resolve.extensions.push(".tsx", ".ts", ".js");
@@ -29,10 +33,19 @@ module.exports = function (config, env, defaultConfig) {
   // https://github.com/Microsoft/TypeScript/issues/11677
   defaultConfig.resolve.mainFields = ["browser", "main"];
   defaultConfig.resolve.plugins = [
-    new TsConfigPathsPlugin({ configFileName: "./tsconfig.json" }),
+    new TsConfigPathsPlugin({ configFile: tsconfig }),
   ];
 
-  defaultConfig.watch = true;
+  defaultConfig.plugins.push(
+    new ForkTsCheckerWebpackPlugin({
+      checkSyntacticErrors: true,
+      tslint,
+      tsconfig,
+      compilerOptions: {
+        skipLibCheck: true,
+      }
+    })
+  );
 
   return defaultConfig;
 };
