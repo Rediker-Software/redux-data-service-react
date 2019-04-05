@@ -1,21 +1,39 @@
-import * as webpack from "webpack";
+import * as ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
 
-import * as CleanWebpackPlugin from "clean-webpack-plugin";
+import TsConfigPathsPlugin from "tsconfig-paths-webpack-plugin";
 
-import { TsConfigPathsPlugin } from "awesome-typescript-loader";
 import { join } from "path";
 import Config from "webpack-config";
 
-const {peerDependencies} = require("../../package.json"); // tslint:disable-line
-
-const outPath = join(__dirname, "../../dist");
 const sourcePath = join(__dirname, "../../src");
+
+const tslint = join(__dirname, "../../tslint.json");
+const tsconfig = join(__dirname, "../../tsconfig.json");
 
 export default new Config().merge({
   context: sourcePath,
   entry: {
-    main: "./index.tsx",
-    vendor: Object.keys(peerDependencies),
+    main: "./index.ts",
+  },
+  module: {
+    rules: [
+      {
+        test: /\.tsx?$/,
+        use: [
+          "thread-loader",
+          "cache-loader",
+          {
+            loader: "ts-loader",
+            options: {
+              // disable type checker - we will use it in fork plugin
+              transpileOnly: true,
+              happyPackMode: true,
+              experimentalFileCaching: true,
+            }
+          }
+        ]
+      },
+    ]
   },
   node: {
     // workaround for webpack-dev-server issue
@@ -23,33 +41,42 @@ export default new Config().merge({
     fs: "empty",
     net: "empty",
   },
-  output: {
-    filename: "[name].js",
-    path: outPath,
-    publicPath: "/",
-  },
   plugins: [
-    new CleanWebpackPlugin([outPath], {verbose: true, allowExternal: true}),
-    new webpack.optimize.AggressiveMergingPlugin(),
+    new ForkTsCheckerWebpackPlugin({
+      checkSyntacticErrors: true,
+      tslint,
+      tsconfig,
+      compilerOptions: {
+        skipLibCheck: true,
+      }
+    }),
   ],
   optimization: {
     splitChunks: {
+      chunks: "all",
+      automaticNameDelimiter: "-",
       cacheGroups: {
-        commons: {
+        vendors: {
+          name: false,
           test: /[\\/]node_modules[\\/]/,
-          name: "vendor",
-          chunks: "all",
+          priority: -10,
+          enforce: true,
         },
-      },
-    },
+        common: {
+          name: false,
+          minChunks: 2,
+          priority: -20,
+        }
+      }
+    }
   },
   resolve: {
-    extensions: [".js", ".jsx", ".ts", ".tsx"],
+    extensions: [".js", ".json", ".ts", ".tsx"],
     // Fix webpack's default behavior to not load packages with jsnext:main module
     // https://github.com/Microsoft/TypeScript/issues/11677
     mainFields: ["browser", "main"],
     plugins: [
-      new TsConfigPathsPlugin({configFileName: "./tsconfig.json"}),
+      new TsConfigPathsPlugin({ configFile: tsconfig }),
     ],
   },
   target: "web",

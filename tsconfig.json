@@ -11,6 +11,7 @@
     "removeComments": true,
     "strictNullChecks": false,
     "outDir": "dist",
+    "baseUrl": "src",
     "skipLibCheck": true,
     "lib": [
       "es2017",

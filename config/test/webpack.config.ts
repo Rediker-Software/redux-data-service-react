@@ -1,17 +1,11 @@
 // tslint:disable no-var-requires no-console
 
-import * as webpack from "webpack";
 import Config from "webpack-config";
 import * as glob from "fast-glob";
-
 import * as CleanWebpackPlugin from "clean-webpack-plugin";
-import * as TSLintPlugin from "tslint-webpack-plugin";
-import { TsConfigPathsPlugin } from "awesome-typescript-loader";
 
 import { join } from "path";
 import { mapKeys } from "lodash";
-
-const { peerDependencies } = require("../../package.json");
 
 const outPath = join(__dirname, "../../test-dist");
 
@@ -30,43 +24,36 @@ const entries = mapKeys(files, (fileName: string) => (
     .replace(/(\/|\\)/g, "-")
 ));
 
-export default new Config().extend({
-  "config/base/webpack.config.ts": (config) => {
-    delete config.entry;
-    delete config.plugins;
-    delete config.output;
-    return config;
-  },
-}).merge({
+export default new Config().extend("config/base/webpack.config.ts").merge({
   mode: "none",
   devtool: "inline-source-map",
   entry: {
     ...entries,
-    test: [
-      "faker",
-      "sinon",
-      "chai",
-    ],
-    vendor: [...Object.keys(peerDependencies)],
   },
   output: {
     filename: "[name].js",
     path: outPath,
     publicPath: "/",
   },
-  module: {
-    rules: [
-      // .ts, .tsx
-      {
-        test: /\.tsx?$/,
-        use: "awesome-typescript-loader?useCache=true&module=es6&configFileName=config/test/tsconfig.json",
-      },
-    ],
-  },
   plugins: [
-    new TsConfigPathsPlugin({configFileName: "config/test/tsconfig.json"}),
-    new TSLintPlugin({ config: "tslint.json", files: "src/**/*.{ts,tsx}" }),
     new CleanWebpackPlugin([outPath], { verbose: true, allowExternal: true }),
-    new webpack.optimize.AggressiveMergingPlugin(),
   ],
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        "test-vendors": {
+          test: /[\\/]node_modules[\\/](enzyme|faker|redux-test-utils|sinon|chai)[\\/]/,
+          name: "test-vendors",
+          chunks: "all",
+          enforce: true,
+        },
+        vendors: {
+          name: "vendors",
+        },
+        common: {
+          name: "common",
+        }
+      }
+    }
+  },
 });

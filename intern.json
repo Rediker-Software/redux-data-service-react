@@ -1,10 +1,11 @@
 {
   "browser": {
     "requires": [
-      "test-dist/test.js",
-      "test-dist/vendor.js"
+      "test-dist/vendors.js",
+      "test-dist/test-vendors.js"
     ],
     "suites": [
+      "test-dist/*common.js",
       "test-dist/*.test.js"
     ]
   },

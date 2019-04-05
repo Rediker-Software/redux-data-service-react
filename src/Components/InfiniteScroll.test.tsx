@@ -56,6 +56,8 @@ describe("<InfiniteScroll />", () => {
   let delayTimeout;
 
   beforeEach(() => {
+    Error.stackTraceLimit = Infinity;
+
     fakeService = "fakeModel";
     pageSize = 10;
     totalPages = 10;

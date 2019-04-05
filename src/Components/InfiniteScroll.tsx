@@ -4,10 +4,11 @@ import { IModel, IModelData, IQueryBuilder, IQueryManager, IQueryParams, QueryBu
 import { Omit } from "redux-data-service/dist/Omit";
 
 import {
+  branch,
   compose,
   defaultProps,
   lifecycle,
-  pure,
+  pure, renameProp,
   setDisplayName,
   withPropsOnChange,
   withStateHandlers
@@ -61,8 +62,10 @@ export interface IInfiniteScrollStateProps<T extends IModelData> {
 
 export interface IInfiniteScrollInternalProps<T extends IModel<IModelData>>
   extends Omit<IInfiniteScrollProps<T>, "query">, Omit<IInfiniteScrollStateProps<T>, "query"> {
-  query: IQueryManager<T>;
   estimatedPageHeight: number;
+  nextPageItems: T[];
+  previousPageItems: T[];
+  query: IQueryManager<T>;
 }
 
 interface IContentPlaceHolderProps {
@@ -260,6 +263,22 @@ export const InfiniteScroll = compose<IInfiniteScrollInternalProps<any>, IInfini
       updateState(updatedState);
     },
   }),
+  // branch(
+  //   ({ hasPreviousPage, disableVirtualScrolling }) => hasPreviousPage && !disableVirtualScrolling,
+  //   renameProp("previousPageQuery", "query"),
+  //   compose(
+  //     withModelQuery({ isLoading: false }),
+  //     renameProp("items", "previousPageItems")
+  //   )
+  // ),
+  // branch(
+  //   ({ hasNextPage, disableVirtualScrolling }) => hasNextPage && !disableVirtualScrolling,
+  //   renameProp("hasNextPage", "query"),
+  //   compose(
+  //     withModelQuery({ isLoading: false }),
+  //     renameProp("items", "nextPageItems")
+  //   )
+  // ),
   pure,
   lifecycle<IInfiniteScrollInternalProps<any>, {}>({
     componentDidMount() {
@@ -281,6 +300,7 @@ export const InfiniteScroll = compose<IInfiniteScrollInternalProps<any>, IInfini
     "lastScrollTop",
     "loadingComponent",
     "loadingComponentProps",
+    "query",
     "totalPages",
     "updatePageHeightMap",
     "updateState",
@@ -303,98 +323,82 @@ export const InfiniteScroll = compose<IInfiniteScrollInternalProps<any>, IInfini
   modelName,
   nextPage,
   nextPageEndMarkerRef,
+  nextPageItems,
   nextPageQuery,
   nextPageStartMarkerRef,
   nextPlaceHolderHeight,
   pageHeightMap,
   previousPage,
   previousPageEndMarkerRef,
+  previousPageItems,
   previousPageQuery,
   previousPlaceHolderHeight,
   previousPageStartMarkerRef,
   ...containerProps
 }) => (
-    <ContainerComponent {...containerProps} onScroll={handleScroll}>
+  <ContainerComponent {...containerProps} onScroll={handleScroll}>
 
-      {hasPreviousPage && disableVirtualScrolling && (
-        <InfiniteScrollPreviousPage
-          modelComponent={ModelComponent}
-          modelComponentProps={modelComponentProps}
-          query={previousPageQuery}
-        />
-      )}
+    {hasPreviousPage && disableVirtualScrolling && (
+      <InfiniteScrollPreviousPage
+        modelComponent={ModelComponent}
+        modelComponentProps={modelComponentProps}
+        query={previousPageQuery}
+      />
+    )}
 
-      {hasPreviousPage && !disableVirtualScrolling && (
-        <ContentPlaceHolder
-          height={previousPlaceHolderHeight}
-          {...contentPlaceHolderComponentProps}
-        />
-      )}
+    {hasPreviousPage && !disableVirtualScrolling && (
+      <ContentPlaceHolder
+        height={previousPlaceHolderHeight}
+        {...contentPlaceHolderComponentProps}
+      />
+    )}
 
-      {hasPreviousPage && !disableVirtualScrolling && (
-        <script ref={previousPageStartMarkerRef} />
-      )}
+    {hasPreviousPage && !disableVirtualScrolling && (
+      <script ref={previousPageStartMarkerRef} />
+    )}
 
-      {hasPreviousPage && !disableVirtualScrolling && (
-        <Query
-          modelName={modelName}
-          query={previousPageQuery}
-          loadingComponent={ContentPlaceHolder}
-          loadingComponentProps={{ height: pageHeightMap[previousPage] || estimatedPageHeight }}
-        >
-          {({ query }) => (
-            query.items.map(model => (
-              <ModelComponent key={model.id} model={model} {...modelComponentProps} />
-            ))
-          )}
-        </Query>
-      )}
+    {/*{hasPreviousPage && !disableVirtualScrolling && previousPageItems && (*/}
+      {/*previousPageItems.map(model => (*/}
+        {/*<ModelComponent key={model.id} model={model} {...modelComponentProps} />*/}
+      {/*))*/}
+    {/*)}*/}
 
-      {hasPreviousPage && !disableVirtualScrolling && (
-        <script ref={previousPageEndMarkerRef} />
-      )}
+    {hasPreviousPage && !disableVirtualScrolling && (
+      <script ref={previousPageEndMarkerRef} />
+    )}
 
-      <script ref={currentPageStartMarkerRef} />
+    <script ref={currentPageStartMarkerRef} />
 
-      {(
-        currentItems == null
-          ? <ContentPlaceHolder height="100%" {...contentPlaceHolderComponentProps} />
-          : currentItems.map(model => (
-            <ModelComponent key={model.id} model={model} {...modelComponentProps} />
-          ))
-      )}
+    {(
+      currentItems == null
+        ? <ContentPlaceHolder height="100%" {...contentPlaceHolderComponentProps} />
+        : currentItems.map(model => (
+          <ModelComponent key={model.id} model={model} {...modelComponentProps} />
+        ))
+    )}
 
-      <script ref={currentPageEndMarkerRef} />
+    <script ref={currentPageEndMarkerRef} />
 
-      {hasNextPage && (
-        <script ref={nextPageStartMarkerRef} />
-      )}
+    {hasNextPage && (
+      <script ref={nextPageStartMarkerRef} />
+    )}
 
-      {hasNextPage && (
-        <Query
-          modelName={modelName}
-          query={nextPageQuery}
-          loadingComponent={ContentPlaceHolder}
-          loadingComponentProps={{ height: pageHeightMap[nextPage] || estimatedPageHeight }}
-        >
-          {({ query }) => (
-            query.items.map(model => (
-              <ModelComponent key={model.id} model={model} {...modelComponentProps} />
-            ))
-          )}
-        </Query>
-      )}
+    {/*{hasNextPage && nextPageItems && (*/}
+      {/*nextPageItems.map(model => (*/}
+        {/*<ModelComponent key={model.id} model={model} {...modelComponentProps} />*/}
+      {/*))*/}
+    {/*)}*/}
 
-      {hasNextPage && (
-        <script ref={nextPageEndMarkerRef} />
-      )}
+    {hasNextPage && (
+      <script ref={nextPageEndMarkerRef} />
+    )}
 
-      {hasNextPage && !disableVirtualScrolling && (
-        <ContentPlaceHolder
-          height={nextPlaceHolderHeight}
-          {...contentPlaceHolderComponentProps}
-        />
-      )}
+    {hasNextPage && !disableVirtualScrolling && (
+      <ContentPlaceHolder
+        height={nextPlaceHolderHeight}
+        {...contentPlaceHolderComponentProps}
+      />
+    )}
 
-    </ContainerComponent>
-  ));
+  </ContainerComponent>
+));
