@@ -3,6 +3,7 @@
 .idea
 .DS_STORE
 .awcache
+.cache-loader
 .module-cache
 .vagrant
 node_modules
