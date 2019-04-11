@@ -342,9 +342,9 @@ export const InfiniteScroll = compose<IInfiniteScrollInternalProps<any>, IInfini
           loadingComponent={ContentPlaceHolder}
           loadingComponentProps={{ height: pageHeightMap[previousPage] || estimatedPageHeight }}
         >
-          {({ query }) => (
+          {({ query, items, ...extraProps }) => (
             query.items.map(model => (
-              <ModelComponent key={model.id} model={model} {...modelComponentProps} />
+              <ModelComponent key={model.id} model={model} {...extraProps} {...modelComponentProps} />
             ))
           )}
         </Query>
@@ -377,9 +377,9 @@ export const InfiniteScroll = compose<IInfiniteScrollInternalProps<any>, IInfini
           loadingComponent={ContentPlaceHolder}
           loadingComponentProps={{ height: pageHeightMap[nextPage] || estimatedPageHeight }}
         >
-          {({ query }) => (
+          {({ query, items, ...extraProps }) => (
             query.items.map(model => (
-              <ModelComponent key={model.id} model={model} {...modelComponentProps} />
+              <ModelComponent key={model.id} model={model} {...extraProps} {...modelComponentProps} />
             ))
           )}
         </Query>
