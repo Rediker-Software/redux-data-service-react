@@ -55,6 +55,10 @@
 * [onAnimationIterationCapture](imodelforminternalprops.md#onanimationiterationcapture)
 * [onAnimationStart](imodelforminternalprops.md#onanimationstart)
 * [onAnimationStartCapture](imodelforminternalprops.md#onanimationstartcapture)
+* [onAuxClick](imodelforminternalprops.md#onauxclick)
+* [onAuxClickCapture](imodelforminternalprops.md#onauxclickcapture)
+* [onBeforeInput](imodelforminternalprops.md#onbeforeinput)
+* [onBeforeInputCapture](imodelforminternalprops.md#onbeforeinputcapture)
 * [onBlur](imodelforminternalprops.md#onblur)
 * [onBlurCapture](imodelforminternalprops.md#onblurcapture)
 * [onCanPlay](imodelforminternalprops.md#oncanplay)
@@ -235,7 +239,7 @@
 
 *Inherited from HTMLAttributes.about*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1017*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1483*
 
 ___
 <a id="acceptcharset"></a>
@@ -246,7 +250,7 @@ ___
 
 *Inherited from FormHTMLAttributes.acceptCharset*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1428*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1895*
 
 ___
 <a id="accesskey"></a>
@@ -257,7 +261,7 @@ ___
 
 *Inherited from HTMLAttributes.accessKey*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:992*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1458*
 
 ___
 <a id="action"></a>
@@ -268,7 +272,7 @@ ___
 
 *Inherited from FormHTMLAttributes.action*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1429*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1896*
 
 ___
 <a id="autocapitalize"></a>
@@ -279,7 +283,7 @@ ___
 
 *Inherited from HTMLAttributes.autoCapitalize*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1027*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1493*
 
 ___
 <a id="autocomplete"></a>
@@ -290,7 +294,7 @@ ___
 
 *Inherited from FormHTMLAttributes.autoComplete*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1430*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1897*
 
 ___
 <a id="autocorrect"></a>
@@ -301,7 +305,7 @@ ___
 
 *Inherited from HTMLAttributes.autoCorrect*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1028*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1494*
 
 ___
 <a id="autosave"></a>
@@ -312,7 +316,7 @@ ___
 
 *Inherited from HTMLAttributes.autoSave*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1029*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1495*
 
 ___
 <a id="children"></a>
@@ -323,7 +327,7 @@ ___
 
 *Inherited from DOMAttributes.children*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:781*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1243*
 
 ___
 <a id="classname"></a>
@@ -334,7 +338,7 @@ ___
 
 *Inherited from HTMLAttributes.className*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:993*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1459*
 
 ___
 <a id="color"></a>
@@ -345,7 +349,7 @@ ___
 
 *Inherited from HTMLAttributes.color*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1030*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1496*
 
 ___
 <a id="contenteditable"></a>
@@ -356,7 +360,7 @@ ___
 
 *Inherited from HTMLAttributes.contentEditable*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:994*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1460*
 
 ___
 <a id="contextmenu"></a>
@@ -367,7 +371,7 @@ ___
 
 *Inherited from HTMLAttributes.contextMenu*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:995*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1461*
 
 ___
 <a id="dangerouslysetinnerhtml"></a>
@@ -378,7 +382,7 @@ ___
 
 *Inherited from DOMAttributes.dangerouslySetInnerHTML*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:782*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1244*
 
 #### Type declaration
 
@@ -393,7 +397,7 @@ ___
 
 *Inherited from HTMLAttributes.datatype*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1018*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1484*
 
 ___
 <a id="defaultchecked"></a>
@@ -404,7 +408,7 @@ ___
 
 *Inherited from HTMLAttributes.defaultChecked*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:986*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1452*
 
 ___
 <a id="defaultvalue"></a>
@@ -415,7 +419,7 @@ ___
 
 *Inherited from HTMLAttributes.defaultValue*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:987*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1453*
 
 ___
 <a id="dir"></a>
@@ -426,7 +430,7 @@ ___
 
 *Inherited from HTMLAttributes.dir*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:996*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1462*
 
 ___
 <a id="draggable"></a>
@@ -437,7 +441,7 @@ ___
 
 *Inherited from HTMLAttributes.draggable*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:997*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1463*
 
 ___
 <a id="enctype"></a>
@@ -448,7 +452,7 @@ ___
 
 *Inherited from FormHTMLAttributes.encType*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1431*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1898*
 
 ___
 <a id="formcomponent"></a>
@@ -457,7 +461,7 @@ ___
 
 **● formComponent**: *`React.ComponentType`<`FormHTMLAttributes`<`any`> & `any`>*
 
-*Defined in [Components/ModelForm.tsx:18](https://github.com/Rediker-Software/redux-data-service-react/blob/18e2d42/src/Components/ModelForm.tsx#L18)*
+*Defined in [Components/ModelForm.tsx:18](https://github.com/Rediker-Software/redux-data-service-react/blob/5ddfd25/src/Components/ModelForm.tsx#L18)*
 
 ___
 <a id="hidden"></a>
@@ -468,7 +472,7 @@ ___
 
 *Inherited from HTMLAttributes.hidden*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:998*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1464*
 
 ___
 <a id="id"></a>
@@ -479,7 +483,7 @@ ___
 
 *Inherited from HTMLAttributes.id*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:999*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1465*
 
 ___
 <a id="inlist"></a>
@@ -490,7 +494,7 @@ ___
 
 *Inherited from HTMLAttributes.inlist*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1019*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1485*
 
 ___
 <a id="inputmode"></a>
@@ -501,7 +505,7 @@ ___
 
 *Inherited from HTMLAttributes.inputMode*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1009*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1475*
 
 ___
 <a id="is"></a>
@@ -512,7 +516,7 @@ ___
 
 *Inherited from HTMLAttributes.is*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1010*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1476*
 
 ___
 <a id="itemid"></a>
@@ -523,7 +527,7 @@ ___
 
 *Inherited from HTMLAttributes.itemID*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1034*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1500*
 
 ___
 <a id="itemprop"></a>
@@ -534,7 +538,7 @@ ___
 
 *Inherited from HTMLAttributes.itemProp*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1031*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1497*
 
 ___
 <a id="itemref"></a>
@@ -545,7 +549,7 @@ ___
 
 *Inherited from HTMLAttributes.itemRef*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1035*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1501*
 
 ___
 <a id="itemscope"></a>
@@ -556,7 +560,7 @@ ___
 
 *Inherited from HTMLAttributes.itemScope*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1032*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1498*
 
 ___
 <a id="itemtype"></a>
@@ -567,7 +571,7 @@ ___
 
 *Inherited from HTMLAttributes.itemType*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1033*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1499*
 
 ___
 <a id="lang"></a>
@@ -578,7 +582,7 @@ ___
 
 *Inherited from HTMLAttributes.lang*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1000*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1466*
 
 ___
 <a id="method"></a>
@@ -589,7 +593,7 @@ ___
 
 *Inherited from FormHTMLAttributes.method*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1432*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1899*
 
 ___
 <a id="name"></a>
@@ -600,7 +604,7 @@ ___
 
 *Inherited from FormHTMLAttributes.name*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1433*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1900*
 
 ___
 <a id="novalidate"></a>
@@ -611,7 +615,7 @@ ___
 
 *Inherited from FormHTMLAttributes.noValidate*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1434*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1901*
 
 ___
 <a id="onabort"></a>
@@ -622,7 +626,7 @@ ___
 
 *Inherited from DOMAttributes.onAbort*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:835*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1299*
 
 ___
 <a id="onabortcapture"></a>
@@ -633,7 +637,7 @@ ___
 
 *Inherited from DOMAttributes.onAbortCapture*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:836*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1300*
 
 ___
 <a id="onanimationend"></a>
@@ -644,7 +648,7 @@ ___
 
 *Inherited from DOMAttributes.onAnimationEnd*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:963*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1429*
 
 ___
 <a id="onanimationendcapture"></a>
@@ -655,7 +659,7 @@ ___
 
 *Inherited from DOMAttributes.onAnimationEndCapture*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:964*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1430*
 
 ___
 <a id="onanimationiteration"></a>
@@ -666,7 +670,7 @@ ___
 
 *Inherited from DOMAttributes.onAnimationIteration*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:965*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1431*
 
 ___
 <a id="onanimationiterationcapture"></a>
@@ -677,7 +681,7 @@ ___
 
 *Inherited from DOMAttributes.onAnimationIterationCapture*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:966*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1432*
 
 ___
 <a id="onanimationstart"></a>
@@ -688,7 +692,7 @@ ___
 
 *Inherited from DOMAttributes.onAnimationStart*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:961*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1427*
 
 ___
 <a id="onanimationstartcapture"></a>
@@ -699,7 +703,51 @@ ___
 
 *Inherited from DOMAttributes.onAnimationStartCapture*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:962*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1428*
+
+___
+<a id="onauxclick"></a>
+
+### `<Optional>` onAuxClick
+
+**● onAuxClick**: *`MouseEventHandler`<`any`>*
+
+*Inherited from DOMAttributes.onAuxClick*
+
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1345*
+
+___
+<a id="onauxclickcapture"></a>
+
+### `<Optional>` onAuxClickCapture
+
+**● onAuxClickCapture**: *`MouseEventHandler`<`any`>*
+
+*Inherited from DOMAttributes.onAuxClickCapture*
+
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1346*
+
+___
+<a id="onbeforeinput"></a>
+
+### `<Optional>` onBeforeInput
+
+**● onBeforeInput**: *`FormEventHandler`<`any`>*
+
+*Inherited from DOMAttributes.onBeforeInput*
+
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1273*
+
+___
+<a id="onbeforeinputcapture"></a>
+
+### `<Optional>` onBeforeInputCapture
+
+**● onBeforeInputCapture**: *`FormEventHandler`<`any`>*
+
+*Inherited from DOMAttributes.onBeforeInputCapture*
+
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1274*
 
 ___
 <a id="onblur"></a>
@@ -710,7 +758,7 @@ ___
 
 *Inherited from DOMAttributes.onBlur*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:805*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1267*
 
 ___
 <a id="onblurcapture"></a>
@@ -721,7 +769,7 @@ ___
 
 *Inherited from DOMAttributes.onBlurCapture*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:806*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1268*
 
 ___
 <a id="oncanplay"></a>
@@ -732,7 +780,7 @@ ___
 
 *Inherited from DOMAttributes.onCanPlay*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:837*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1301*
 
 ___
 <a id="oncanplaycapture"></a>
@@ -743,7 +791,7 @@ ___
 
 *Inherited from DOMAttributes.onCanPlayCapture*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:838*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1302*
 
 ___
 <a id="oncanplaythrough"></a>
@@ -754,7 +802,7 @@ ___
 
 *Inherited from DOMAttributes.onCanPlayThrough*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:839*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1303*
 
 ___
 <a id="oncanplaythroughcapture"></a>
@@ -765,7 +813,7 @@ ___
 
 *Inherited from DOMAttributes.onCanPlayThroughCapture*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:840*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1304*
 
 ___
 <a id="onchange"></a>
@@ -776,7 +824,7 @@ ___
 
 *Inherited from DOMAttributes.onChange*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:809*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1271*
 
 ___
 <a id="onchangecapture"></a>
@@ -787,7 +835,7 @@ ___
 
 *Inherited from DOMAttributes.onChangeCapture*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:810*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1272*
 
 ___
 <a id="onclick"></a>
@@ -798,7 +846,7 @@ ___
 
 *Inherited from DOMAttributes.onClick*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:881*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1347*
 
 ___
 <a id="onclickcapture"></a>
@@ -809,7 +857,7 @@ ___
 
 *Inherited from DOMAttributes.onClickCapture*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:882*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1348*
 
 ___
 <a id="oncompositionend"></a>
@@ -820,7 +868,7 @@ ___
 
 *Inherited from DOMAttributes.onCompositionEnd*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:795*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1257*
 
 ___
 <a id="oncompositionendcapture"></a>
@@ -831,7 +879,7 @@ ___
 
 *Inherited from DOMAttributes.onCompositionEndCapture*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:796*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1258*
 
 ___
 <a id="oncompositionstart"></a>
@@ -842,7 +890,7 @@ ___
 
 *Inherited from DOMAttributes.onCompositionStart*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:797*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1259*
 
 ___
 <a id="oncompositionstartcapture"></a>
@@ -853,7 +901,7 @@ ___
 
 *Inherited from DOMAttributes.onCompositionStartCapture*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:798*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1260*
 
 ___
 <a id="oncompositionupdate"></a>
@@ -864,7 +912,7 @@ ___
 
 *Inherited from DOMAttributes.onCompositionUpdate*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:799*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1261*
 
 ___
 <a id="oncompositionupdatecapture"></a>
@@ -875,7 +923,7 @@ ___
 
 *Inherited from DOMAttributes.onCompositionUpdateCapture*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:800*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1262*
 
 ___
 <a id="oncontextmenu"></a>
@@ -886,7 +934,7 @@ ___
 
 *Inherited from DOMAttributes.onContextMenu*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:883*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1349*
 
 ___
 <a id="oncontextmenucapture"></a>
@@ -897,7 +945,7 @@ ___
 
 *Inherited from DOMAttributes.onContextMenuCapture*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:884*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1350*
 
 ___
 <a id="oncopy"></a>
@@ -908,7 +956,7 @@ ___
 
 *Inherited from DOMAttributes.onCopy*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:787*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1249*
 
 ___
 <a id="oncopycapture"></a>
@@ -919,7 +967,7 @@ ___
 
 *Inherited from DOMAttributes.onCopyCapture*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:788*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1250*
 
 ___
 <a id="oncut"></a>
@@ -930,7 +978,7 @@ ___
 
 *Inherited from DOMAttributes.onCut*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:789*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1251*
 
 ___
 <a id="oncutcapture"></a>
@@ -941,7 +989,7 @@ ___
 
 *Inherited from DOMAttributes.onCutCapture*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:790*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1252*
 
 ___
 <a id="ondoubleclick"></a>
@@ -952,7 +1000,7 @@ ___
 
 *Inherited from DOMAttributes.onDoubleClick*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:885*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1351*
 
 ___
 <a id="ondoubleclickcapture"></a>
@@ -963,7 +1011,7 @@ ___
 
 *Inherited from DOMAttributes.onDoubleClickCapture*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:886*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1352*
 
 ___
 <a id="ondrag"></a>
@@ -974,7 +1022,7 @@ ___
 
 *Inherited from DOMAttributes.onDrag*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:887*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1353*
 
 ___
 <a id="ondragcapture"></a>
@@ -985,7 +1033,7 @@ ___
 
 *Inherited from DOMAttributes.onDragCapture*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:888*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1354*
 
 ___
 <a id="ondragend"></a>
@@ -996,7 +1044,7 @@ ___
 
 *Inherited from DOMAttributes.onDragEnd*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:889*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1355*
 
 ___
 <a id="ondragendcapture"></a>
@@ -1007,7 +1055,7 @@ ___
 
 *Inherited from DOMAttributes.onDragEndCapture*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:890*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1356*
 
 ___
 <a id="ondragenter"></a>
@@ -1018,7 +1066,7 @@ ___
 
 *Inherited from DOMAttributes.onDragEnter*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:891*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1357*
 
 ___
 <a id="ondragentercapture"></a>
@@ -1029,7 +1077,7 @@ ___
 
 *Inherited from DOMAttributes.onDragEnterCapture*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:892*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1358*
 
 ___
 <a id="ondragexit"></a>
@@ -1040,7 +1088,7 @@ ___
 
 *Inherited from DOMAttributes.onDragExit*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:893*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1359*
 
 ___
 <a id="ondragexitcapture"></a>
@@ -1051,7 +1099,7 @@ ___
 
 *Inherited from DOMAttributes.onDragExitCapture*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:894*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1360*
 
 ___
 <a id="ondragleave"></a>
@@ -1062,7 +1110,7 @@ ___
 
 *Inherited from DOMAttributes.onDragLeave*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:895*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1361*
 
 ___
 <a id="ondragleavecapture"></a>
@@ -1073,7 +1121,7 @@ ___
 
 *Inherited from DOMAttributes.onDragLeaveCapture*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:896*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1362*
 
 ___
 <a id="ondragover"></a>
@@ -1084,7 +1132,7 @@ ___
 
 *Inherited from DOMAttributes.onDragOver*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:897*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1363*
 
 ___
 <a id="ondragovercapture"></a>
@@ -1095,7 +1143,7 @@ ___
 
 *Inherited from DOMAttributes.onDragOverCapture*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:898*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1364*
 
 ___
 <a id="ondragstart"></a>
@@ -1106,7 +1154,7 @@ ___
 
 *Inherited from DOMAttributes.onDragStart*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:899*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1365*
 
 ___
 <a id="ondragstartcapture"></a>
@@ -1117,7 +1165,7 @@ ___
 
 *Inherited from DOMAttributes.onDragStartCapture*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:900*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1366*
 
 ___
 <a id="ondrop"></a>
@@ -1128,7 +1176,7 @@ ___
 
 *Inherited from DOMAttributes.onDrop*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:901*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1367*
 
 ___
 <a id="ondropcapture"></a>
@@ -1139,7 +1187,7 @@ ___
 
 *Inherited from DOMAttributes.onDropCapture*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:902*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1368*
 
 ___
 <a id="ondurationchange"></a>
@@ -1150,7 +1198,7 @@ ___
 
 *Inherited from DOMAttributes.onDurationChange*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:841*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1305*
 
 ___
 <a id="ondurationchangecapture"></a>
@@ -1161,7 +1209,7 @@ ___
 
 *Inherited from DOMAttributes.onDurationChangeCapture*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:842*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1306*
 
 ___
 <a id="onemptied"></a>
@@ -1172,7 +1220,7 @@ ___
 
 *Inherited from DOMAttributes.onEmptied*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:843*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1307*
 
 ___
 <a id="onemptiedcapture"></a>
@@ -1183,7 +1231,7 @@ ___
 
 *Inherited from DOMAttributes.onEmptiedCapture*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:844*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1308*
 
 ___
 <a id="onencrypted"></a>
@@ -1194,7 +1242,7 @@ ___
 
 *Inherited from DOMAttributes.onEncrypted*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:845*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1309*
 
 ___
 <a id="onencryptedcapture"></a>
@@ -1205,7 +1253,7 @@ ___
 
 *Inherited from DOMAttributes.onEncryptedCapture*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:846*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1310*
 
 ___
 <a id="onended"></a>
@@ -1216,7 +1264,7 @@ ___
 
 *Inherited from DOMAttributes.onEnded*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:847*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1311*
 
 ___
 <a id="onendedcapture"></a>
@@ -1227,7 +1275,7 @@ ___
 
 *Inherited from DOMAttributes.onEndedCapture*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:848*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1312*
 
 ___
 <a id="onerror"></a>
@@ -1238,7 +1286,7 @@ ___
 
 *Inherited from DOMAttributes.onError*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:823*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1287*
 
 ___
 <a id="onerrorcapture"></a>
@@ -1249,7 +1297,7 @@ ___
 
 *Inherited from DOMAttributes.onErrorCapture*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:824*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1288*
 
 ___
 <a id="onfocus"></a>
@@ -1260,7 +1308,7 @@ ___
 
 *Inherited from DOMAttributes.onFocus*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:803*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1265*
 
 ___
 <a id="onfocuscapture"></a>
@@ -1271,7 +1319,7 @@ ___
 
 *Inherited from DOMAttributes.onFocusCapture*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:804*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1266*
 
 ___
 <a id="ongotpointercapture"></a>
@@ -1282,7 +1330,7 @@ ___
 
 *Inherited from DOMAttributes.onGotPointerCapture*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:947*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1413*
 
 ___
 <a id="ongotpointercapturecapture"></a>
@@ -1293,7 +1341,7 @@ ___
 
 *Inherited from DOMAttributes.onGotPointerCaptureCapture*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:948*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1414*
 
 ___
 <a id="oninput"></a>
@@ -1304,7 +1352,7 @@ ___
 
 *Inherited from DOMAttributes.onInput*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:811*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1275*
 
 ___
 <a id="oninputcapture"></a>
@@ -1315,7 +1363,7 @@ ___
 
 *Inherited from DOMAttributes.onInputCapture*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:812*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1276*
 
 ___
 <a id="oninvalid"></a>
@@ -1326,7 +1374,7 @@ ___
 
 *Inherited from DOMAttributes.onInvalid*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:817*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1281*
 
 ___
 <a id="oninvalidcapture"></a>
@@ -1337,7 +1385,7 @@ ___
 
 *Inherited from DOMAttributes.onInvalidCapture*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:818*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1282*
 
 ___
 <a id="onkeydown"></a>
@@ -1348,7 +1396,7 @@ ___
 
 *Inherited from DOMAttributes.onKeyDown*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:827*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1291*
 
 ___
 <a id="onkeydowncapture"></a>
@@ -1359,7 +1407,7 @@ ___
 
 *Inherited from DOMAttributes.onKeyDownCapture*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:828*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1292*
 
 ___
 <a id="onkeypress"></a>
@@ -1370,7 +1418,7 @@ ___
 
 *Inherited from DOMAttributes.onKeyPress*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:829*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1293*
 
 ___
 <a id="onkeypresscapture"></a>
@@ -1381,7 +1429,7 @@ ___
 
 *Inherited from DOMAttributes.onKeyPressCapture*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:830*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1294*
 
 ___
 <a id="onkeyup"></a>
@@ -1392,7 +1440,7 @@ ___
 
 *Inherited from DOMAttributes.onKeyUp*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:831*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1295*
 
 ___
 <a id="onkeyupcapture"></a>
@@ -1403,7 +1451,7 @@ ___
 
 *Inherited from DOMAttributes.onKeyUpCapture*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:832*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1296*
 
 ___
 <a id="onload"></a>
@@ -1414,7 +1462,7 @@ ___
 
 *Inherited from DOMAttributes.onLoad*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:821*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1285*
 
 ___
 <a id="onloadcapture"></a>
@@ -1425,7 +1473,7 @@ ___
 
 *Inherited from DOMAttributes.onLoadCapture*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:822*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1286*
 
 ___
 <a id="onloadstart"></a>
@@ -1436,7 +1484,7 @@ ___
 
 *Inherited from DOMAttributes.onLoadStart*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:853*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1317*
 
 ___
 <a id="onloadstartcapture"></a>
@@ -1447,7 +1495,7 @@ ___
 
 *Inherited from DOMAttributes.onLoadStartCapture*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:854*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1318*
 
 ___
 <a id="onloadeddata"></a>
@@ -1458,7 +1506,7 @@ ___
 
 *Inherited from DOMAttributes.onLoadedData*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:849*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1313*
 
 ___
 <a id="onloadeddatacapture"></a>
@@ -1469,7 +1517,7 @@ ___
 
 *Inherited from DOMAttributes.onLoadedDataCapture*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:850*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1314*
 
 ___
 <a id="onloadedmetadata"></a>
@@ -1480,7 +1528,7 @@ ___
 
 *Inherited from DOMAttributes.onLoadedMetadata*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:851*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1315*
 
 ___
 <a id="onloadedmetadatacapture"></a>
@@ -1491,7 +1539,7 @@ ___
 
 *Inherited from DOMAttributes.onLoadedMetadataCapture*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:852*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1316*
 
 ___
 <a id="onlostpointercapture"></a>
@@ -1502,7 +1550,7 @@ ___
 
 *Inherited from DOMAttributes.onLostPointerCapture*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:949*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1415*
 
 ___
 <a id="onlostpointercapturecapture"></a>
@@ -1513,7 +1561,7 @@ ___
 
 *Inherited from DOMAttributes.onLostPointerCaptureCapture*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:950*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1416*
 
 ___
 <a id="onmousedown"></a>
@@ -1524,7 +1572,7 @@ ___
 
 *Inherited from DOMAttributes.onMouseDown*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:903*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1369*
 
 ___
 <a id="onmousedowncapture"></a>
@@ -1535,7 +1583,7 @@ ___
 
 *Inherited from DOMAttributes.onMouseDownCapture*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:904*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1370*
 
 ___
 <a id="onmouseenter"></a>
@@ -1546,7 +1594,7 @@ ___
 
 *Inherited from DOMAttributes.onMouseEnter*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:905*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1371*
 
 ___
 <a id="onmouseleave"></a>
@@ -1557,7 +1605,7 @@ ___
 
 *Inherited from DOMAttributes.onMouseLeave*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:906*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1372*
 
 ___
 <a id="onmousemove"></a>
@@ -1568,7 +1616,7 @@ ___
 
 *Inherited from DOMAttributes.onMouseMove*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:907*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1373*
 
 ___
 <a id="onmousemovecapture"></a>
@@ -1579,7 +1627,7 @@ ___
 
 *Inherited from DOMAttributes.onMouseMoveCapture*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:908*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1374*
 
 ___
 <a id="onmouseout"></a>
@@ -1590,7 +1638,7 @@ ___
 
 *Inherited from DOMAttributes.onMouseOut*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:909*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1375*
 
 ___
 <a id="onmouseoutcapture"></a>
@@ -1601,7 +1649,7 @@ ___
 
 *Inherited from DOMAttributes.onMouseOutCapture*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:910*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1376*
 
 ___
 <a id="onmouseover"></a>
@@ -1612,7 +1660,7 @@ ___
 
 *Inherited from DOMAttributes.onMouseOver*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:911*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1377*
 
 ___
 <a id="onmouseovercapture"></a>
@@ -1623,7 +1671,7 @@ ___
 
 *Inherited from DOMAttributes.onMouseOverCapture*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:912*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1378*
 
 ___
 <a id="onmouseup"></a>
@@ -1634,7 +1682,7 @@ ___
 
 *Inherited from DOMAttributes.onMouseUp*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:913*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1379*
 
 ___
 <a id="onmouseupcapture"></a>
@@ -1645,7 +1693,7 @@ ___
 
 *Inherited from DOMAttributes.onMouseUpCapture*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:914*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1380*
 
 ___
 <a id="onpaste"></a>
@@ -1656,7 +1704,7 @@ ___
 
 *Inherited from DOMAttributes.onPaste*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:791*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1253*
 
 ___
 <a id="onpastecapture"></a>
@@ -1667,7 +1715,7 @@ ___
 
 *Inherited from DOMAttributes.onPasteCapture*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:792*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1254*
 
 ___
 <a id="onpause"></a>
@@ -1678,7 +1726,7 @@ ___
 
 *Inherited from DOMAttributes.onPause*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:855*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1319*
 
 ___
 <a id="onpausecapture"></a>
@@ -1689,7 +1737,7 @@ ___
 
 *Inherited from DOMAttributes.onPauseCapture*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:856*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1320*
 
 ___
 <a id="onplay"></a>
@@ -1700,7 +1748,7 @@ ___
 
 *Inherited from DOMAttributes.onPlay*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:857*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1321*
 
 ___
 <a id="onplaycapture"></a>
@@ -1711,7 +1759,7 @@ ___
 
 *Inherited from DOMAttributes.onPlayCapture*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:858*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1322*
 
 ___
 <a id="onplaying"></a>
@@ -1722,7 +1770,7 @@ ___
 
 *Inherited from DOMAttributes.onPlaying*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:859*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1323*
 
 ___
 <a id="onplayingcapture"></a>
@@ -1733,7 +1781,7 @@ ___
 
 *Inherited from DOMAttributes.onPlayingCapture*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:860*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1324*
 
 ___
 <a id="onpointercancel"></a>
@@ -1744,7 +1792,7 @@ ___
 
 *Inherited from DOMAttributes.onPointerCancel*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:937*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1403*
 
 ___
 <a id="onpointercancelcapture"></a>
@@ -1755,7 +1803,7 @@ ___
 
 *Inherited from DOMAttributes.onPointerCancelCapture*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:938*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1404*
 
 ___
 <a id="onpointerdown"></a>
@@ -1766,7 +1814,7 @@ ___
 
 *Inherited from DOMAttributes.onPointerDown*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:931*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1397*
 
 ___
 <a id="onpointerdowncapture"></a>
@@ -1777,7 +1825,7 @@ ___
 
 *Inherited from DOMAttributes.onPointerDownCapture*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:932*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1398*
 
 ___
 <a id="onpointerenter"></a>
@@ -1788,7 +1836,7 @@ ___
 
 *Inherited from DOMAttributes.onPointerEnter*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:939*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1405*
 
 ___
 <a id="onpointerentercapture"></a>
@@ -1799,7 +1847,7 @@ ___
 
 *Inherited from DOMAttributes.onPointerEnterCapture*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:940*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1406*
 
 ___
 <a id="onpointerleave"></a>
@@ -1810,7 +1858,7 @@ ___
 
 *Inherited from DOMAttributes.onPointerLeave*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:941*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1407*
 
 ___
 <a id="onpointerleavecapture"></a>
@@ -1821,7 +1869,7 @@ ___
 
 *Inherited from DOMAttributes.onPointerLeaveCapture*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:942*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1408*
 
 ___
 <a id="onpointermove"></a>
@@ -1832,7 +1880,7 @@ ___
 
 *Inherited from DOMAttributes.onPointerMove*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:933*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1399*
 
 ___
 <a id="onpointermovecapture"></a>
@@ -1843,7 +1891,7 @@ ___
 
 *Inherited from DOMAttributes.onPointerMoveCapture*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:934*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1400*
 
 ___
 <a id="onpointerout"></a>
@@ -1854,7 +1902,7 @@ ___
 
 *Inherited from DOMAttributes.onPointerOut*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:945*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1411*
 
 ___
 <a id="onpointeroutcapture"></a>
@@ -1865,7 +1913,7 @@ ___
 
 *Inherited from DOMAttributes.onPointerOutCapture*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:946*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1412*
 
 ___
 <a id="onpointerover"></a>
@@ -1876,7 +1924,7 @@ ___
 
 *Inherited from DOMAttributes.onPointerOver*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:943*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1409*
 
 ___
 <a id="onpointerovercapture"></a>
@@ -1887,7 +1935,7 @@ ___
 
 *Inherited from DOMAttributes.onPointerOverCapture*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:944*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1410*
 
 ___
 <a id="onpointerup"></a>
@@ -1898,7 +1946,7 @@ ___
 
 *Inherited from DOMAttributes.onPointerUp*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:935*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1401*
 
 ___
 <a id="onpointerupcapture"></a>
@@ -1909,7 +1957,7 @@ ___
 
 *Inherited from DOMAttributes.onPointerUpCapture*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:936*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1402*
 
 ___
 <a id="onprogress"></a>
@@ -1920,7 +1968,7 @@ ___
 
 *Inherited from DOMAttributes.onProgress*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:861*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1325*
 
 ___
 <a id="onprogresscapture"></a>
@@ -1931,7 +1979,7 @@ ___
 
 *Inherited from DOMAttributes.onProgressCapture*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:862*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1326*
 
 ___
 <a id="onratechange"></a>
@@ -1942,7 +1990,7 @@ ___
 
 *Inherited from DOMAttributes.onRateChange*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:863*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1327*
 
 ___
 <a id="onratechangecapture"></a>
@@ -1953,7 +2001,7 @@ ___
 
 *Inherited from DOMAttributes.onRateChangeCapture*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:864*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1328*
 
 ___
 <a id="onreset"></a>
@@ -1964,7 +2012,7 @@ ___
 
 *Inherited from DOMAttributes.onReset*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:813*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1277*
 
 ___
 <a id="onresetcapture"></a>
@@ -1975,7 +2023,7 @@ ___
 
 *Inherited from DOMAttributes.onResetCapture*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:814*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1278*
 
 ___
 <a id="onscroll"></a>
@@ -1986,7 +2034,7 @@ ___
 
 *Inherited from DOMAttributes.onScroll*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:953*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1419*
 
 ___
 <a id="onscrollcapture"></a>
@@ -1997,7 +2045,7 @@ ___
 
 *Inherited from DOMAttributes.onScrollCapture*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:954*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1420*
 
 ___
 <a id="onseeked"></a>
@@ -2008,7 +2056,7 @@ ___
 
 *Inherited from DOMAttributes.onSeeked*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:865*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1329*
 
 ___
 <a id="onseekedcapture"></a>
@@ -2019,7 +2067,7 @@ ___
 
 *Inherited from DOMAttributes.onSeekedCapture*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:866*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1330*
 
 ___
 <a id="onseeking"></a>
@@ -2030,7 +2078,7 @@ ___
 
 *Inherited from DOMAttributes.onSeeking*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:867*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1331*
 
 ___
 <a id="onseekingcapture"></a>
@@ -2041,7 +2089,7 @@ ___
 
 *Inherited from DOMAttributes.onSeekingCapture*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:868*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1332*
 
 ___
 <a id="onselect"></a>
@@ -2052,7 +2100,7 @@ ___
 
 *Inherited from DOMAttributes.onSelect*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:917*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1383*
 
 ___
 <a id="onselectcapture"></a>
@@ -2063,7 +2111,7 @@ ___
 
 *Inherited from DOMAttributes.onSelectCapture*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:918*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1384*
 
 ___
 <a id="onstalled"></a>
@@ -2074,7 +2122,7 @@ ___
 
 *Inherited from DOMAttributes.onStalled*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:869*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1333*
 
 ___
 <a id="onstalledcapture"></a>
@@ -2085,7 +2133,7 @@ ___
 
 *Inherited from DOMAttributes.onStalledCapture*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:870*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1334*
 
 ___
 <a id="onsubmit"></a>
@@ -2096,7 +2144,7 @@ ___
 
 *Inherited from DOMAttributes.onSubmit*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:815*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1279*
 
 ___
 <a id="onsubmitcapture"></a>
@@ -2107,7 +2155,7 @@ ___
 
 *Inherited from DOMAttributes.onSubmitCapture*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:816*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1280*
 
 ___
 <a id="onsuspend"></a>
@@ -2118,7 +2166,7 @@ ___
 
 *Inherited from DOMAttributes.onSuspend*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:871*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1335*
 
 ___
 <a id="onsuspendcapture"></a>
@@ -2129,7 +2177,7 @@ ___
 
 *Inherited from DOMAttributes.onSuspendCapture*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:872*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1336*
 
 ___
 <a id="ontimeupdate"></a>
@@ -2140,7 +2188,7 @@ ___
 
 *Inherited from DOMAttributes.onTimeUpdate*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:873*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1337*
 
 ___
 <a id="ontimeupdatecapture"></a>
@@ -2151,7 +2199,7 @@ ___
 
 *Inherited from DOMAttributes.onTimeUpdateCapture*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:874*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1338*
 
 ___
 <a id="ontouchcancel"></a>
@@ -2162,7 +2210,7 @@ ___
 
 *Inherited from DOMAttributes.onTouchCancel*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:921*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1387*
 
 ___
 <a id="ontouchcancelcapture"></a>
@@ -2173,7 +2221,7 @@ ___
 
 *Inherited from DOMAttributes.onTouchCancelCapture*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:922*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1388*
 
 ___
 <a id="ontouchend"></a>
@@ -2184,7 +2232,7 @@ ___
 
 *Inherited from DOMAttributes.onTouchEnd*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:923*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1389*
 
 ___
 <a id="ontouchendcapture"></a>
@@ -2195,7 +2243,7 @@ ___
 
 *Inherited from DOMAttributes.onTouchEndCapture*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:924*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1390*
 
 ___
 <a id="ontouchmove"></a>
@@ -2206,7 +2254,7 @@ ___
 
 *Inherited from DOMAttributes.onTouchMove*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:925*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1391*
 
 ___
 <a id="ontouchmovecapture"></a>
@@ -2217,7 +2265,7 @@ ___
 
 *Inherited from DOMAttributes.onTouchMoveCapture*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:926*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1392*
 
 ___
 <a id="ontouchstart"></a>
@@ -2228,7 +2276,7 @@ ___
 
 *Inherited from DOMAttributes.onTouchStart*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:927*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1393*
 
 ___
 <a id="ontouchstartcapture"></a>
@@ -2239,7 +2287,7 @@ ___
 
 *Inherited from DOMAttributes.onTouchStartCapture*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:928*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1394*
 
 ___
 <a id="ontransitionend"></a>
@@ -2250,7 +2298,7 @@ ___
 
 *Inherited from DOMAttributes.onTransitionEnd*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:969*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1435*
 
 ___
 <a id="ontransitionendcapture"></a>
@@ -2261,7 +2309,7 @@ ___
 
 *Inherited from DOMAttributes.onTransitionEndCapture*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:970*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1436*
 
 ___
 <a id="onvolumechange"></a>
@@ -2272,7 +2320,7 @@ ___
 
 *Inherited from DOMAttributes.onVolumeChange*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:875*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1339*
 
 ___
 <a id="onvolumechangecapture"></a>
@@ -2283,7 +2331,7 @@ ___
 
 *Inherited from DOMAttributes.onVolumeChangeCapture*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:876*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1340*
 
 ___
 <a id="onwaiting"></a>
@@ -2294,7 +2342,7 @@ ___
 
 *Inherited from DOMAttributes.onWaiting*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:877*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1341*
 
 ___
 <a id="onwaitingcapture"></a>
@@ -2305,7 +2353,7 @@ ___
 
 *Inherited from DOMAttributes.onWaitingCapture*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:878*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1342*
 
 ___
 <a id="onwheel"></a>
@@ -2316,7 +2364,7 @@ ___
 
 *Inherited from DOMAttributes.onWheel*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:957*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1423*
 
 ___
 <a id="onwheelcapture"></a>
@@ -2327,7 +2375,7 @@ ___
 
 *Inherited from DOMAttributes.onWheelCapture*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:958*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1424*
 
 ___
 <a id="placeholder"></a>
@@ -2338,7 +2386,7 @@ ___
 
 *Inherited from HTMLAttributes.placeholder*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1001*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1467*
 
 ___
 <a id="prefix"></a>
@@ -2349,7 +2397,7 @@ ___
 
 *Inherited from HTMLAttributes.prefix*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1020*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1486*
 
 ___
 <a id="property"></a>
@@ -2360,7 +2408,7 @@ ___
 
 *Inherited from HTMLAttributes.property*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1021*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1487*
 
 ___
 <a id="radiogroup"></a>
@@ -2371,7 +2419,7 @@ ___
 
 *Inherited from HTMLAttributes.radioGroup*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1011*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1477*
 
 ___
 <a id="resource"></a>
@@ -2382,7 +2430,7 @@ ___
 
 *Inherited from HTMLAttributes.resource*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1022*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1488*
 
 ___
 <a id="results"></a>
@@ -2393,7 +2441,7 @@ ___
 
 *Inherited from HTMLAttributes.results*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1036*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1502*
 
 ___
 <a id="role"></a>
@@ -2404,7 +2452,7 @@ ___
 
 *Inherited from HTMLAttributes.role*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1014*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1480*
 
 ___
 <a id="security"></a>
@@ -2415,7 +2463,7 @@ ___
 
 *Inherited from HTMLAttributes.security*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1037*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1503*
 
 ___
 <a id="slot"></a>
@@ -2426,7 +2474,7 @@ ___
 
 *Inherited from HTMLAttributes.slot*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1002*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1468*
 
 ___
 <a id="spellcheck"></a>
@@ -2437,7 +2485,7 @@ ___
 
 *Inherited from HTMLAttributes.spellCheck*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1003*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1469*
 
 ___
 <a id="style"></a>
@@ -2448,7 +2496,7 @@ ___
 
 *Inherited from HTMLAttributes.style*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1004*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1470*
 
 ___
 <a id="suppresscontenteditablewarning"></a>
@@ -2459,7 +2507,7 @@ ___
 
 *Inherited from HTMLAttributes.suppressContentEditableWarning*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:988*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1454*
 
 ___
 <a id="suppresshydrationwarning"></a>
@@ -2470,7 +2518,7 @@ ___
 
 *Inherited from HTMLAttributes.suppressHydrationWarning*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:989*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1455*
 
 ___
 <a id="tabindex"></a>
@@ -2481,7 +2529,7 @@ ___
 
 *Inherited from HTMLAttributes.tabIndex*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1005*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1471*
 
 ___
 <a id="target"></a>
@@ -2492,7 +2540,7 @@ ___
 
 *Inherited from FormHTMLAttributes.target*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1435*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1902*
 
 ___
 <a id="title"></a>
@@ -2503,7 +2551,7 @@ ___
 
 *Inherited from HTMLAttributes.title*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1006*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1472*
 
 ___
 <a id="typeof"></a>
@@ -2514,18 +2562,18 @@ ___
 
 *Inherited from HTMLAttributes.typeof*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1023*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1489*
 
 ___
 <a id="unselectable"></a>
 
 ### `<Optional>` unselectable
 
-**● unselectable**: *`boolean`*
+**● unselectable**: *"on" \| "off"*
 
 *Inherited from HTMLAttributes.unselectable*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1038*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1504*
 
 ___
 <a id="vocab"></a>
@@ -2536,7 +2584,7 @@ ___
 
 *Inherited from HTMLAttributes.vocab*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1024*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:1490*
 
 ___
 

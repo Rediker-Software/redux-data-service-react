@@ -22,7 +22,7 @@
 
 **● loadingComponent**: *`React.ComponentType`<`any`>*
 
-*Defined in [Configure.ts:4](https://github.com/Rediker-Software/redux-data-service-react/blob/18e2d42/src/Configure.ts#L4)*
+*Defined in [Configure.ts:4](https://github.com/Rediker-Software/redux-data-service-react/blob/5ddfd25/src/Configure.ts#L4)*
 
 ___
 

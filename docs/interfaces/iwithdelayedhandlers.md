@@ -26,7 +26,7 @@
 
 **● delayTimeout**: *`number`*
 
-*Defined in [WithDelayedHandlers.ts:12](https://github.com/Rediker-Software/redux-data-service-react/blob/18e2d42/src/WithDelayedHandlers.ts#L12)*
+*Defined in [WithDelayedHandlers.ts:12](https://github.com/Rediker-Software/redux-data-service-react/blob/5ddfd25/src/WithDelayedHandlers.ts#L12)*
 
 ___
 <a id="enabledebounce"></a>
@@ -35,7 +35,7 @@ ___
 
 **● enableDebounce**: *`boolean`*
 
-*Defined in [WithDelayedHandlers.ts:13](https://github.com/Rediker-Software/redux-data-service-react/blob/18e2d42/src/WithDelayedHandlers.ts#L13)*
+*Defined in [WithDelayedHandlers.ts:13](https://github.com/Rediker-Software/redux-data-service-react/blob/5ddfd25/src/WithDelayedHandlers.ts#L13)*
 
 ___
 <a id="enablethrottle"></a>
@@ -44,7 +44,7 @@ ___
 
 **● enableThrottle**: *`boolean`*
 
-*Defined in [WithDelayedHandlers.ts:14](https://github.com/Rediker-Software/redux-data-service-react/blob/18e2d42/src/WithDelayedHandlers.ts#L14)*
+*Defined in [WithDelayedHandlers.ts:14](https://github.com/Rediker-Software/redux-data-service-react/blob/5ddfd25/src/WithDelayedHandlers.ts#L14)*
 
 ___
 

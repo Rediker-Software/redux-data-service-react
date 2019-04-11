@@ -24,6 +24,7 @@
 * [props](fakecomponent.md#props)
 * [refs](fakecomponent.md#refs)
 * [state](fakecomponent.md#state)
+* [contextType](fakecomponent.md#contexttype)
 
 ### Methods
 
@@ -57,7 +58,7 @@
 
 *Inherited from Component.__constructor*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:284*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:435*
 
 **Parameters:**
 
@@ -69,9 +70,11 @@
 
 *Inherited from Component.__constructor*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:285*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:437*
 
-*__deprecated__*: [https://reactjs.org/docs/legacy-context.html](https://reactjs.org/docs/legacy-context.html)
+*__deprecated__*: 
+
+*__see__*: [https://reactjs.org/docs/legacy-context.html](https://reactjs.org/docs/legacy-context.html)
 
 **Parameters:**
 
@@ -94,20 +97,29 @@ ___
 
 *Inherited from Component.context*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:314*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:435*
 
-*__deprecated__*: [https://reactjs.org/docs/legacy-context.html](https://reactjs.org/docs/legacy-context.html)
+If using the new style context, re-declare this in your class to be the `React.ContextType` of your `static contextType`.
+
+```ts
+static contextType = MyContext
+context!: React.ContextType<typeof MyContext>
+```
+
+*__deprecated__*: if used without a type annotation, or without static contextType
+
+*__see__*: [https://reactjs.org/docs/legacy-context.html](https://reactjs.org/docs/legacy-context.html)
 
 ___
 <a id="props"></a>
 
 ###  props
 
-**● props**: *`Readonly`<`object`> & `Readonly`<[IFakeComponentProps](../interfaces/ifakecomponentprops.md)>*
+**● props**: *`Readonly`<[IFakeComponentProps](../interfaces/ifakecomponentprops.md)> & `Readonly`<`object`>*
 
 *Inherited from Component.props*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:308*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:460*
 
 ___
 <a id="refs"></a>
@@ -118,7 +130,7 @@ ___
 
 *Inherited from Component.refs*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:319*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:466*
 
 *__deprecated__*: [https://reactjs.org/docs/refs-and-the-dom.html#legacy-api-string-refs](https://reactjs.org/docs/refs-and-the-dom.html#legacy-api-string-refs)
 
@@ -135,7 +147,37 @@ ___
 
 *Inherited from Component.state*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:309*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:461*
+
+___
+<a id="contexttype"></a>
+
+### `<Static>``<Optional>` contextType
+
+**● contextType**: *`Context`<`any`>*
+
+*Inherited from Component.contextType*
+
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:420*
+
+If set, `this.context` will be set at runtime to the current value of the given Context.
+
+Usage:
+
+```ts
+type MyContext = number
+const Ctx = React.createContext<MyContext>(0)
+
+class Foo extends React.Component {
+  static contextType = Ctx
+  context!: React.ContextType<typeof Ctx>
+  render () {
+    return <>My context's value: {this.context}</>;
+  }
+}
+```
+
+*__see__*: [https://reactjs.org/docs/context.html#classcontexttype](https://reactjs.org/docs/context.html#classcontexttype)
 
 ___
 
@@ -149,7 +191,7 @@ ___
 
 *Inherited from DeprecatedLifecycle.UNSAFE_componentWillMount*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:474*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:648*
 
 Called immediately before mounting occurs, and before `Component#render`. Avoid introducing any side-effects or subscriptions in this method.
 
@@ -174,7 +216,7 @@ ___
 
 *Inherited from DeprecatedLifecycle.UNSAFE_componentWillReceiveProps*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:506*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:680*
 
 Called when the component may be receiving new props. React may call this even if props have not changed, so be sure to compare new and existing props if you only want to handle changes.
 
@@ -208,7 +250,7 @@ ___
 
 *Inherited from DeprecatedLifecycle.UNSAFE_componentWillUpdate*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:534*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:708*
 
 Called immediately before rendering when new props or state is received. Not called for the initial render.
 
@@ -243,7 +285,7 @@ ___
 
 *Inherited from ComponentLifecycle.componentDidCatch*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:413*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:577*
 
 Catches exceptions generated in descendant components. Unhandled exceptions will cause the entire component tree to unmount.
 
@@ -265,9 +307,9 @@ ___
 
 *Inherited from ComponentLifecycle.componentDidMount*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:392*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:556*
 
-Called immediately after a compoment is mounted. Setting state here will trigger re-rendering.
+Called immediately after a component is mounted. Setting state here will trigger re-rendering.
 
 **Returns:** `void`
 
@@ -280,7 +322,7 @@ ___
 
 *Inherited from NewLifecycle.componentDidUpdate*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:445*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:619*
 
 Called immediately after updating occurs. Not called for the initial render.
 
@@ -305,7 +347,7 @@ ___
 
 *Inherited from DeprecatedLifecycle.componentWillMount*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:460*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:634*
 
 Called immediately before mounting occurs, and before `Component#render`. Avoid introducing any side-effects or subscriptions in this method.
 
@@ -328,7 +370,7 @@ ___
 
 *Inherited from DeprecatedLifecycle.componentWillReceiveProps*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:489*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:663*
 
 Called when the component may be receiving new props. React may call this even if props have not changed, so be sure to compare new and existing props if you only want to handle changes.
 
@@ -360,7 +402,7 @@ ___
 
 *Inherited from ComponentLifecycle.componentWillUnmount*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:408*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:572*
 
 Called immediately before a component is destroyed. Perform any necessary cleanup in this method, such as cancelled network requests, or cleaning up any DOM elements created in `componentDidMount`.
 
@@ -375,7 +417,7 @@ ___
 
 *Inherited from DeprecatedLifecycle.componentWillUpdate*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:519*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:693*
 
 Called immediately before rendering when new props or state is received. Not called for the initial render.
 
@@ -408,7 +450,7 @@ ___
 
 *Inherited from Component.forceUpdate*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:300*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:452*
 
 **Parameters:**
 
@@ -427,7 +469,7 @@ ___
 
 *Inherited from NewLifecycle.getSnapshotBeforeUpdate*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:439*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:613*
 
 Runs before React applies the result of `render` to the document, and returns an object to be given to componentDidUpdate. Useful for saving things such as scroll position before `render` causes changes to it.
 
@@ -451,7 +493,7 @@ ___
 
 *Overrides Component.render*
 
-*Defined in [TestUtils/FakeComponent.tsx:8](https://github.com/Rediker-Software/redux-data-service-react/blob/18e2d42/src/TestUtils/FakeComponent.tsx#L8)*
+*Defined in [TestUtils/FakeComponent.tsx:8](https://github.com/Rediker-Software/redux-data-service-react/blob/5ddfd25/src/TestUtils/FakeComponent.tsx#L8)*
 
 **Returns:** `Element`
 
@@ -464,7 +506,7 @@ ___
 
 *Inherited from Component.setState*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:295*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:447*
 
 **Type parameters:**
 
@@ -487,7 +529,7 @@ ___
 
 *Inherited from ComponentLifecycle.shouldComponentUpdate*
 
-*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:403*
+*Defined in /Users/jmadson/projects/redux-data-service-react/node_modules/@types/react/index.d.ts:567*
 
 Called to determine whether the change in props and state should trigger a re-render.
 
