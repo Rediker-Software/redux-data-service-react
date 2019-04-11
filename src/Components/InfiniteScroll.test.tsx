@@ -56,8 +56,6 @@ describe("<InfiniteScroll />", () => {
   let delayTimeout;
 
   beforeEach(() => {
-    Error.stackTraceLimit = Infinity;
-
     fakeService = "fakeModel";
     pageSize = 10;
     totalPages = 10;
@@ -226,13 +224,7 @@ describe("<InfiniteScroll />", () => {
               delayTimeout={delayTimeout}
             />, wrapper => {
               return new Promise((resolve, reject) => {
-                simulateScrollEvent(wrapper, "TestContainer", {
-                  target: {
-                    scrollTop: 200,
-                    clientHeight: 50,
-                    scrollHeight: 200
-                  }
-                });
+                simulateScrollEvent(wrapper, "TestContainer", { target: { scrollTop: 200, clientHeight: 50, scrollHeight: 200 } });
 
                 setTimeout(() => {
                   try {
@@ -261,13 +253,7 @@ describe("<InfiniteScroll />", () => {
             />, wrapper => {
               return new Promise((resolve, reject) => {
                 expect(wrapper.find("TestContainerModel")).to.have.lengthOf(100); // verify page load before scrolling
-                simulateScrollEvent(wrapper, "TestContainer", {
-                  target: {
-                    scrollTop: 200,
-                    clientHeight: 50,
-                    scrollHeight: 200
-                  }
-                });
+                simulateScrollEvent(wrapper, "TestContainer", { target: { scrollTop: 200, clientHeight: 50, scrollHeight: 200 } });
 
                 setTimeout(() => {
                   try {
@@ -296,13 +282,7 @@ describe("<InfiniteScroll />", () => {
             />, wrapper => {
               return new Promise((resolve, reject) => {
                 expect(wrapper.find("TestContainerModel")).to.have.lengthOf(30); // verify page load before scrolling
-                simulateScrollEvent(wrapper, "TestContainer", {
-                  target: {
-                    scrollTop: 100,
-                    clientHeight: 50,
-                    scrollHeight: 200
-                  }
-                });
+                simulateScrollEvent(wrapper, "TestContainer", { target: { scrollTop: 100, clientHeight: 50, scrollHeight: 200 } });
 
                 setTimeout(() => {
                   try {
@@ -331,13 +311,7 @@ describe("<InfiniteScroll />", () => {
             />, wrapper => {
               return new Promise((resolve, reject) => {
                 expect(wrapper.find("TestContainerModel")).to.have.lengthOf(30); // verify page load before scrolling
-                simulateScrollEvent(wrapper, "TestContainer", {
-                  target: {
-                    scrollTop: 0,
-                    clientHeight: 50,
-                    scrollHeight: 200
-                  }
-                });
+                simulateScrollEvent(wrapper, "TestContainer", { target: { scrollTop: 0, clientHeight: 50, scrollHeight: 200 } });
 
                 setTimeout(() => {
                   try {
@@ -359,8 +333,7 @@ describe("<InfiniteScroll />", () => {
       let div;
 
       beforeEach(() => {
-        // Attaching div to mount container in order to access client heights, otherwise the heights will be 0 and
-        // tests will fail
+        // Attaching div to mount container in order to access client heights, otherwise the heights will be 0 and tests will fail
         div = document.createElement("div");
         document.body.appendChild(div);
       });
@@ -389,20 +362,23 @@ describe("<InfiniteScroll />", () => {
               query={{ page: 1 }}
               modelName={fakeService}
               delayTimeout={delayTimeout}
-            />, async wrapper => {
-
-              await setTimeoutPromise(() => {
-                wrapper.update();
+            />, wrapper => {
+              return new Promise((resolve, reject) => {
                 const amountToScrollToPage6 = 2600;
                 simulateScrollEvent(wrapper, "TestContainer", {
                   target: { scrollTop: amountToScrollToPage6, clientHeight: 250, scrollHeight: 0 },
                 });
-              }, delayTimeout + 100);
 
-              await setTimeoutPromise(() => {
-                wrapper.update();
-                expect(wrapper.find(".page5")).to.have.lengthOf(10);
-              }, delayTimeout + 100);
+                setTimeout(() => {
+                  try {
+                    wrapper.update();
+                    expect(wrapper.find(".page5")).to.have.lengthOf(10);
+                    resolve();
+                  } catch (e) {
+                    reject(e);
+                  }
+                }, delayTimeout + 100);
+              });
             }, { attachTo: div },
           );
         });
