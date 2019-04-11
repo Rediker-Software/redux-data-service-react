@@ -24,7 +24,7 @@
 
 **● query**: *`IQueryManager`<`any`>*
 
-*Defined in [Components/InfiniteScrollPreviousPage.tsx:16](https://github.com/Rediker-Software/redux-data-service-react/blob/5ddfd25/src/Components/InfiniteScrollPreviousPage.tsx#L16)*
+*Defined in [Components/InfiniteScrollPreviousPage.tsx:16](https://github.com/Rediker-Software/redux-data-service-react/blob/34d72f2/src/Components/InfiniteScrollPreviousPage.tsx#L16)*
 
 ___
 

@@ -22,7 +22,7 @@
 
 **● height**: *`number` \| `string`*
 
-*Defined in [Components/InfiniteScroll.tsx:69](https://github.com/Rediker-Software/redux-data-service-react/blob/5ddfd25/src/Components/InfiniteScroll.tsx#L69)*
+*Defined in [Components/InfiniteScroll.tsx:69](https://github.com/Rediker-Software/redux-data-service-react/blob/34d72f2/src/Components/InfiniteScroll.tsx#L69)*
 
 ___
 

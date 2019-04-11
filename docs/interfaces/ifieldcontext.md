@@ -22,7 +22,7 @@
 
 **● field**: *`object`*
 
-*Defined in [Components/ModelField.tsx:43](https://github.com/Rediker-Software/redux-data-service-react/blob/5ddfd25/src/Components/ModelField.tsx#L43)*
+*Defined in [Components/ModelField.tsx:43](https://github.com/Rediker-Software/redux-data-service-react/blob/34d72f2/src/Components/ModelField.tsx#L43)*
 
 #### Type declaration
 

@@ -34,7 +34,7 @@
 
 *Inherited from [IWithLoadingIndicatorProps](iwithloadingindicatorprops.md).[isLoading](iwithloadingindicatorprops.md#isloading)*
 
-*Defined in [WithLoadingIndicator.tsx:8](https://github.com/Rediker-Software/redux-data-service-react/blob/5ddfd25/src/WithLoadingIndicator.tsx#L8)*
+*Defined in [WithLoadingIndicator.tsx:8](https://github.com/Rediker-Software/redux-data-service-react/blob/34d72f2/src/WithLoadingIndicator.tsx#L8)*
 
 ___
 <a id="items"></a>
@@ -45,7 +45,7 @@ ___
 
 *Inherited from [IWithModelQueryProps](iwithmodelqueryprops.md).[items](iwithmodelqueryprops.md#items)*
 
-*Defined in [WithModelQuery.ts:18](https://github.com/Rediker-Software/redux-data-service-react/blob/5ddfd25/src/WithModelQuery.ts#L18)*
+*Defined in [WithModelQuery.ts:18](https://github.com/Rediker-Software/redux-data-service-react/blob/34d72f2/src/WithModelQuery.ts#L18)*
 
 ___
 <a id="loadingcomponent"></a>
@@ -56,7 +56,7 @@ ___
 
 *Inherited from [IWithLoadingIndicatorProps](iwithloadingindicatorprops.md).[loadingComponent](iwithloadingindicatorprops.md#loadingcomponent)*
 
-*Defined in [WithLoadingIndicator.tsx:9](https://github.com/Rediker-Software/redux-data-service-react/blob/5ddfd25/src/WithLoadingIndicator.tsx#L9)*
+*Defined in [WithLoadingIndicator.tsx:9](https://github.com/Rediker-Software/redux-data-service-react/blob/34d72f2/src/WithLoadingIndicator.tsx#L9)*
 
 ___
 <a id="loadingcomponentprops"></a>
@@ -67,7 +67,7 @@ ___
 
 *Inherited from [IWithLoadingIndicatorProps](iwithloadingindicatorprops.md).[loadingComponentProps](iwithloadingindicatorprops.md#loadingcomponentprops)*
 
-*Defined in [WithLoadingIndicator.tsx:10](https://github.com/Rediker-Software/redux-data-service-react/blob/5ddfd25/src/WithLoadingIndicator.tsx#L10)*
+*Defined in [WithLoadingIndicator.tsx:10](https://github.com/Rediker-Software/redux-data-service-react/blob/34d72f2/src/WithLoadingIndicator.tsx#L10)*
 
 ___
 <a id="modelname"></a>
@@ -78,7 +78,7 @@ ___
 
 *Overrides [IWithModelQueryOptions](iwithmodelqueryoptions.md).[modelName](iwithmodelqueryoptions.md#modelname)*
 
-*Defined in [Query.tsx:7](https://github.com/Rediker-Software/redux-data-service-react/blob/5ddfd25/src/Query.tsx#L7)*
+*Defined in [Query.tsx:7](https://github.com/Rediker-Software/redux-data-service-react/blob/34d72f2/src/Query.tsx#L7)*
 
 ___
 <a id="query"></a>
@@ -89,7 +89,7 @@ ___
 
 *Inherited from [IWithModelQueryProps](iwithmodelqueryprops.md).[query](iwithmodelqueryprops.md#query)*
 
-*Defined in [WithModelQuery.ts:17](https://github.com/Rediker-Software/redux-data-service-react/blob/5ddfd25/src/WithModelQuery.ts#L17)*
+*Defined in [WithModelQuery.ts:17](https://github.com/Rediker-Software/redux-data-service-react/blob/34d72f2/src/WithModelQuery.ts#L17)*
 
 ___
 
