@@ -39,7 +39,7 @@
 
 **● containerComponent**: *`React.ComponentType`<`object` & `any`>*
 
-*Defined in [Components/InfiniteScroll.tsx:28](https://github.com/Rediker-Software/redux-data-service-react/blob/34d72f2/src/Components/InfiniteScroll.tsx#L28)*
+*Defined in [Components/InfiniteScroll.tsx:28](https://github.com/Rediker-Software/redux-data-service-react/blob/771395e/src/Components/InfiniteScroll.tsx#L28)*
 
 ___
 <a id="contentplaceholdercomponent"></a>
@@ -48,7 +48,7 @@ ___
 
 **● contentPlaceHolderComponent**: *`React.ComponentType`<`object`>*
 
-*Defined in [Components/InfiniteScroll.tsx:32](https://github.com/Rediker-Software/redux-data-service-react/blob/34d72f2/src/Components/InfiniteScroll.tsx#L32)*
+*Defined in [Components/InfiniteScroll.tsx:32](https://github.com/Rediker-Software/redux-data-service-react/blob/771395e/src/Components/InfiniteScroll.tsx#L32)*
 
 ___
 <a id="contentplaceholdercomponentprops"></a>
@@ -57,7 +57,7 @@ ___
 
 **● contentPlaceHolderComponentProps**: *`any`*
 
-*Defined in [Components/InfiniteScroll.tsx:33](https://github.com/Rediker-Software/redux-data-service-react/blob/34d72f2/src/Components/InfiniteScroll.tsx#L33)*
+*Defined in [Components/InfiniteScroll.tsx:33](https://github.com/Rediker-Software/redux-data-service-react/blob/771395e/src/Components/InfiniteScroll.tsx#L33)*
 
 ___
 <a id="delaytimeout"></a>
@@ -68,7 +68,7 @@ ___
 
 *Inherited from [IWithDelayedHandlers](iwithdelayedhandlers.md).[delayTimeout](iwithdelayedhandlers.md#delaytimeout)*
 
-*Defined in [WithDelayedHandlers.ts:12](https://github.com/Rediker-Software/redux-data-service-react/blob/34d72f2/src/WithDelayedHandlers.ts#L12)*
+*Defined in [WithDelayedHandlers.ts:12](https://github.com/Rediker-Software/redux-data-service-react/blob/771395e/src/WithDelayedHandlers.ts#L12)*
 
 ___
 <a id="disablevirtualscrolling"></a>
@@ -77,7 +77,7 @@ ___
 
 **● disableVirtualScrolling**: *`boolean`*
 
-*Defined in [Components/InfiniteScroll.tsx:31](https://github.com/Rediker-Software/redux-data-service-react/blob/34d72f2/src/Components/InfiniteScroll.tsx#L31)*
+*Defined in [Components/InfiniteScroll.tsx:31](https://github.com/Rediker-Software/redux-data-service-react/blob/771395e/src/Components/InfiniteScroll.tsx#L31)*
 
 ___
 <a id="enabledebounce"></a>
@@ -88,7 +88,7 @@ ___
 
 *Inherited from [IWithDelayedHandlers](iwithdelayedhandlers.md).[enableDebounce](iwithdelayedhandlers.md#enabledebounce)*
 
-*Defined in [WithDelayedHandlers.ts:13](https://github.com/Rediker-Software/redux-data-service-react/blob/34d72f2/src/WithDelayedHandlers.ts#L13)*
+*Defined in [WithDelayedHandlers.ts:13](https://github.com/Rediker-Software/redux-data-service-react/blob/771395e/src/WithDelayedHandlers.ts#L13)*
 
 ___
 <a id="enablethrottle"></a>
@@ -99,7 +99,7 @@ ___
 
 *Inherited from [IWithDelayedHandlers](iwithdelayedhandlers.md).[enableThrottle](iwithdelayedhandlers.md#enablethrottle)*
 
-*Defined in [WithDelayedHandlers.ts:14](https://github.com/Rediker-Software/redux-data-service-react/blob/34d72f2/src/WithDelayedHandlers.ts#L14)*
+*Defined in [WithDelayedHandlers.ts:14](https://github.com/Rediker-Software/redux-data-service-react/blob/771395e/src/WithDelayedHandlers.ts#L14)*
 
 ___
 <a id="modelcomponent"></a>
@@ -108,7 +108,7 @@ ___
 
 **● modelComponent**: *`React.ComponentType`<`object` & `any`>*
 
-*Defined in [Components/InfiniteScroll.tsx:29](https://github.com/Rediker-Software/redux-data-service-react/blob/34d72f2/src/Components/InfiniteScroll.tsx#L29)*
+*Defined in [Components/InfiniteScroll.tsx:29](https://github.com/Rediker-Software/redux-data-service-react/blob/771395e/src/Components/InfiniteScroll.tsx#L29)*
 
 ___
 <a id="modelcomponentprops"></a>
@@ -117,7 +117,7 @@ ___
 
 **● modelComponentProps**: *`any`*
 
-*Defined in [Components/InfiniteScroll.tsx:30](https://github.com/Rediker-Software/redux-data-service-react/blob/34d72f2/src/Components/InfiniteScroll.tsx#L30)*
+*Defined in [Components/InfiniteScroll.tsx:30](https://github.com/Rediker-Software/redux-data-service-react/blob/771395e/src/Components/InfiniteScroll.tsx#L30)*
 
 ___
 <a id="modelname"></a>
@@ -126,7 +126,7 @@ ___
 
 **● modelName**: *`string`*
 
-*Defined in [Components/InfiniteScroll.tsx:26](https://github.com/Rediker-Software/redux-data-service-react/blob/34d72f2/src/Components/InfiniteScroll.tsx#L26)*
+*Defined in [Components/InfiniteScroll.tsx:26](https://github.com/Rediker-Software/redux-data-service-react/blob/771395e/src/Components/InfiniteScroll.tsx#L26)*
 
 ___
 <a id="query"></a>
@@ -135,7 +135,7 @@ ___
 
 **● query**: *`IQueryParams` \| `IQueryBuilder`*
 
-*Defined in [Components/InfiniteScroll.tsx:27](https://github.com/Rediker-Software/redux-data-service-react/blob/34d72f2/src/Components/InfiniteScroll.tsx#L27)*
+*Defined in [Components/InfiniteScroll.tsx:27](https://github.com/Rediker-Software/redux-data-service-react/blob/771395e/src/Components/InfiniteScroll.tsx#L27)*
 
 ___
 

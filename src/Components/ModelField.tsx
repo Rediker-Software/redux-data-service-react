@@ -79,7 +79,7 @@ export const ModelField = compose<IModelFieldProps, IModelFieldProps>(
     {
       onChange: (state, { model, name, onChange, validateField }) => event => {
 
-        const value = (typeof event === "object" && "target" in event)
+        const value = (event != null && typeof event === "object" && "target" in event)
           ? (event.target.value == null && event.target.checked) || event.target.value || null
           : event;
 
